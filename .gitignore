@@ -1,0 +1,8 @@
+.vs
+client/redhvid-client/bin/*
+client/redhvid-client/obj/*
+
+.idea
+venv
+
+__pycache__

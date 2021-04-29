@@ -1,4 +1,4 @@
-﻿namespace Redhvid.Video
+﻿namespace Redhvid.Enums
 {
     public enum JobStatus
     {

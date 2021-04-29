@@ -1,8 +1,9 @@
 ﻿using Grpc.Net.Client;
 using System.IO;
 using System.Threading.Tasks;
+using Redhvid.Enums;
 
-namespace Redhvid.Video
+namespace Redhvid
 {
     class Job
     {

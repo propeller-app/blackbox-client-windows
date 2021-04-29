@@ -1,6 +1,6 @@
 .vs
-client/redhvid-client/bin/*
-client/redhvid-client/obj/*
+bin
+obj
 
 .idea
 venv

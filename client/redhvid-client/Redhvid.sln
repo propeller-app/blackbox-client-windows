@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "redhvid-client", "redhvid-client\redhvid-client.csproj", "{0CF87401-308B-4890-8FD0-7E2440B7A84E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Redhvid", "Redhvid.csproj", "{5BDA040C-9395-4AA9-B991-E24615A5533A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0CF87401-308B-4890-8FD0-7E2440B7A84E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0CF87401-308B-4890-8FD0-7E2440B7A84E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0CF87401-308B-4890-8FD0-7E2440B7A84E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0CF87401-308B-4890-8FD0-7E2440B7A84E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BDA040C-9395-4AA9-B991-E24615A5533A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BDA040C-9395-4AA9-B991-E24615A5533A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BDA040C-9395-4AA9-B991-E24615A5533A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BDA040C-9395-4AA9-B991-E24615A5533A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {17F6A471-673F-4BAD-8929-E922E80C73E0}
+		SolutionGuid = {7962A71B-AA15-4B36-8917-4930619E8B43}
 	EndGlobalSection
 EndGlobal

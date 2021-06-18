@@ -1,3 +1,0 @@
-
-class DatabaseHook:
-    pass

@@ -4,6 +4,7 @@
     {
         Queued,
         Cloning,
+        Sleeping,
         Transcoding,
         Complete
     }

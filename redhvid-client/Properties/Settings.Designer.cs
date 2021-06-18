@@ -70,5 +70,14 @@ namespace Redhvid.Properties {
                 return ((global::System.Collections.Specialized.StringCollection)(this["Devices"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Z:\\Workspace\\redhvid\\client\\ffmpeg")]
+        public string FFmpegExecutable {
+            get {
+                return ((string)(this["FFmpegExecutable"]));
+            }
+        }
     }
 }

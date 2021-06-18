@@ -1,3 +1,4 @@
+using Redhvid.Enums;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -26,6 +27,17 @@ namespace Redhvid
             Application.Run(jobProgressForm);
         }
 
+        public static void ShowJobProgress()
+        {
+            jobProgressForm.Opacity = 100;
+            jobProgressForm.Focus();
+        }
+
+        public static void HideJobProgress()
+        {
+            jobProgressForm.Opacity = 0;
+        }
+
         private static void InitApplication()
         {
             usbEventWatcher.UsbDeviceAdded += UsbDeviceConnected;
@@ -33,15 +45,9 @@ namespace Redhvid
 
         private static void UsbDeviceConnected(object sender, UsbDevice device)
         {
-            Debug.WriteLine(device.DeviceSystemPath);
             if (Properties.Settings.Default.Devices != null &&
                 Properties.Settings.Default.Devices.Contains(device.DeviceSystemPath))
             {
-                jobProgressForm.trayIcon.BalloonTipTitle = "USB Device Detected";
-                jobProgressForm.trayIcon.BalloonTipText = device.DeviceSystemPath.ToString();
-
-                jobProgressForm.trayIcon.ShowBalloonTip(5000);
-
                 Job job = new Job(jobQueue.Count, device.MountedDirectoryPath);
                 jobQueue.Enqueue(job);
 
@@ -59,7 +65,13 @@ namespace Redhvid
             if (currentJob == null)
             {
                 currentJob = jobQueue.Dequeue();
-                Task.Run(currentJob.Start);
+                currentJob.Start();
+
+                jobProgressForm.Invoke(new Action(() =>
+                {
+                    JobDataForm jobDataForm = new(currentJob);
+                    jobDataForm.Show();
+                }));
             }
         }
     }

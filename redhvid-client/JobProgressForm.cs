@@ -22,12 +22,12 @@ namespace Redhvid
 
         private void trayIcon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            this.Opacity = 100;
+            Opacity = 100;
         }
 
         private void closeButton_Click(object sender, EventArgs e)
         {
-            this.Opacity = 0;
+            Opacity = 0;
         }
 
         private void exitMenuItem_Click(object sender, EventArgs e)
@@ -56,12 +56,12 @@ namespace Redhvid
 
         private void jobProgressMenuItem_Click(object sender, EventArgs e)
         {
-            this.Opacity = 100;
+            Opacity = 100;
         }
 
         private void settingsMenuItem_Click(object sender, EventArgs e)
         {
-            SettingsForm settingsForm = new SettingsForm();
+            SettingsForm settingsForm = new();
             settingsForm.Show();
         }
     }

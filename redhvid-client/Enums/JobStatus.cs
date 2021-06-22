@@ -6,6 +6,7 @@
         Cloning,
         Sleeping,
         Transcoding,
+        Uploading,
         Complete
     }
 }

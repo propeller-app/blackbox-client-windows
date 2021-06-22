@@ -10,10 +10,10 @@ namespace Redhvid
 {
     public static class Program
     {
-        private static readonly JobProgressForm jobProgressForm = new JobProgressForm();
+        private static readonly JobProgressForm jobProgressForm = new();
         private static readonly IUsbEventWatcher usbEventWatcher = new UsbEventWatcher();
 
-        private static Queue<Job> jobQueue = new Queue<Job>();
+        private static readonly Queue<Job> jobQueue = new();
         private static Job currentJob;
 
         [STAThread]

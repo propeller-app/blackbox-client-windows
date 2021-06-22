@@ -1,4 +1,4 @@
-using Redhvid.Events;
+﻿using Redhvid.Events;
 using System;
 using System.Drawing;
 using System.Threading.Tasks;
@@ -45,6 +45,13 @@ namespace Redhvid
 
             Close();
             Program.ShowJobProgress();
+        }
+
+        private void CancelUpload(object sender, EventArgs e)
+        {
+            job.Cancel();
+
+            Close();
         }
     }
 }

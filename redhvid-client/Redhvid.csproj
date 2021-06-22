@@ -14,6 +14,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications" Version="7.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="System.Collections.NonGeneric" Version="4.3.0" />
     <PackageReference Include="Usb.Events" Version="1.1.1.1" />
   </ItemGroup>
@@ -43,7 +44,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Protobuf Include="..\..\protos\redhvid\flight_video_distributor.proto" GrpcServices="Client" />
+    <Protobuf Include="..\protocol\job.proto" GrpcServices="Client" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Xabe.FFmpeg">
+      <HintPath>C:\Users\ben\Documents\Xabe.FFmpeg\src\Xabe.FFmpeg\obj\Debug\netstandard2.0\Xabe.FFmpeg.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>

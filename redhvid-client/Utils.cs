@@ -20,7 +20,7 @@ namespace Redhvid
             return Directory.CreateDirectory(Path.Combine(
                 Path.GetTempPath(),
                 "redh",
-                $"job_{job.number}"
+                $"job{job.JobId}"
             ));
         }
 

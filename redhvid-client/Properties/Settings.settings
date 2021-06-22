@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8'?>
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Redhvid.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
@@ -21,7 +21,7 @@
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
     <Setting Name="FFmpegExecutable" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Z:\Workspace\redhvid\client\ffmpeg</Value>
+      <Value Profile="(Default)">C:\Program Files\ffmpeg\bin</Value>
     </Setting>
   </Settings>
 </SettingsFile>

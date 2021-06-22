@@ -1,4 +1,4 @@
-﻿
+
 namespace Redhvid
 {
     partial class JobDataForm
@@ -134,7 +134,7 @@ namespace Redhvid
             this.uploadButton.TabIndex = 4;
             this.uploadButton.Text = "Upload";
             this.uploadButton.UseVisualStyleBackColor = true;
-            this.uploadButton.Click += new System.EventHandler(this.uploadButton_Click);
+            this.uploadButton.Click += new System.EventHandler(this.StartUpload);
             // 
             // cancelButton
             // 

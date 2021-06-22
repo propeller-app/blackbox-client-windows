@@ -1,4 +1,4 @@
-﻿using Redhvid.Events;
+using Redhvid.Events;
 using System;
 using System.Drawing;
 using System.Threading.Tasks;
@@ -39,7 +39,7 @@ namespace Redhvid
             }));
         }
 
-        private void uploadButton_Click(object sender, EventArgs e)
+        private void StartUpload(object sender, EventArgs e)
         {
             job.SetJobData(new JobData(firstNameTextBox.Text, lastNameTextBox.Text, emailTextBox.Text));
 

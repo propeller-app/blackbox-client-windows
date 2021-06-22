@@ -1,3 +1,4 @@
+using Grpc.Net.Client;
 using Redhvid.Enums;
 using System;
 using System.Collections.Generic;
@@ -48,7 +49,11 @@ namespace Redhvid
             if (Properties.Settings.Default.Devices != null &&
                 Properties.Settings.Default.Devices.Contains(device.DeviceSystemPath))
             {
-                Job job = new Job(jobQueue.Count, device.MountedDirectoryPath);
+                GrpcChannel channel = GrpcChannel.ForAddress(Utils.GetGRPCUrl());
+
+                Job job = new();
+                job.SetDevicePath(device.MountedDirectoryPath);
+                job.SetSpoolClient(new(channel));
                 jobQueue.Enqueue(job);
 
                 ProcessJobQueue();
@@ -57,7 +62,7 @@ namespace Redhvid
 
         private static void ProcessJobQueue()
         {
-            if (currentJob != null && currentJob.status == JobStatus.Complete)
+            if (currentJob != null && currentJob.Status == JobStatus.Complete)
             {
                 currentJob = null;
             }

@@ -30,11 +30,11 @@ namespace Redhvid
         private void InitializeComponent()
         {
             this.firstNameLabel = new System.Windows.Forms.Label();
-            this.firstNameTextBox = new System.Windows.Forms.TextBox();
+            this.emailTextBox = new System.Windows.Forms.TextBox();
             this.lastNameLabel = new System.Windows.Forms.Label();
             this.lastNameTextBox = new System.Windows.Forms.TextBox();
             this.emailLabel = new System.Windows.Forms.Label();
-            this.emailTextBox = new System.Windows.Forms.TextBox();
+            this.firstNameTextBox = new System.Windows.Forms.TextBox();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
@@ -56,14 +56,14 @@ namespace Redhvid
             this.firstNameLabel.TabIndex = 0;
             this.firstNameLabel.Text = "First Name:";
             // 
-            // firstNameTextBox
+            // emailTextBox
             // 
-            this.firstNameTextBox.Location = new System.Drawing.Point(85, 269);
-            this.firstNameTextBox.Margin = new System.Windows.Forms.Padding(10);
-            this.firstNameTextBox.Name = "firstNameTextBox";
-            this.firstNameTextBox.Size = new System.Drawing.Size(187, 23);
-            this.firstNameTextBox.TabIndex = 3;
-            this.firstNameTextBox.Text = "john.doe@gmail.com";
+            this.emailTextBox.Location = new System.Drawing.Point(85, 269);
+            this.emailTextBox.Margin = new System.Windows.Forms.Padding(10);
+            this.emailTextBox.Name = "emailTextBox";
+            this.emailTextBox.Size = new System.Drawing.Size(187, 23);
+            this.emailTextBox.TabIndex = 3;
+            this.emailTextBox.Text = "john.doe@gmail.com";
             // 
             // lastNameLabel
             // 
@@ -92,14 +92,14 @@ namespace Redhvid
             this.emailLabel.TabIndex = 4;
             this.emailLabel.Text = "Email:";
             // 
-            // emailTextBox
+            // firstNameTextBox
             // 
-            this.emailTextBox.Location = new System.Drawing.Point(85, 197);
-            this.emailTextBox.Margin = new System.Windows.Forms.Padding(10);
-            this.emailTextBox.Name = "emailTextBox";
-            this.emailTextBox.Size = new System.Drawing.Size(187, 23);
-            this.emailTextBox.TabIndex = 1;
-            this.emailTextBox.Text = "John";
+            this.firstNameTextBox.Location = new System.Drawing.Point(85, 197);
+            this.firstNameTextBox.Margin = new System.Windows.Forms.Padding(10);
+            this.firstNameTextBox.Name = "firstNameTextBox";
+            this.firstNameTextBox.Size = new System.Drawing.Size(187, 23);
+            this.firstNameTextBox.TabIndex = 1;
+            this.firstNameTextBox.Text = "John";
             // 
             // statusStrip
             // 
@@ -176,11 +176,11 @@ namespace Redhvid
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.uploadButton);
             this.Controls.Add(this.statusStrip);
-            this.Controls.Add(this.emailTextBox);
+            this.Controls.Add(this.firstNameTextBox);
             this.Controls.Add(this.emailLabel);
             this.Controls.Add(this.lastNameTextBox);
             this.Controls.Add(this.lastNameLabel);
-            this.Controls.Add(this.firstNameTextBox);
+            this.Controls.Add(this.emailTextBox);
             this.Controls.Add(this.firstNameLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "JobDataForm";
@@ -201,11 +201,11 @@ namespace Redhvid
         #endregion
 
         private System.Windows.Forms.Label firstNameLabel;
-        private System.Windows.Forms.TextBox firstNameTextBox;
+        private System.Windows.Forms.TextBox emailTextBox;
         private System.Windows.Forms.Label lastNameLabel;
         private System.Windows.Forms.TextBox lastNameTextBox;
         private System.Windows.Forms.Label emailLabel;
-        private System.Windows.Forms.TextBox emailTextBox;
+        private System.Windows.Forms.TextBox firstNameTextBox;
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;
         private System.Windows.Forms.ToolStripProgressBar statusProgressBar;

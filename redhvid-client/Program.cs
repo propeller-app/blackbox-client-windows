@@ -24,6 +24,34 @@ namespace Redhvid
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            Process myself = Process.GetCurrentProcess();
+            Process[] processes = Process.GetProcessesByName(myself.ProcessName);
+            if (processes.Length > 1)
+            {
+                bool userNotified = false;
+                foreach(Process p in processes)
+                {
+                    if(p.MainModule.FileName == Application.ExecutablePath && p.Id != myself.Id)
+                    {
+                        if(!userNotified)
+                        {
+                            DialogResult res = MessageBox.Show(
+                                "There is already an instance of the application running. Proceed and kill existing processes?", 
+                                "Kill existing processes", 
+                                MessageBoxButtons.OKCancel, 
+                                MessageBoxIcon.Question);
+                            if(res == DialogResult.Cancel)
+                            {
+                                Application.Exit();
+                                return;
+                            }
+                            userNotified = true;
+                        }
+                        p.Kill();
+                    }
+                }
+            }
+
             InitApplication();
             Application.Run(jobProgressForm);
         }

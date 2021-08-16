@@ -40,17 +40,13 @@ namespace Redhvid
             this.statusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.uploadButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.statusStrip.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // firstNameLabel
             // 
             this.firstNameLabel.AutoSize = true;
-            this.firstNameLabel.Location = new System.Drawing.Point(12, 200);
+            this.firstNameLabel.Location = new System.Drawing.Point(9, 14);
             this.firstNameLabel.Name = "firstNameLabel";
             this.firstNameLabel.Size = new System.Drawing.Size(67, 15);
             this.firstNameLabel.TabIndex = 0;
@@ -58,7 +54,7 @@ namespace Redhvid
             // 
             // emailTextBox
             // 
-            this.emailTextBox.Location = new System.Drawing.Point(85, 269);
+            this.emailTextBox.Location = new System.Drawing.Point(82, 83);
             this.emailTextBox.Margin = new System.Windows.Forms.Padding(10);
             this.emailTextBox.Name = "emailTextBox";
             this.emailTextBox.Size = new System.Drawing.Size(187, 23);
@@ -68,7 +64,7 @@ namespace Redhvid
             // lastNameLabel
             // 
             this.lastNameLabel.AutoSize = true;
-            this.lastNameLabel.Location = new System.Drawing.Point(12, 236);
+            this.lastNameLabel.Location = new System.Drawing.Point(9, 50);
             this.lastNameLabel.Name = "lastNameLabel";
             this.lastNameLabel.Size = new System.Drawing.Size(66, 15);
             this.lastNameLabel.TabIndex = 2;
@@ -76,7 +72,7 @@ namespace Redhvid
             // 
             // lastNameTextBox
             // 
-            this.lastNameTextBox.Location = new System.Drawing.Point(85, 233);
+            this.lastNameTextBox.Location = new System.Drawing.Point(82, 47);
             this.lastNameTextBox.Margin = new System.Windows.Forms.Padding(10);
             this.lastNameTextBox.Name = "lastNameTextBox";
             this.lastNameTextBox.Size = new System.Drawing.Size(187, 23);
@@ -86,7 +82,7 @@ namespace Redhvid
             // emailLabel
             // 
             this.emailLabel.AutoSize = true;
-            this.emailLabel.Location = new System.Drawing.Point(12, 272);
+            this.emailLabel.Location = new System.Drawing.Point(9, 86);
             this.emailLabel.Name = "emailLabel";
             this.emailLabel.Size = new System.Drawing.Size(39, 15);
             this.emailLabel.TabIndex = 4;
@@ -94,7 +90,7 @@ namespace Redhvid
             // 
             // firstNameTextBox
             // 
-            this.firstNameTextBox.Location = new System.Drawing.Point(85, 197);
+            this.firstNameTextBox.Location = new System.Drawing.Point(82, 11);
             this.firstNameTextBox.Margin = new System.Windows.Forms.Padding(10);
             this.firstNameTextBox.Name = "firstNameTextBox";
             this.firstNameTextBox.Size = new System.Drawing.Size(187, 23);
@@ -106,7 +102,7 @@ namespace Redhvid
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusLabel,
             this.statusProgressBar});
-            this.statusStrip.Location = new System.Drawing.Point(0, 339);
+            this.statusStrip.Location = new System.Drawing.Point(0, 149);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(284, 22);
             this.statusStrip.TabIndex = 6;
@@ -127,7 +123,7 @@ namespace Redhvid
             // 
             // uploadButton
             // 
-            this.uploadButton.Location = new System.Drawing.Point(197, 305);
+            this.uploadButton.Location = new System.Drawing.Point(194, 119);
             this.uploadButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 8);
             this.uploadButton.Name = "uploadButton";
             this.uploadButton.Size = new System.Drawing.Size(75, 23);
@@ -138,7 +134,7 @@ namespace Redhvid
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(116, 305);
+            this.cancelButton.Location = new System.Drawing.Point(113, 119);
             this.cancelButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 8);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
@@ -147,32 +143,12 @@ namespace Redhvid
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.CancelUpload);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox1.Controls.Add(this.pictureBox1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(260, 174);
-            this.groupBox1.TabIndex = 10;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Preview";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(6, 22);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(248, 146);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // JobDataForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 361);
+            this.ClientSize = new System.Drawing.Size(284, 171);
             this.ControlBox = false;
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.uploadButton);
             this.Controls.Add(this.statusStrip);
@@ -191,8 +167,6 @@ namespace Redhvid
             this.TopMost = true;
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -211,7 +185,5 @@ namespace Redhvid
         private System.Windows.Forms.ToolStripProgressBar statusProgressBar;
         private System.Windows.Forms.Button uploadButton;
         private System.Windows.Forms.Button cancelButton;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

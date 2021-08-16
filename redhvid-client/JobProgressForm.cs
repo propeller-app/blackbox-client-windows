@@ -1,4 +1,4 @@
-using Redhvid.Events;
+﻿using Redhvid.Events;
 using System;
 using System.Diagnostics;
 using System.Drawing;
@@ -65,6 +65,7 @@ namespace Redhvid
 
         public new void Show()
         {
+            BringToFront();
             Opacity = 100;
         }
 

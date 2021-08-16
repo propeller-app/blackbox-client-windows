@@ -389,10 +389,13 @@ namespace Redhvid
         {
             try
             {
+                DateTime expiresOn = DateTime.Now.AddDays(Properties.Settings.Default.JobExpiryDays);
+                long expiresTimestamp = ((DateTimeOffset)expiresOn).ToUnixTimeSeconds();
                 client.Flush(new Rpc.Job()
                 {
                     JobId = JobId,
                     MachineId = Environment.MachineName,
+                    Expires = (int)expiresTimestamp,
                     Customer = new Rpc.Job.Types.Customer()
                     {
                         FirstName = jobData.CustomerFirstName,

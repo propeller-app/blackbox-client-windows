@@ -82,6 +82,15 @@ namespace Redhvid.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
+        public int JobExpiryDays {
+            get {
+                return ((int)(this["JobExpiryDays"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("-c:v libx265 -crf 20 -preset ultrafast")]
         public string FFmpegFlags {
             get {

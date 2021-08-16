@@ -8,13 +8,25 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Test|Any CPU = Test|Any CPU
+		Test|x64 = Test|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{5BDA040C-9395-4AA9-B991-E24615A5533A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5BDA040C-9395-4AA9-B991-E24615A5533A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BDA040C-9395-4AA9-B991-E24615A5533A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5BDA040C-9395-4AA9-B991-E24615A5533A}.Debug|x64.Build.0 = Debug|Any CPU
 		{5BDA040C-9395-4AA9-B991-E24615A5533A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BDA040C-9395-4AA9-B991-E24615A5533A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BDA040C-9395-4AA9-B991-E24615A5533A}.Release|x64.ActiveCfg = Release|x64
+		{5BDA040C-9395-4AA9-B991-E24615A5533A}.Release|x64.Build.0 = Release|x64
+		{5BDA040C-9395-4AA9-B991-E24615A5533A}.Test|Any CPU.ActiveCfg = Test|x64
+		{5BDA040C-9395-4AA9-B991-E24615A5533A}.Test|Any CPU.Build.0 = Test|x64
+		{5BDA040C-9395-4AA9-B991-E24615A5533A}.Test|x64.ActiveCfg = Test|x64
+		{5BDA040C-9395-4AA9-B991-E24615A5533A}.Test|x64.Build.0 = Test|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

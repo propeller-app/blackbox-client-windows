@@ -1,4 +1,4 @@
-﻿using Redhvid.Events;
+using Redhvid.Events;
 using System;
 using System.Drawing;
 using System.Threading.Tasks;
@@ -52,6 +52,13 @@ namespace Redhvid
             job.Cancel();
 
             Close();
+        }
+
+        private new void Close()
+        {
+            job.CloneProgress -= CloneProgress;
+            job.CloneComplete -= CloneComplete;
+            base.Close();
         }
     }
 }

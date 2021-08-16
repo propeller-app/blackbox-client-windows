@@ -1,5 +1,6 @@
-using Redhvid.Events;
+﻿using Redhvid.Events;
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -22,21 +23,33 @@ namespace Redhvid
 
         private void CloneProgress(object sender, CloneProgressEventArgs e)
         {
-            Invoke(new Action(() =>
+            try
             {
-                statusProgressBar.Value = (int)Math.Round(e.Percent * 100m);
-                statusLabel.Text = $"Cloning ({e.FileNum}/{e.FileTotal})";
-            }));
+                Invoke(new Action(() =>
+                {
+                    statusProgressBar.Value = (int)Math.Round(e.Percent * 100m);
+                    statusLabel.Text = $"Cloning ({e.FileNum}/{e.FileTotal})";
+                }));
+            } catch(ObjectDisposedException)
+            {
+                Debug.WriteLine("Form was disposed of before events were fully un-subscribed.");
+            }
         }
 
         private void CloneComplete(object sender, CloneCompleteEventArgs e)
         {
-            Invoke(new Action(() =>
+            try
             {
-                statusProgressBar.Value = 0;
-                statusProgressBar.Enabled = false;
-                statusLabel.Text = "Ready";
-            }));
+                Invoke(new Action(() =>
+                {
+                    statusProgressBar.Value = 0;
+                    statusProgressBar.Enabled = false;
+                    statusLabel.Text = "Ready";
+                }));
+            } catch(ObjectDisposedException)
+            {
+                Debug.WriteLine("Form was disposed of before events were fully un-subscribed.");
+            }
         }
 
         private void StartUpload(object sender, EventArgs e)

@@ -1,4 +1,4 @@
-﻿using Google.Protobuf;
+using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using Grpc.Net.Client;
@@ -6,6 +6,7 @@ using Redhvid.Enums;
 using Redhvid.Events;
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
@@ -271,15 +272,15 @@ namespace Redhvid
                 JobId = newJob.JobId;
 
                 Status = JobStatus.Cloning;
-                string[] filesToCopy = Directory.GetFiles(this.path);
+                List<string> filesToCopy = Utils.GetAllAccessibleFiles(this.path, "*.mp4");
                 byte[] buffer = new byte[4096];
                 DirectoryInfo tempDir = Utils.GetTempJobDirectory(this);
 
-                for (int i = 0; i < filesToCopy.Length; i++)
+                int i = 0;
+                foreach(string file in filesToCopy) 
                 {
                     ct.ThrowIfCancellationRequested();
 
-                    string file = filesToCopy[i];
                     string fileName = Path.GetFileName(file);
                     using Stream source = File.OpenRead(file);
                     using Stream destination = File.Create(Path.Combine(tempDir.FullName, fileName));
@@ -290,13 +291,14 @@ namespace Redhvid
                         ct.ThrowIfCancellationRequested();
 
                         decimal percentComplete = (decimal)destination.Length / (decimal)source.Length;
-                        OnCloneProgress(new CloneProgressEventArgs(i + 1, fileName, filesToCopy.Length, percentComplete));
+                        OnCloneProgress(new CloneProgressEventArgs(i + 1, fileName, filesToCopy.Count, percentComplete));
 
                         destination.Write(buffer, 0, count);
                     }
+                    i++;
                 }
 
-                OnCloneComplete(new CloneCompleteEventArgs(filesToCopy.Length, tempDir));
+                OnCloneComplete(new CloneCompleteEventArgs(filesToCopy.Count, tempDir));
             }
             catch (RpcException e)
             {

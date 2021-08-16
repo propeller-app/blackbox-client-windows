@@ -79,5 +79,14 @@ namespace Redhvid.Properties {
                 return ((string)(this["FFmpegExecutable"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-c:v libx265 -crf 20 -preset ultrafast")]
+        public string FFmpegFlags {
+            get {
+                return ((string)(this["FFmpegFlags"]));
+            }
+        }
     }
 }

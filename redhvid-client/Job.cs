@@ -327,6 +327,7 @@ namespace Redhvid
             concatenate.Wait();
             IConversion conversion = concatenate.Result;
 
+            conversion.AddParameter(Properties.Settings.Default.FFmpegFlags);
             conversion.AddParameter("-f mp4 -movflags frag_keyframe+empty_moov");
             conversion.PipeOutput();
 

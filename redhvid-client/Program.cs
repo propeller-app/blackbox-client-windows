@@ -78,14 +78,31 @@ namespace Redhvid
             if (Properties.Settings.Default.Devices != null &&
                 Properties.Settings.Default.Devices.Contains(device.DeviceSystemPath))
             {
-                GrpcChannel channel = GrpcChannel.ForAddress(Utils.GetGRPCUrl());
+                jobProgressForm.Invoke(new Action(() =>
+                {
+                    Process jobPreviewProcess = Process.Start("explorer.exe", device.MountedDirectoryPath);
 
-                Job job = new();
-                job.SetDevicePath(device.MountedDirectoryPath);
-                job.SetSpoolClient(new(channel));
-                jobQueue.Enqueue(job);
+                    StartJobForm startJobForm = new();
+                    startJobForm.beginJobButton.Click += (object sender, EventArgs e) =>
+                    {
+                        GrpcChannel channel = GrpcChannel.ForAddress(Utils.GetGRPCUrl());
 
-                ProcessJobQueue();
+                        Job job = new();
+                        job.SetDevicePath(device.MountedDirectoryPath);
+                        job.SetSpoolClient(new(channel));
+                        jobQueue.Enqueue(job);
+
+                        ProcessJobQueue();
+                        startJobForm.Close();
+                    };
+
+                    startJobForm.cancelButton.Click += (object sender, EventArgs e) =>
+                    {
+                        startJobForm.Close();
+                    };
+                    jobProgressForm.Hide();
+                    startJobForm.Show();
+                }));
             }
         }
 

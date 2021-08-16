@@ -1,4 +1,4 @@
-
+﻿
 namespace Redhvid
 {
     partial class JobProgressForm
@@ -40,8 +40,8 @@ namespace Redhvid
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.exitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeButton = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.label1 = new System.Windows.Forms.Label();
+            this.jobProgress = new System.Windows.Forms.ProgressBar();
+            this.progressLabel = new System.Windows.Forms.Label();
             this.contextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,7 +49,7 @@ namespace Redhvid
             // 
             this.trayIcon.ContextMenuStrip = this.contextMenu;
             this.trayIcon.Visible = true;
-            this.trayIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.trayIcon_MouseDoubleClick);
+            this.trayIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.TrayIconClick);
             // 
             // contextMenu
             // 
@@ -69,35 +69,35 @@ namespace Redhvid
             this.jobProgressMenuItem.Name = "jobProgressMenuItem";
             this.jobProgressMenuItem.Size = new System.Drawing.Size(168, 22);
             this.jobProgressMenuItem.Text = "View Job Progress";
-            this.jobProgressMenuItem.Click += new System.EventHandler(this.jobProgressMenuItem_Click);
+            this.jobProgressMenuItem.Click += new System.EventHandler(this.OpenJobProgressMenu);
             // 
             // jobQueueMenuItem
             // 
             this.jobQueueMenuItem.Name = "jobQueueMenuItem";
             this.jobQueueMenuItem.Size = new System.Drawing.Size(168, 22);
             this.jobQueueMenuItem.Text = "View Job Queue";
-            this.jobQueueMenuItem.Click += new System.EventHandler(this.jobQueueMenuItem_Click);
+            this.jobQueueMenuItem.Click += new System.EventHandler(this.OpenJobQueueMenu);
             // 
             // jobHistoryMenuItem
             // 
             this.jobHistoryMenuItem.Name = "jobHistoryMenuItem";
             this.jobHistoryMenuItem.Size = new System.Drawing.Size(168, 22);
             this.jobHistoryMenuItem.Text = "View Job History";
-            this.jobHistoryMenuItem.Click += new System.EventHandler(this.jobHistoryMenuItem_Click);
+            this.jobHistoryMenuItem.Click += new System.EventHandler(this.OpenJobHistoryMenu);
             // 
             // newJobMenuItem
             // 
             this.newJobMenuItem.Name = "newJobMenuItem";
             this.newJobMenuItem.Size = new System.Drawing.Size(168, 22);
             this.newJobMenuItem.Text = "Create New Job";
-            this.newJobMenuItem.Click += new System.EventHandler(this.newJobMenuItem_Click);
+            this.newJobMenuItem.Click += new System.EventHandler(this.OpenNewJobMenu);
             // 
             // settingsMenuItem
             // 
             this.settingsMenuItem.Name = "settingsMenuItem";
             this.settingsMenuItem.Size = new System.Drawing.Size(168, 22);
             this.settingsMenuItem.Text = "Settings";
-            this.settingsMenuItem.Click += new System.EventHandler(this.settingsMenuItem_Click);
+            this.settingsMenuItem.Click += new System.EventHandler(this.OpenSettingsMenu);
             // 
             // toolStripSeparator
             // 
@@ -109,7 +109,7 @@ namespace Redhvid
             this.exitMenuItem.Name = "exitMenuItem";
             this.exitMenuItem.Size = new System.Drawing.Size(168, 22);
             this.exitMenuItem.Text = "Exit";
-            this.exitMenuItem.Click += new System.EventHandler(this.exitMenuItem_Click);
+            this.exitMenuItem.Click += new System.EventHandler(this.ExitButtonClick);
             // 
             // closeButton
             // 
@@ -117,9 +117,9 @@ namespace Redhvid
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(75, 23);
             this.closeButton.TabIndex = 1;
-            this.closeButton.Text = "Close";
+            this.closeButton.Text = "Hide";
             this.closeButton.UseVisualStyleBackColor = true;
-            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
+            this.closeButton.Click += new System.EventHandler(this.CloseButtonClick);
             // 
             // jobProgress
             // 

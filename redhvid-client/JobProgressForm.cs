@@ -63,46 +63,56 @@ namespace Redhvid
             job.JobComplete -= JobComplete;
         }
 
-        private void trayIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        public new void Show()
         {
             Opacity = 100;
         }
 
-        private void closeButton_Click(object sender, EventArgs e)
+        public new void Hide()
         {
             Opacity = 0;
         }
 
-        private void exitMenuItem_Click(object sender, EventArgs e)
+        private void TrayIconClick(object sender, MouseEventArgs e)
+        {
+            Show();
+        }
+
+        private void CloseButtonClick(object sender, EventArgs e)
+        {
+            Hide();
+        }
+
+        private void OpenJobProgressMenu(object sender, EventArgs e)
+        {
+            Show();
+        }
+
+        private void ExitButtonClick(object sender, EventArgs e)
         {
             trayIcon.Visible = false;
             Application.Exit();
         }
 
-        private void jobQueueMenuItem_Click(object sender, EventArgs e)
+        private void OpenJobQueueMenu(object sender, EventArgs e)
         {
-            JobQueueForm jobQueueForm = new JobQueueForm();
+            JobQueueForm jobQueueForm = new();
             jobQueueForm.Show();
         }
 
-        private void jobHistoryMenuItem_Click(object sender, EventArgs e)
+        private void OpenJobHistoryMenu(object sender, EventArgs e)
         {
-            JobHistoryForm jobHistoryForm = new JobHistoryForm();
+            JobHistoryForm jobHistoryForm = new();
             jobHistoryForm.Show();
         }
 
-        private void newJobMenuItem_Click(object sender, EventArgs e)
+        private void OpenNewJobMenu(object sender, EventArgs e)
         {
-            NewJobForm newJobForm = new NewJobForm();
+            NewJobForm newJobForm = new();
             newJobForm.Show();
         }
 
-        private void jobProgressMenuItem_Click(object sender, EventArgs e)
-        {
-            Opacity = 100;
-        }
-
-        private void settingsMenuItem_Click(object sender, EventArgs e)
+        private void OpenSettingsMenu(object sender, EventArgs e)
         {
             SettingsForm settingsForm = new();
             settingsForm.Show();

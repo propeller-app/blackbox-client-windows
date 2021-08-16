@@ -19,5 +19,8 @@
     <Compile Update="JobProgressForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="StartJobForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

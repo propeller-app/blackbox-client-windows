@@ -275,6 +275,8 @@ namespace Redhvid
                 List<string> filesToCopy = Utils.GetAllAccessibleFiles(this.path, "*.mp4");
                 byte[] buffer = new byte[4096];
                 DirectoryInfo tempDir = Utils.GetTempJobDirectory(this);
+                foreach(FileInfo file in tempDir.GetFiles())
+                    file.Delete();
 
                 int i = 0;
                 foreach(string file in filesToCopy) 

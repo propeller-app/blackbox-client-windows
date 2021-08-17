@@ -29,6 +29,7 @@ namespace Redhvid
             this.job = job;
             job.CloneProgress += CloneProgress;
             job.TranscodeProgress += TranscodeProgress;
+            job.TranscodeComplete += TranscodeComplete;
             job.JobComplete += JobComplete;
         }
 
@@ -45,8 +46,17 @@ namespace Redhvid
         {
             Invoke(new Action(() =>
             {
-                jobProgress.Value = (jobProgress.Value + 10) % 100;
+                jobProgress.Value = (jobProgress.Value + 20) % (100 + 20);
                 progressLabel.Text = $"Transcoding {e.Duration}";
+            }));
+        }
+
+        public void TranscodeComplete(object sender, TranscodeCompleteEventArgs e)
+        {
+            Invoke(new Action(() =>
+            {
+                jobProgress.Value = 100;
+                progressLabel.Text = $"Finishing";
             }));
         }
 

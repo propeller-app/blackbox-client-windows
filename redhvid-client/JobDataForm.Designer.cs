@@ -59,7 +59,7 @@ namespace Redhvid
             this.emailTextBox.Name = "emailTextBox";
             this.emailTextBox.Size = new System.Drawing.Size(187, 23);
             this.emailTextBox.TabIndex = 3;
-            this.emailTextBox.Text = "john.doe@gmail.com";
+            this.emailTextBox.TextChanged += new System.EventHandler(this.Validate);
             // 
             // lastNameLabel
             // 
@@ -77,7 +77,7 @@ namespace Redhvid
             this.lastNameTextBox.Name = "lastNameTextBox";
             this.lastNameTextBox.Size = new System.Drawing.Size(187, 23);
             this.lastNameTextBox.TabIndex = 2;
-            this.lastNameTextBox.Text = "Doe";
+            this.lastNameTextBox.TextChanged += new System.EventHandler(this.Validate);
             // 
             // emailLabel
             // 
@@ -95,7 +95,7 @@ namespace Redhvid
             this.firstNameTextBox.Name = "firstNameTextBox";
             this.firstNameTextBox.Size = new System.Drawing.Size(187, 23);
             this.firstNameTextBox.TabIndex = 1;
-            this.firstNameTextBox.Text = "John";
+            this.firstNameTextBox.TextChanged += new System.EventHandler(this.Validate);
             // 
             // statusStrip
             // 
@@ -123,6 +123,7 @@ namespace Redhvid
             // 
             // uploadButton
             // 
+            this.uploadButton.Enabled = false;
             this.uploadButton.Location = new System.Drawing.Point(194, 119);
             this.uploadButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 8);
             this.uploadButton.Name = "uploadButton";

@@ -73,5 +73,10 @@ namespace Redhvid
             job.CloneComplete -= CloneComplete;
             base.Close();
         }
+
+        private void Validate(object sender, EventArgs e)
+        {
+            uploadButton.Enabled = firstNameTextBox.TextLength > 0 && lastNameTextBox.TextLength > 0 && emailTextBox.TextLength > 0;
+        }
     }
 }

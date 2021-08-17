@@ -244,6 +244,7 @@ namespace Redhvid
         {
             try
             {
+                Task.Run(Heartbeat);
                 Clone();
                 Transcode();
 
@@ -255,6 +256,30 @@ namespace Redhvid
             catch (OperationCanceledException)
             {
                 Debug.WriteLine("Job exited before finishing.");
+            }
+        }
+
+        /// <summary>
+        /// Sends heartbeat message every minute to indicate to server that job is still alive.
+        /// </summary>
+        private void Heartbeat()
+        {
+            CancellationToken ct = cancellationTokenSource.Token;
+            ct.ThrowIfCancellationRequested();
+
+            try
+            {
+                while (Status != JobStatus.Complete)
+                {
+                    ct.ThrowIfCancellationRequested();
+                    client.Heartbeat(new Rpc.JobIdentifier() {
+                        JobId = JobId 
+                    });
+                    Thread.Sleep(60 * 1000);
+                }
+            } catch(RpcException e)
+            {
+                Cancel(e);
             }
         }
 

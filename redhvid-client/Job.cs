@@ -348,9 +348,10 @@ namespace Redhvid
 
             string[] inputVideos = Directory.GetFiles(Utils.GetTempJobDirectory(this).FullName);
 
-            Task<IConversion> concatenate = FFmpeg.Conversions.FromSnippet.Concatenate(null, inputVideos);
-            concatenate.Wait();
-            IConversion conversion = concatenate.Result;
+            Task<IConversion> converter = (inputVideos.Length > 1) ? FFmpeg.Conversions.FromSnippet.Concatenate(null, inputVideos) : 
+                FFmpeg.Conversions.FromSnippet.Convert(inputVideos[0], null);
+            converter.Wait();
+            IConversion conversion = converter.Result;
 
             conversion.AddParameter(Properties.Settings.Default.FFmpegFlags);
             conversion.AddParameter("-f mp4 -movflags frag_keyframe+empty_moov");

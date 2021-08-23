@@ -23,43 +23,55 @@ namespace Redhvid.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("127.0.0.1")]
         public string GrpcHost {
             get {
                 return ((string)(this["GrpcHost"]));
             }
+            set {
+                this["GrpcHost"] = value;
+            }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("50051")]
         public uint GrpcPort {
             get {
                 return ((uint)(this["GrpcPort"]));
             }
+            set {
+                this["GrpcPort"] = value;
+            }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool GrpcSSL {
             get {
                 return ((bool)(this["GrpcSSL"]));
             }
+            set {
+                this["GrpcSSL"] = value;
+            }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool TrancodingEnabled {
             get {
                 return ((bool)(this["TrancodingEnabled"]));
             }
+            set {
+                this["TranscodingEnabled"] = value;
+            }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
             "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
@@ -69,33 +81,47 @@ namespace Redhvid.Properties {
             get {
                 return ((global::System.Collections.Specialized.StringCollection)(this["Devices"]));
             }
+            set {
+                this["Devices"] = value;
+            }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("C:\\Program Files\\ffmpeg\\bin")]
         public string FFmpegExecutable {
             get {
                 return ((string)(this["FFmpegExecutable"]));
             }
+            set {
+                this["FFmpegExecutable"] = value;
+            }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("30")]
         public int JobExpiryDays {
             get {
                 return ((int)(this["JobExpiryDays"]));
             }
+            set {
+                this["JobExpiryDays"] = value;
+            }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("-c:v libx265 -crf 20 -preset ultrafast")]
         public string FFmpegFlags {
             get {
                 return ((string)(this["FFmpegFlags"]));
             }
+            set {
+                this["FFmpegFlags"] = value;
+            }
+        }
+        
         }
     }
 }

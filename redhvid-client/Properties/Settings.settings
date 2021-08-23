@@ -2,31 +2,31 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Redhvid.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="GrpcHost" Type="System.String" Scope="Application">
+    <Setting Name="GrpcHost" Type="System.String" Scope="User">
       <Value Profile="(Default)">127.0.0.1</Value>
     </Setting>
-    <Setting Name="GrpcPort" Type="System.UInt32" Scope="Application">
+    <Setting Name="GrpcPort" Type="System.UInt32" Scope="User">
       <Value Profile="(Default)">50051</Value>
     </Setting>
-    <Setting Name="GrpcSSL" Type="System.Boolean" Scope="Application">
+    <Setting Name="GrpcSSL" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="TrancodingEnabled" Type="System.Boolean" Scope="Application">
+    <Setting Name="TranscodingEnabled" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="Devices" Type="System.Collections.Specialized.StringCollection" Scope="Application">
+    <Setting Name="Devices" Type="System.Collections.Specialized.StringCollection" Scope="User">
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
   &lt;string&gt;USB\VID_0951&amp;amp;PID_16AE\408D5CBEC94CE440793FD5CA&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
-    <Setting Name="FFmpegExecutable" Type="System.String" Scope="Application">
+    <Setting Name="FFmpegExecutable" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Program Files\ffmpeg\bin</Value>
     </Setting>
-    <Setting Name="JobExpiryDays" Type="System.Int32" Scope="Application">
+    <Setting Name="JobExpiryDays" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">30</Value>
     </Setting>
-    <Setting Name="FFmpegFlags" Type="System.String" Scope="Application">
+    <Setting Name="FFmpegFlags" Type="System.String" Scope="User">
       <Value Profile="(Default)">-c:v libx265 -crf 20 -preset ultrafast</Value>
     </Setting>
   </Settings>

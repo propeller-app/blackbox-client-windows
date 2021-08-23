@@ -1,4 +1,4 @@
-﻿using Redhvid.Events;
+using Redhvid.Events;
 using System;
 using System.Diagnostics;
 using System.Drawing;
@@ -46,7 +46,7 @@ namespace Redhvid
         {
             Invoke(new Action(() =>
             {
-                jobProgress.Value = (jobProgress.Value + 20) % (100 + 20);
+                jobProgress.Style = ProgressBarStyle.Marquee;
                 progressLabel.Text = $"Transcoding {e.Duration}";
             }));
         }
@@ -55,7 +55,8 @@ namespace Redhvid
         {
             Invoke(new Action(() =>
             {
-                jobProgress.Value = 100;
+                jobProgress.Style = ProgressBarStyle.Blocks;
+                jobProgress.Value = jobProgress.Maximum;
                 progressLabel.Text = $"Finishing";
             }));
         }

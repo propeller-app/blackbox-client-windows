@@ -3,7 +3,7 @@ using Redhvid.Enums;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Usb.Events;
 
@@ -16,6 +16,16 @@ namespace Redhvid
 
         private static readonly Queue<Job> jobQueue = new();
         private static Job currentJob;
+
+        [FlagsAttribute]
+        public enum EXECUTION_STATE : uint
+        {
+            ES_AWAYMODE_REQUIRED = 0x00000040,
+            ES_CONTINUOUS = 0x80000000
+        }
+
+        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        static extern EXECUTION_STATE SetThreadExecutionState(EXECUTION_STATE esFlags);
 
         [STAThread]
         public static void Main()
@@ -115,6 +125,10 @@ namespace Redhvid
             {
                 currentJob = jobQueue.Dequeue();
                 currentJob.Start();
+
+                SetThreadExecutionState(EXECUTION_STATE.ES_AWAYMODE_REQUIRED | EXECUTION_STATE.ES_CONTINUOUS);
+                currentJob.JobComplete += (object sender, JobCompleteEventArgs e) =>
+                    SetThreadExecutionState(EXECUTION_STATE.ES_CONTINUOUS);
 
                 jobProgressForm.Invoke(new Action(() =>
                 {

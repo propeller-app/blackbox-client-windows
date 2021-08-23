@@ -29,5 +29,8 @@
     <Setting Name="FFmpegFlags" Type="System.String" Scope="User">
       <Value Profile="(Default)">-c:v libx265 -crf 20 -preset ultrafast</Value>
     </Setting>
+    <Setting Name="MaxMessageSize" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">10000</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

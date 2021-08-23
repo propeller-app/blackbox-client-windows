@@ -122,6 +122,16 @@ namespace Redhvid.Properties {
             }
         }
         
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10000")]
+        public uint MaxMessageSize {
+            get {
+                return ((uint)(this["MaxMessageSize"]));
+            }
+            set {
+                this["MaxMessageSize"] = value;
+            }
         }
     }
 }

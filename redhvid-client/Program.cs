@@ -58,14 +58,12 @@ namespace Redhvid
 
         public static void ShowJobProgress()
         {
-            jobProgressForm.Opacity = 100;
-            jobProgressForm.Focus();
-            jobProgressForm.SetJob(currentJob);
+            jobProgressForm.Show();
         }
 
         public static void HideJobProgress()
         {
-            jobProgressForm.Opacity = 0;
+            jobProgressForm.Hide();
         }
 
         private static void InitApplication()

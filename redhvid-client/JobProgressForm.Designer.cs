@@ -1,4 +1,4 @@
-﻿
+
 namespace Redhvid
 {
     partial class JobProgressForm
@@ -49,7 +49,7 @@ namespace Redhvid
             // 
             this.trayIcon.ContextMenuStrip = this.contextMenu;
             this.trayIcon.Visible = true;
-            this.trayIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.TrayIconClick);
+            this.trayIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.Show);
             // 
             // contextMenu
             // 
@@ -69,7 +69,7 @@ namespace Redhvid
             this.jobProgressMenuItem.Name = "jobProgressMenuItem";
             this.jobProgressMenuItem.Size = new System.Drawing.Size(168, 22);
             this.jobProgressMenuItem.Text = "View Job Progress";
-            this.jobProgressMenuItem.Click += new System.EventHandler(this.OpenJobProgressMenu);
+            this.jobProgressMenuItem.Click += new System.EventHandler(this.Show);
             // 
             // jobQueueMenuItem
             // 
@@ -119,7 +119,7 @@ namespace Redhvid
             this.closeButton.TabIndex = 1;
             this.closeButton.Text = "Hide";
             this.closeButton.UseVisualStyleBackColor = true;
-            this.closeButton.Click += new System.EventHandler(this.CloseButtonClick);
+            this.closeButton.Click += new System.EventHandler(this.Hide);
             // 
             // jobProgress
             // 

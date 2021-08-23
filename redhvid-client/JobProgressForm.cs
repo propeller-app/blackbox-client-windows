@@ -1,4 +1,4 @@
-using Redhvid.Events;
+﻿using Redhvid.Events;
 using System;
 using System.Diagnostics;
 using System.Drawing;
@@ -74,30 +74,15 @@ namespace Redhvid
             job.JobComplete -= JobComplete;
         }
 
-        public new void Show()
+        public void Show(object sender, EventArgs e)
         {
             BringToFront();
             Opacity = 100;
         }
 
-        public new void Hide()
+        public void Hide(object sender, EventArgs e)
         {
             Opacity = 0;
-        }
-
-        private void TrayIconClick(object sender, MouseEventArgs e)
-        {
-            Show();
-        }
-
-        private void CloseButtonClick(object sender, EventArgs e)
-        {
-            Hide();
-        }
-
-        private void OpenJobProgressMenu(object sender, EventArgs e)
-        {
-            Show();
         }
 
         private void ExitButtonClick(object sender, EventArgs e)

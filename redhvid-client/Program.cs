@@ -136,6 +136,12 @@ namespace Redhvid
                     JobDataForm jobDataForm = new(currentJob);
                     jobDataForm.Show();
                 }));
+            } else
+            {
+                MessageBox.Show(
+                    "Please wait for the current job to complete before starting another.", 
+                    "Concurrent jobs not supported", 
+                    MessageBoxButtons.OK);
             }
         }
     }

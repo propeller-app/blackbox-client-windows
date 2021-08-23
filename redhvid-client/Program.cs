@@ -98,6 +98,7 @@ namespace Redhvid
                         Job job = new();
                         job.SetDevicePath(device.MountedDirectoryPath);
                         job.SetSpoolClient(new(channel));
+                        jobProgressForm.SetJob(job);
                         jobQueue.Enqueue(job);
 
                         ProcessJobQueue();

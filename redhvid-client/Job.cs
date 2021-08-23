@@ -1,7 +1,6 @@
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
-using Grpc.Net.Client;
 using Redhvid.Enums;
 using Redhvid.Events;
 using System;

@@ -9,6 +9,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Xabe.FFmpeg;
@@ -387,15 +388,20 @@ namespace Redhvid
                 while (Status == JobStatus.Transcoding || !videoDataQueue.IsEmpty)
                 {
                     ct.ThrowIfCancellationRequested();
-                    if (videoDataQueue.TryDequeue(out byte[] buffer))
+
+                    byte[] buffer = Array.Empty<byte>();
+                    while(buffer.Length < Properties.Settings.Default.MaxMessageSize
+                        && videoDataQueue.TryDequeue(out byte[] d))
                     {
-                        client.Upload(new Rpc.VideoData()
-                        {
-                            JobId = JobId,
-                            Content = ByteString.CopyFrom(buffer)
-                        });
-                        OnUploadProgress(new UploadProgressEventArgs());
+                        buffer = buffer.Concat(d).ToArray();
                     }
+                    
+                    client.Upload(new Rpc.VideoData()
+                    {
+                        JobId = JobId,
+                        Content = ByteString.CopyFrom(buffer)
+                    });
+                    OnUploadProgress(new UploadProgressEventArgs());
                 }
 
                 OnUploadComplete(new UploadCompleteEventArgs());

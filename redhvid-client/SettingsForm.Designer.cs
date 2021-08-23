@@ -42,7 +42,15 @@ namespace Redhvid
             this.hostInput = new System.Windows.Forms.TextBox();
             this.hostLabel = new System.Windows.Forms.Label();
             this.transcodeTab = new System.Windows.Forms.TabPage();
+            this.bytesLabel = new System.Windows.Forms.Label();
+            this.maxMessageSizeInput = new System.Windows.Forms.TextBox();
+            this.messageSizeLabel = new System.Windows.Forms.Label();
+            this.transcodeFlagsLabel = new System.Windows.Forms.Label();
+            this.transcodeFlags = new System.Windows.Forms.TextBox();
             this.transcodeCheckBox = new System.Windows.Forms.CheckBox();
+            this.jobTab = new System.Windows.Forms.TabPage();
+            this.expiryDaysInput = new System.Windows.Forms.TextBox();
+            this.jobExpiryLabel = new System.Windows.Forms.Label();
             this.deviceTab = new System.Windows.Forms.TabPage();
             this.deviceRemoveButton = new System.Windows.Forms.Button();
             this.deviceAddButton = new System.Windows.Forms.Button();
@@ -53,6 +61,7 @@ namespace Redhvid
             this.serverTab.SuspendLayout();
             this.serverSettingsPanel.SuspendLayout();
             this.transcodeTab.SuspendLayout();
+            this.jobTab.SuspendLayout();
             this.deviceTab.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,6 +72,7 @@ namespace Redhvid
             | System.Windows.Forms.AnchorStyles.Right)));
             this.settingsTabControl.Controls.Add(this.serverTab);
             this.settingsTabControl.Controls.Add(this.transcodeTab);
+            this.settingsTabControl.Controls.Add(this.jobTab);
             this.settingsTabControl.Controls.Add(this.deviceTab);
             this.settingsTabControl.Location = new System.Drawing.Point(12, 12);
             this.settingsTabControl.Name = "settingsTabControl";
@@ -92,13 +102,13 @@ namespace Redhvid
             this.serverSettingsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.serverSettingsPanel.Location = new System.Drawing.Point(3, 3);
             this.serverSettingsPanel.Name = "serverSettingsPanel";
-            this.serverSettingsPanel.Padding = new System.Windows.Forms.Padding(50);
+            this.serverSettingsPanel.Padding = new System.Windows.Forms.Padding(10);
             this.serverSettingsPanel.Size = new System.Drawing.Size(476, 256);
             this.serverSettingsPanel.TabIndex = 0;
             // 
             // serverTestButton
             // 
-            this.serverTestButton.Location = new System.Drawing.Point(347, 63);
+            this.serverTestButton.Location = new System.Drawing.Point(357, 59);
             this.serverTestButton.Name = "serverTestButton";
             this.serverTestButton.Size = new System.Drawing.Size(106, 23);
             this.serverTestButton.TabIndex = 6;
@@ -108,24 +118,26 @@ namespace Redhvid
             // sslCheckBox
             // 
             this.sslCheckBox.AutoSize = true;
-            this.sslCheckBox.Location = new System.Drawing.Point(21, 66);
+            this.sslCheckBox.Location = new System.Drawing.Point(13, 59);
             this.sslCheckBox.Name = "sslCheckBox";
             this.sslCheckBox.Size = new System.Drawing.Size(71, 19);
             this.sslCheckBox.TabIndex = 5;
             this.sslCheckBox.Text = "Use SSL?";
             this.sslCheckBox.UseVisualStyleBackColor = true;
+            this.sslCheckBox.CheckedChanged += new System.EventHandler(this.SettingChange);
             // 
             // portInput
             // 
-            this.portInput.Location = new System.Drawing.Point(385, 19);
+            this.portInput.Location = new System.Drawing.Point(395, 13);
             this.portInput.Name = "portInput";
             this.portInput.Size = new System.Drawing.Size(68, 23);
             this.portInput.TabIndex = 3;
+            this.portInput.TextChanged += new System.EventHandler(this.SettingChange);
             // 
             // portLabel
             // 
             this.portLabel.AutoSize = true;
-            this.portLabel.Location = new System.Drawing.Point(347, 22);
+            this.portLabel.Location = new System.Drawing.Point(347, 16);
             this.portLabel.Name = "portLabel";
             this.portLabel.Size = new System.Drawing.Size(32, 15);
             this.portLabel.TabIndex = 2;
@@ -133,15 +145,16 @@ namespace Redhvid
             // 
             // hostInput
             // 
-            this.hostInput.Location = new System.Drawing.Point(62, 19);
+            this.hostInput.Location = new System.Drawing.Point(54, 13);
             this.hostInput.Name = "hostInput";
             this.hostInput.Size = new System.Drawing.Size(210, 23);
             this.hostInput.TabIndex = 1;
+            this.hostInput.TextChanged += new System.EventHandler(this.SettingChange);
             // 
             // hostLabel
             // 
             this.hostLabel.AutoSize = true;
-            this.hostLabel.Location = new System.Drawing.Point(21, 22);
+            this.hostLabel.Location = new System.Drawing.Point(13, 16);
             this.hostLabel.Name = "hostLabel";
             this.hostLabel.Size = new System.Drawing.Size(35, 15);
             this.hostLabel.TabIndex = 0;
@@ -149,14 +162,64 @@ namespace Redhvid
             // 
             // transcodeTab
             // 
+            this.transcodeTab.Controls.Add(this.bytesLabel);
+            this.transcodeTab.Controls.Add(this.maxMessageSizeInput);
+            this.transcodeTab.Controls.Add(this.messageSizeLabel);
+            this.transcodeTab.Controls.Add(this.transcodeFlagsLabel);
+            this.transcodeTab.Controls.Add(this.transcodeFlags);
             this.transcodeTab.Controls.Add(this.transcodeCheckBox);
             this.transcodeTab.Location = new System.Drawing.Point(4, 24);
             this.transcodeTab.Name = "transcodeTab";
-            this.transcodeTab.Padding = new System.Windows.Forms.Padding(3);
+            this.transcodeTab.Padding = new System.Windows.Forms.Padding(10);
             this.transcodeTab.Size = new System.Drawing.Size(482, 262);
             this.transcodeTab.TabIndex = 1;
             this.transcodeTab.Text = "Transcoding";
             this.transcodeTab.UseVisualStyleBackColor = true;
+            // 
+            // bytesLabel
+            // 
+            this.bytesLabel.AutoSize = true;
+            this.bytesLabel.Location = new System.Drawing.Point(210, 47);
+            this.bytesLabel.Name = "bytesLabel";
+            this.bytesLabel.Size = new System.Drawing.Size(38, 15);
+            this.bytesLabel.TabIndex = 11;
+            this.bytesLabel.Text = "bytes.";
+            // 
+            // maxMessageSizeInput
+            // 
+            this.maxMessageSizeInput.Location = new System.Drawing.Point(123, 44);
+            this.maxMessageSizeInput.Name = "maxMessageSizeInput";
+            this.maxMessageSizeInput.Size = new System.Drawing.Size(81, 23);
+            this.maxMessageSizeInput.TabIndex = 10;
+            this.maxMessageSizeInput.TextChanged += new System.EventHandler(this.SettingChange);
+            this.maxMessageSizeInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DigitOnlyInput);
+            // 
+            // messageSizeLabel
+            // 
+            this.messageSizeLabel.AutoSize = true;
+            this.messageSizeLabel.Location = new System.Drawing.Point(13, 47);
+            this.messageSizeLabel.Name = "messageSizeLabel";
+            this.messageSizeLabel.Size = new System.Drawing.Size(104, 15);
+            this.messageSizeLabel.TabIndex = 9;
+            this.messageSizeLabel.Text = "Max Message Size:";
+            // 
+            // transcodeFlagsLabel
+            // 
+            this.transcodeFlagsLabel.AutoSize = true;
+            this.transcodeFlagsLabel.Location = new System.Drawing.Point(13, 84);
+            this.transcodeFlagsLabel.Name = "transcodeFlagsLabel";
+            this.transcodeFlagsLabel.Size = new System.Drawing.Size(37, 15);
+            this.transcodeFlagsLabel.TabIndex = 8;
+            this.transcodeFlagsLabel.Text = "Flags:";
+            // 
+            // transcodeFlags
+            // 
+            this.transcodeFlags.Location = new System.Drawing.Point(56, 84);
+            this.transcodeFlags.Multiline = true;
+            this.transcodeFlags.Name = "transcodeFlags";
+            this.transcodeFlags.Size = new System.Drawing.Size(413, 165);
+            this.transcodeFlags.TabIndex = 7;
+            this.transcodeFlags.TextChanged += new System.EventHandler(this.SettingChange);
             // 
             // transcodeCheckBox
             // 
@@ -167,6 +230,37 @@ namespace Redhvid
             this.transcodeCheckBox.TabIndex = 6;
             this.transcodeCheckBox.Text = "Use Transcoding?";
             this.transcodeCheckBox.UseVisualStyleBackColor = true;
+            this.transcodeCheckBox.CheckedChanged += new System.EventHandler(this.SettingChange);
+            // 
+            // jobTab
+            // 
+            this.jobTab.Controls.Add(this.expiryDaysInput);
+            this.jobTab.Controls.Add(this.jobExpiryLabel);
+            this.jobTab.Location = new System.Drawing.Point(4, 24);
+            this.jobTab.Name = "jobTab";
+            this.jobTab.Padding = new System.Windows.Forms.Padding(10);
+            this.jobTab.Size = new System.Drawing.Size(482, 262);
+            this.jobTab.TabIndex = 3;
+            this.jobTab.Text = "Job";
+            this.jobTab.UseVisualStyleBackColor = true;
+            // 
+            // expiryDaysInput
+            // 
+            this.expiryDaysInput.Location = new System.Drawing.Point(129, 11);
+            this.expiryDaysInput.Name = "expiryDaysInput";
+            this.expiryDaysInput.Size = new System.Drawing.Size(24, 23);
+            this.expiryDaysInput.TabIndex = 1;
+            this.expiryDaysInput.TextChanged += new System.EventHandler(this.SettingChange);
+            this.expiryDaysInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DigitOnlyInput);
+            // 
+            // jobExpiryLabel
+            // 
+            this.jobExpiryLabel.AutoSize = true;
+            this.jobExpiryLabel.Location = new System.Drawing.Point(14, 14);
+            this.jobExpiryLabel.Name = "jobExpiryLabel";
+            this.jobExpiryLabel.Size = new System.Drawing.Size(175, 15);
+            this.jobExpiryLabel.TabIndex = 0;
+            this.jobExpiryLabel.Text = "Jobs will expire after            days.";
             // 
             // deviceTab
             // 
@@ -210,12 +304,14 @@ namespace Redhvid
             // 
             // applyButton
             // 
+            this.applyButton.Enabled = false;
             this.applyButton.Location = new System.Drawing.Point(427, 308);
             this.applyButton.Name = "applyButton";
             this.applyButton.Size = new System.Drawing.Size(75, 23);
             this.applyButton.TabIndex = 1;
             this.applyButton.Text = "Apply";
             this.applyButton.UseVisualStyleBackColor = true;
+            this.applyButton.Click += new System.EventHandler(this.ApplyButtonClick);
             // 
             // closeButton
             // 
@@ -225,6 +321,7 @@ namespace Redhvid
             this.closeButton.TabIndex = 2;
             this.closeButton.Text = "Close";
             this.closeButton.UseVisualStyleBackColor = true;
+            this.closeButton.Click += new System.EventHandler(this.CloseButtonClick);
             // 
             // SettingsForm
             // 
@@ -250,6 +347,8 @@ namespace Redhvid
             this.serverSettingsPanel.PerformLayout();
             this.transcodeTab.ResumeLayout(false);
             this.transcodeTab.PerformLayout();
+            this.jobTab.ResumeLayout(false);
+            this.jobTab.PerformLayout();
             this.deviceTab.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -274,5 +373,13 @@ namespace Redhvid
         private Button deviceAddButton;
         private ListView listView1;
         private CheckBox transcodeCheckBox;
+        private Label transcodeFlagsLabel;
+        private TextBox transcodeFlags;
+        private TabPage jobTab;
+        private TextBox expiryDaysInput;
+        private Label jobExpiryLabel;
+        private Label bytesLabel;
+        private TextBox maxMessageSizeInput;
+        private Label messageSizeLabel;
     }
 }

@@ -1,5 +1,6 @@
 using Grpc.Net.Client;
 using Redhvid.Enums;
+using Redhvid.Events;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

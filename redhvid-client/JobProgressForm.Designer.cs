@@ -1,4 +1,4 @@
-
+﻿
 namespace Redhvid
 {
     partial class JobProgressForm
@@ -73,6 +73,7 @@ namespace Redhvid
             // 
             // jobQueueMenuItem
             // 
+            this.jobQueueMenuItem.Enabled = false;
             this.jobQueueMenuItem.Name = "jobQueueMenuItem";
             this.jobQueueMenuItem.Size = new System.Drawing.Size(168, 22);
             this.jobQueueMenuItem.Text = "View Job Queue";
@@ -80,6 +81,7 @@ namespace Redhvid
             // 
             // jobHistoryMenuItem
             // 
+            this.jobHistoryMenuItem.Enabled = false;
             this.jobHistoryMenuItem.Name = "jobHistoryMenuItem";
             this.jobHistoryMenuItem.Size = new System.Drawing.Size(168, 22);
             this.jobHistoryMenuItem.Text = "View Job History";
@@ -87,6 +89,7 @@ namespace Redhvid
             // 
             // newJobMenuItem
             // 
+            this.newJobMenuItem.Enabled = false;
             this.newJobMenuItem.Name = "newJobMenuItem";
             this.newJobMenuItem.Size = new System.Drawing.Size(168, 22);
             this.newJobMenuItem.Text = "Create New Job";

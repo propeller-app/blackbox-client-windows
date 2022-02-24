@@ -15,11 +15,14 @@
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
     <DefineConstants>Debug</DefineConstants>
     <CompilerAdditionalOptions>BinaryComGroup.wxs</CompilerAdditionalOptions>
-    <LinkerAdditionalOptions>-spdb obj\Debug\BinaryComGroup.wixobj</LinkerAdditionalOptions>
+    <LinkerAdditionalOptions>-spdb obj\$(Configuration)\BinaryComGroup.wixobj</LinkerAdditionalOptions>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <DefineConstants>Release</DefineConstants>
+    <CompilerAdditionalOptions>BinaryComGroup.wxs</CompilerAdditionalOptions>
+    <LinkerAdditionalOptions>-spdb obj\$(Configuration)\BinaryComGroup.wixobj</LinkerAdditionalOptions>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Product.wxs" />

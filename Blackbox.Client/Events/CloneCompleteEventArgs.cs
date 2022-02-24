@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Redhvid.Events
+namespace Blackbox.Client.Events
 {
     public class CloneCompleteEventArgs : EventArgs
     {

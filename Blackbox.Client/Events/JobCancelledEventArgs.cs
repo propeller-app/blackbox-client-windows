@@ -1,13 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Redhvid.Events
+namespace Blackbox.Client.Events
 {
     public class JobCancelledEventArgs : EventArgs
     {
+        public JobCancelledEventArgs()
+        {
+            Reason = new Exception("Cancelled by request");
+        }
+
         public JobCancelledEventArgs(Exception reason)
         {
             Reason = reason;

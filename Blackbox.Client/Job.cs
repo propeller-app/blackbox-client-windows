@@ -1,8 +1,9 @@
+﻿using Blackbox.Client.Enums;
+using Blackbox.Client.Events;
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
-using Redhvid.Enums;
-using Redhvid.Events;
+using Grpc.Net.Client;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -13,9 +14,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using Xabe.FFmpeg;
 using Xabe.FFmpeg.Events;
+using Xabe.FFmpeg.Exceptions;
 using static Redhvid.Rpc.JobSpool;
 
-namespace Redhvid
+namespace Blackbox.Client
 {
     public class Job
     {
@@ -30,14 +32,34 @@ namespace Redhvid
         public JobStatus Status { get; private set; } = JobStatus.Queued;
 
         /// <summary>
+        /// Array of source files which should be transcoded.
+        /// </summary>
+        public List<string> SourceFiles { get; private set; } = new List<string>();
+
+        /// <summary>
+        /// Temporary directory to clone source files to.
+        /// </summary>
+        public DirectoryInfo TempDirectory { get; private set; }
+
+        /// <summary>
+        /// Custom flags to pass into ffmpeg.
+        /// </summary>
+        public string FfmpegFlags { get; private set; } = "";
+
+        /// <summary>
+        /// How long to inform server to keep video files for.
+        /// </summary>
+        public int JobExpiryDays { get; private set; } = 30;
+
+        /// <summary>
+        /// URL of gRPC server.
+        /// </summary>
+        public string GrpcUrl { get; private set; }
+
+        /// <summary>
         /// Data associated with this job.
         /// </summary>
         private JobData jobData;
-
-        /// <summary>
-        /// The directory of video source files.
-        /// </summary>
-        private string path;
 
         /// <summary>
         /// RPC client used by the job.
@@ -48,6 +70,11 @@ namespace Redhvid
         /// Queue video data is written to as it arrived from ffMPEG.
         /// </summary>
         private ConcurrentQueue<byte[]> videoDataQueue;
+
+        /// <summary>
+        /// Max size of GRPC video message in bytes.
+        /// </summary>
+        private uint maxMessageSize = 10 * 1024;
 
         /// <summary>
         /// Source of cancellation token used to stop the job.
@@ -67,7 +94,7 @@ namespace Redhvid
         /// <summary>
         /// Event fired when trancode progresses.
         /// </summary>
-        public event EventHandler<ConversionProgressEventArgs> TranscodeProgress;
+        public event EventHandler<TranscodeProgressEventArgs> TranscodeProgress;
 
         /// <summary>
         /// Event fired when transcode is completed.
@@ -94,7 +121,7 @@ namespace Redhvid
         /// </summary>
         public event EventHandler<JobCancelledEventArgs> JobCancelled;
 
-        
+
         /// <summary>
         /// Fires the clone progress event.
         /// </summary>
@@ -119,9 +146,9 @@ namespace Redhvid
         /// Fires the transcode progress event.
         /// </summary>
         /// <param name="e">Transcode progress event arguments</param>
-        protected virtual void OnTranscodeProgress(ConversionProgressEventArgs e)
+        protected virtual void OnTranscodeProgress(TranscodeProgressEventArgs e)
         {
-            EventHandler<ConversionProgressEventArgs> handler = TranscodeProgress;
+            EventHandler<TranscodeProgressEventArgs> handler = TranscodeProgress;
             handler?.Invoke(this, e);
         }
 
@@ -187,13 +214,16 @@ namespace Redhvid
         /// <summary>
         /// Cancels the job and all of its sub-tasks.
         /// </summary>
-        /// <param name="reason">An exception that caused the job to be canceled</param>
-        public void Cancel(Exception reason = null)
+        public void Cancel()
         {
-            if(!cancellationTokenSource.IsCancellationRequested)
+            if (!cancellationTokenSource.IsCancellationRequested)
             {
                 cancellationTokenSource.Cancel();
-                OnJobCancelled(new JobCancelledEventArgs(reason));
+            }
+
+            if (Status == JobStatus.Sleeping)
+            {
+                OnJobCancelled(new JobCancelledEventArgs());
             }
         }
 
@@ -207,7 +237,7 @@ namespace Redhvid
         public Job SetJobData(JobData jobData)
         {
             this.jobData = jobData;
-            if(Status == JobStatus.Sleeping)
+            if (Status == JobStatus.Sleeping)
             {
                 Task.Run(Finish);
             }
@@ -215,24 +245,81 @@ namespace Redhvid
         }
 
         /// <summary>
-        /// Sets the source directory of the device containing the video files.
+        /// Sets the source files to use for transcoding.
         /// </summary>
-        /// <param name="path">The device directory path</param>
-        /// <returns>This job</returns>
-        public Job SetDevicePath(string path)
+        /// <param name="sourceFiles">An array of strings representing source file paths.</param>
+        /// <returns>This job.</returns>
+        public Job SetSourceFiles(List<String> sourceFiles)
         {
-            this.path = path;
+            SourceFiles = sourceFiles;
             return this;
         }
 
         /// <summary>
-        /// Sets the gRPC spooler client used to communicate with gRPC server.
+        /// Sets the temporary clone directory.
         /// </summary>
-        /// <param name="client">The spooler client to use</param>
-        /// <returns>This job</returns>
-        public Job SetSpoolClient(JobSpoolClient client)
+        /// <param name="tempDirectory">Directory object representing directory.</param>
+        /// <returns>This job.</returns>
+        public Job SetTempDirectory(DirectoryInfo tempDirectory)
         {
-            this.client = client;
+            TempDirectory = tempDirectory;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the custom flags for ffmpeg.
+        /// 
+        /// This does not affect the required flags for uploading.
+        /// </summary>
+        /// <param name="ffmpegFlags">A string of flags.</param>
+        /// <returns>This job.</returns>
+        public Job SetFfmpegFlags(String ffmpegFlags)
+        {
+            FfmpegFlags = ffmpegFlags;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets job expiry in days.
+        /// </summary>
+        /// <param name="jobExpiryDays">Number of days server should keep job for.</param>
+        /// <returns>This job.</returns>
+        public Job SetJobExpiryDays(int jobExpiryDays)
+        {
+            JobExpiryDays = jobExpiryDays;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets max GRPC upload message size.
+        /// </summary>
+        /// <param name="kb">Max message size in kilobytes.</param>
+        /// <returns>This job.</returns>
+        public Job SetMaxMessageSize(uint kb)
+        {
+            maxMessageSize = kb * 1024;
+            return this;
+        }
+
+        /// <summary>
+        /// Gets max GRPC upload message size.
+        /// </summary>
+        /// <returns>The max message size in kilobytes.</returns>
+        public uint GetMaxMessageSize()
+        {
+            return maxMessageSize / 1024;
+        }
+
+        /// <summary>
+        /// Sets the gRPC URL used to locate the gRPC server.
+        /// </summary>
+        /// <param name="grpcUrl">String representing the URL of the gRPC server.</param>
+        /// <returns>This job.</returns>
+        public Job SetGrpcUrl(String grpcUrl)
+        {
+            GrpcChannel channel = GrpcChannel.ForAddress(grpcUrl);
+            client = new(channel);
+            GrpcUrl = grpcUrl;
             return this;
         }
 
@@ -242,20 +329,27 @@ namespace Redhvid
         /// <returns></returns>
         private void Run()
         {
+            CancellationToken ct = cancellationTokenSource.Token;
             try
             {
                 Task.Run(Heartbeat);
                 Clone();
+                ct.ThrowIfCancellationRequested();
                 Transcode();
+                ct.ThrowIfCancellationRequested();
 
                 if (jobData != null)
                 {
                     Finish();
                 }
-            } 
-            catch (OperationCanceledException)
+            }
+            catch (Exception e)
             {
-                Debug.WriteLine("Job exited before finishing.");
+                OnJobCancelled(new JobCancelledEventArgs(e));
+            }
+            finally
+            {
+                Directory.Delete(TempDirectory.FullName, true);
             }
         }
 
@@ -264,22 +358,21 @@ namespace Redhvid
         /// </summary>
         private void Heartbeat()
         {
-            CancellationToken ct = cancellationTokenSource.Token;
-            ct.ThrowIfCancellationRequested();
-
             try
             {
-                while (Status != JobStatus.Complete)
+                CancellationToken ct = cancellationTokenSource.Token;
+                while (Status != JobStatus.Complete && !ct.IsCancellationRequested)
                 {
-                    ct.ThrowIfCancellationRequested();
-                    client.Heartbeat(new Rpc.JobIdentifier() {
-                        JobId = JobId 
+                    client.Heartbeat(new Redhvid.Rpc.JobIdentifier()
+                    {
+                        JobId = JobId
                     });
                     Thread.Sleep(60 * 1000);
                 }
-            } catch(RpcException e)
+            }
+            catch (RpcException)
             {
-                Cancel(e);
+                cancellationTokenSource.Cancel();
             }
         }
 
@@ -293,43 +386,43 @@ namespace Redhvid
                 CancellationToken ct = cancellationTokenSource.Token;
                 ct.ThrowIfCancellationRequested();
 
-                Rpc.JobIdentifier newJob = client.GetNewJob(new Empty());
+                Redhvid.Rpc.JobIdentifier newJob = client.GetNewJob(new Empty());
                 JobId = newJob.JobId;
 
                 Status = JobStatus.Cloning;
-                List<string> filesToCopy = Utils.GetAllAccessibleFiles(this.path, "*.mp4");
                 byte[] buffer = new byte[4096];
-                DirectoryInfo tempDir = Utils.GetTempJobDirectory(this);
-                foreach(FileInfo file in tempDir.GetFiles())
-                    file.Delete();
 
                 int i = 0;
-                foreach(string file in filesToCopy) 
+                foreach (string file in SourceFiles)
                 {
                     ct.ThrowIfCancellationRequested();
 
                     string fileName = Path.GetFileName(file);
                     using Stream source = File.OpenRead(file);
-                    using Stream destination = File.Create(Path.Combine(tempDir.FullName, fileName));
+                    using Stream destination = File.Create(Path.Combine(TempDirectory.FullName, fileName));
 
                     int count;
                     while ((count = source.Read(buffer, 0, buffer.Length)) != 0)
                     {
                         ct.ThrowIfCancellationRequested();
 
-                        decimal percentComplete = (decimal)destination.Length / (decimal)source.Length;
-                        OnCloneProgress(new CloneProgressEventArgs(i + 1, fileName, filesToCopy.Count, percentComplete));
+                        OnCloneProgress(new CloneProgressEventArgs(fileName, i, SourceFiles.Count, destination.Length, source.Length));
 
                         destination.Write(buffer, 0, count);
                     }
                     i++;
                 }
 
-                OnCloneComplete(new CloneCompleteEventArgs(filesToCopy.Count, tempDir));
+                OnCloneComplete(new CloneCompleteEventArgs(SourceFiles.Count, TempDirectory));
             }
-            catch (RpcException e)
+            catch (Exception e) when (e is RpcException || e is IOException)
             {
-                Cancel(e);
+                cancellationTokenSource.Cancel();
+                throw;
+            }
+            catch (OperationCanceledException)
+            {
+                throw;
             }
         }
 
@@ -338,40 +431,55 @@ namespace Redhvid
         /// 
         /// As data comes in from ffMPEG a concurrent queue has bytes arrays enqueued onto it, the upload worker then dequeues and writes to the gRPC channel.
         /// </summary>
-        /// <returns></returns>
         private void Transcode()
         {
-            CancellationToken ct = cancellationTokenSource.Token;
-            ct.ThrowIfCancellationRequested();
-
-            Status = JobStatus.Transcoding;
-
-            string[] inputVideos = Directory.GetFiles(Utils.GetTempJobDirectory(this).FullName);
-
-            Task<IConversion> converter = (inputVideos.Length > 1) ? FFmpeg.Conversions.FromSnippet.Concatenate(null, inputVideos) : 
-                FFmpeg.Conversions.FromSnippet.Convert(inputVideos[0], null);
-            converter.Wait();
-            IConversion conversion = converter.Result;
-
-            conversion.AddParameter(Properties.Settings.Default.FFmpegFlags);
-            conversion.AddParameter("-f mp4 -movflags frag_keyframe+empty_moov");
-            conversion.PipeOutput();
-
-            videoDataQueue = new ConcurrentQueue<byte[]>();
-            conversion.OnVideoDataReceived += (object sender, VideoDataEventArgs e) =>
+            try
             {
-                videoDataQueue.Enqueue(e.Data);
-            };
-            conversion.OnProgress += (object sender, ConversionProgressEventArgs e) => OnTranscodeProgress(e);
+                CancellationToken ct = cancellationTokenSource.Token;
+                ct.ThrowIfCancellationRequested();
 
-            Task upload = Task.Run(Upload, ct);
-            Task convert = conversion.Start(ct);
-            convert.Wait();
+                Status = JobStatus.Transcoding;
 
-            OnTranscodeComplete(new TranscodeCompleteEventArgs());
+                string[] inputVideos = Directory.GetFiles(TempDirectory.FullName);
+                Task<IMediaInfo>[] tasks = inputVideos.Select(video => FFmpeg.GetMediaInfo(video)).ToArray();
+                Task.WaitAll(tasks);
+                TimeSpan totalDuration = tasks.Select(task => task.Result).Aggregate(new TimeSpan(), (acc, mi) => acc.Add(mi.Duration));
 
-            Status = JobStatus.Uploading;
-            upload.Wait();
+                Task<IConversion> converter = (inputVideos.Length > 1) ? FFmpeg.Conversions.FromSnippet.Concatenate(null, inputVideos) :
+                    FFmpeg.Conversions.FromSnippet.Convert(inputVideos[0], null);
+                converter.Wait(ct);
+                IConversion conversion = converter.Result;
+
+                conversion.AddParameter(FfmpegFlags);
+                conversion.AddParameter("-f mp4 -movflags frag_keyframe+empty_moov");
+                conversion.PipeOutput();
+
+                videoDataQueue = new ConcurrentQueue<byte[]>();
+                conversion.OnVideoDataReceived += (object sender, VideoDataEventArgs e) =>
+                    videoDataQueue.Enqueue(e.Data);
+
+                conversion.OnProgress += (object sender, ConversionProgressEventArgs e) =>
+                    OnTranscodeProgress(new TranscodeProgressEventArgs(e.Duration, totalDuration));
+
+                Task upload = Task.Run(Upload, ct);
+                Task convert = conversion.Start(ct);
+                convert.Wait();
+
+                OnTranscodeComplete(new TranscodeCompleteEventArgs());
+
+                Status = JobStatus.Uploading;
+                upload.Wait();
+            }
+            catch (Exception e) when (e is RpcException || e is IOException || e is ConversionException || e is AggregateException)
+            {
+                cancellationTokenSource.Cancel();
+                throw;
+            }
+            catch (OperationCanceledException)
+            {
+                throw;
+            }
+
         }
 
         /// <summary>
@@ -382,34 +490,43 @@ namespace Redhvid
             try
             {
                 CancellationToken ct = cancellationTokenSource.Token;
-                ct.ThrowIfCancellationRequested();
 
-                while (Status == JobStatus.Transcoding || !videoDataQueue.IsEmpty)
+                int bytesProcessed = 0;
+                while (!ct.IsCancellationRequested && (Status == JobStatus.Transcoding || !videoDataQueue.IsEmpty))
                 {
-                    ct.ThrowIfCancellationRequested();
-
                     byte[] buffer = Array.Empty<byte>();
-                    while(buffer.Length < Properties.Settings.Default.MaxMessageSize
+                    while (buffer.Length < maxMessageSize
                         && videoDataQueue.TryDequeue(out byte[] d))
                     {
                         buffer = buffer.Concat(d).ToArray();
                     }
-                    
-                    client.Upload(new Rpc.VideoData()
+
+                    client.Upload(new Redhvid.Rpc.VideoData()
                     {
                         JobId = JobId,
                         Content = ByteString.CopyFrom(buffer)
                     });
-                    OnUploadProgress(new UploadProgressEventArgs());
+
+                    if (Status == JobStatus.Uploading)
+                    {
+                        bytesProcessed += buffer.Length;
+                        int bytesTotal = bytesProcessed + videoDataQueue.Sum(bytes => bytes.Length);
+                        OnUploadProgress(new UploadProgressEventArgs(bytesTotal, bytesProcessed));
+                    }
                 }
 
-                OnUploadComplete(new UploadCompleteEventArgs());
+                if (!ct.IsCancellationRequested)
+                {
+                    OnUploadComplete(new UploadCompleteEventArgs());
 
-                Status = JobStatus.Sleeping;
+                    Status = JobStatus.Sleeping;
+                }
+
             }
-            catch (RpcException e)
+            catch (RpcException)
             {
-                Cancel(e);
+                cancellationTokenSource.Cancel();
+                throw;
             }
         }
 
@@ -420,14 +537,14 @@ namespace Redhvid
         {
             try
             {
-                DateTime expiresOn = DateTime.Now.AddDays(Properties.Settings.Default.JobExpiryDays);
+                DateTime expiresOn = DateTime.Now.AddDays(JobExpiryDays);
                 long expiresTimestamp = ((DateTimeOffset)expiresOn).ToUnixTimeSeconds();
-                client.Flush(new Rpc.Job()
+                client.Flush(new Redhvid.Rpc.Job()
                 {
                     JobId = JobId,
                     MachineId = Environment.MachineName,
                     Expires = (int)expiresTimestamp,
-                    Customer = new Rpc.Job.Types.Customer()
+                    Customer = new Redhvid.Rpc.Job.Types.Customer()
                     {
                         FirstName = jobData.CustomerFirstName,
                         LastName = jobData.CustomerLastName,
@@ -439,10 +556,12 @@ namespace Redhvid
 
                 Status = JobStatus.Complete;
             }
-            catch (RpcException e)
+            catch (RpcException)
             {
-                Cancel(e);
+                cancellationTokenSource.Cancel();
+                throw;
             }
         }
     }
 }
+

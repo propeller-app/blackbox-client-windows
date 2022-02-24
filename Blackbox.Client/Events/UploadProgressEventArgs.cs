@@ -1,0 +1,17 @@
+﻿using System;
+
+namespace Blackbox.Client.Events
+{
+    public class UploadProgressEventArgs : EventArgs
+    {
+        public UploadProgressEventArgs(int bytesTotal, int bytesProcessed)
+        {
+            BytesTotal = bytesTotal;
+            BytesProcessed = bytesProcessed;
+        }
+
+        public int BytesTotal { get; private set; }
+        public int BytesProcessed { get; private set; }
+        public int Percent => (int)Math.Round((100 * (double)BytesProcessed) / BytesTotal);
+    }
+}

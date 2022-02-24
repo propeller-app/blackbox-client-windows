@@ -1,4 +1,4 @@
-﻿namespace Redhvid.Enums
+﻿namespace Blackbox.Client.Enums
 {
     public enum JobStatus
     {

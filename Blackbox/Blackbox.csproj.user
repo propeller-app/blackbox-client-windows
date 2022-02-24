@@ -1,25 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Compile Update="JobDataForm.cs">
+    <Compile Update="Forms\AddDeviceForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="JobHistoryForm.cs">
+    <Compile Update="Forms\JobDataForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="JobQueueForm.cs">
+    <Compile Update="Forms\JobHistoryForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="NewJobForm.cs">
+    <Compile Update="Forms\JobProgressForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="SettingsForm.cs">
+    <Compile Update="Forms\JobQueueForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="JobProgressForm.cs">
+    <Compile Update="Forms\NewJobForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="StartJobForm.cs">
+    <Compile Update="Forms\SettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\StartJobForm.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

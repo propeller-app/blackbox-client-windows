@@ -112,9 +112,84 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ApplicationLongName" xml:space="preserve">
+    <value>Blackbox</value>
+  </data>
+  <data name="ApplicationShortName" xml:space="preserve">
+    <value>blackbox</value>
+  </data>
+  <data name="BalloonJobCancelledDescription" xml:space="preserve">
+    <value>A job was cancelled.</value>
+  </data>
+  <data name="BalloonJobCancelledTitle" xml:space="preserve">
+    <value>Job Cancelled</value>
+  </data>
+  <data name="BalloonJobCompleteDescription" xml:space="preserve">
+    <value>Job has finished successfully.</value>
+  </data>
+  <data name="BalloonJobCompleteTitle" xml:space="preserve">
+    <value>Job Completed</value>
+  </data>
+  <data name="JobStatusCloneComplete" xml:space="preserve">
+    <value>Starting transcode</value>
+  </data>
+  <data name="JobStatusCloning" xml:space="preserve">
+    <value>Cloning file {0} of {1}: {2:#} / {3:#}</value>
+  </data>
+  <data name="JobStatusReady" xml:space="preserve">
+    <value>Ready</value>
+  </data>
+  <data name="JobStatusTranscodeComplete" xml:space="preserve">
+    <value>TranscodeComplete</value>
+  </data>
+  <data name="JobStatusTranscoding" xml:space="preserve">
+    <value>Transcoding: {0:hh\:mm\:ss} / {1:hh\:mm\:ss}</value>
+  </data>
+  <data name="JobStatusUploadComplete" xml:space="preserve">
+    <value>Waiting</value>
+  </data>
+  <data name="JobStatusUploading" xml:space="preserve">
+    <value>Uploading: {0:#} / {1:#}</value>
+  </data>
+  <data name="LogDirectoryName" xml:space="preserve">
+    <value>Failed {0} Jobs</value>
+  </data>
+  <data name="LogFileName" xml:space="preserve">
+    <value>Failed Job-{0:yyyyMMddTHHmmss}.log</value>
+  </data>
+  <data name="NotificationMediaSafe" xml:space="preserve">
+    <value>Safe to remove media.</value>
+  </data>
+  <data name="NotificationMediaUnsafe" xml:space="preserve">
+    <value>Do not remove media.</value>
+  </data>
+  <data name="TaskTrayBusy" xml:space="preserve">
+    <value>Job in progress: {0}%</value>
+  </data>
+  <data name="TaskTrayCancelled" xml:space="preserve">
+    <value>Job cancelled</value>
+  </data>
+  <data name="TaskTrayReady" xml:space="preserve">
+    <value>Ready</value>
+  </data>
+  <data name="TaskTrayTitle" xml:space="preserve">
+    <value>{0}: {1}</value>
+  </data>
+  <data name="WarnConcurrentDescription" xml:space="preserve">
+    <value>Please wait for the current job to complete before starting another.</value>
+  </data>
+  <data name="WarnConcurrentTitle" xml:space="preserve">
+    <value>Concurrent jobs not supported</value>
+  </data>
+  <data name="WarnDuplicateProcessDescription" xml:space="preserve">
+    <value>There is already an instance of the application running. Proceed and kill existing processes?</value>
+  </data>
+  <data name="WarnDuplicateProcessTitle" xml:space="preserve">
+    <value>Kill existing processes</value>
+  </data>
 </root>

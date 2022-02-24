@@ -8,7 +8,7 @@
 		<Configurations>Debug;Release;Test</Configurations>
 		<PackageIcon>AppIcon.png</PackageIcon>
 		<PackageIconUrl />
-		<ApplicationIcon>AppIcon.ico</ApplicationIcon>
+		<ApplicationIcon>Resources\AppIcon.ico</ApplicationIcon>
 		<StartupObject>Blackbox.Program</StartupObject>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>

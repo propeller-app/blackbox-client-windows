@@ -1,5 +1,5 @@
 ﻿
-namespace Redhvid
+namespace Blackbox
 {
     partial class JobQueueForm
     {

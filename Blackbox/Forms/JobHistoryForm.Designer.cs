@@ -1,7 +1,7 @@
 ﻿
-namespace Redhvid
+namespace Blackbox
 {
-    partial class NewJobForm
+    partial class JobHistoryForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,10 +29,18 @@ namespace Redhvid
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // JobHistoryForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "NewJobForm";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Name = "JobHistoryForm";
+            this.Text = "JobHistoryForm";
+            this.ResumeLayout(false);
+
         }
 
         #endregion

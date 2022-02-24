@@ -1,10 +1,10 @@
 ﻿using System.Windows.Forms;
 
-namespace Redhvid
+namespace Blackbox
 {
-    public partial class JobHistoryForm : Form
+    public partial class AddDeviceForm : Form
     {
-        public JobHistoryForm()
+        public AddDeviceForm()
         {
             InitializeComponent();
         }

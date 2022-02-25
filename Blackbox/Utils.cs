@@ -110,11 +110,11 @@ namespace Blackbox
         {
             string logFileDirectory = Path.Combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-                Properties.Strings.LogDirectoryName);
+                String.Format(Properties.Strings.LogDirectoryName, Properties.Strings.ApplicationLongName));
             Directory.CreateDirectory(logFileDirectory);
             string logFilePath = Path.Combine(
                 logFileDirectory,
-                String.Format(Properties.Strings.LogFileName, Properties.Strings.ApplicationLongName));
+                String.Format(Properties.Strings.LogFileName, DateTime.Now));
             File.WriteAllText(logFilePath, reason.ToString());
         }
 

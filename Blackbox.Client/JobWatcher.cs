@@ -1,10 +1,7 @@
-﻿
-using Blackbox.Client;
-using Blackbox.Client.Events;
-using Blackbox.Events;
+﻿using Blackbox.Client.Events;
 using System;
 
-namespace Blackbox
+namespace Blackbox.Client
 {
     public class JobWatcher
     {

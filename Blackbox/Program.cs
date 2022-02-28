@@ -1,7 +1,6 @@
 using Blackbox.Client;
 using Blackbox.Client.Enums;
 using Blackbox.Client.Events;
-using Blackbox.Events;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

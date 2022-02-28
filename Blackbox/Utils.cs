@@ -1,5 +1,4 @@
 ﻿using Blackbox.Client.Events;
-using Blackbox.Events;
 using ByteSizeLib;
 using System;
 using System.Collections.Generic;

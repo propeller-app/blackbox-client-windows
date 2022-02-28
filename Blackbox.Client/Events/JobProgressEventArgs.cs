@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Blackbox.Events
+namespace Blackbox.Client.Events
 {
     public class JobProgressEventArgs : EventArgs
     {

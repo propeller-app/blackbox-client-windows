@@ -12,6 +12,6 @@ namespace Blackbox.Client.Events
 
         public TimeSpan ProcessedLength { get; }
         public TimeSpan TotalLength { get; }
-        public int Percent => (int)Math.Round((double)(100 * ProcessedLength.TotalSeconds) / TotalLength.TotalSeconds);
+        public int Percent => (int)Math.Round(((double)ProcessedLength.TotalSeconds / TotalLength.TotalSeconds) * 100);
     }
 }

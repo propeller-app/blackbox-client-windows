@@ -12,6 +12,6 @@ namespace Blackbox.Client.Events
 
         public int BytesTotal { get; private set; }
         public int BytesProcessed { get; private set; }
-        public int Percent => (int)Math.Round((100 * (double)BytesProcessed) / BytesTotal);
+        public int Percent => (int)Math.Round(((double) BytesProcessed / BytesTotal) * 100);
     }
 }

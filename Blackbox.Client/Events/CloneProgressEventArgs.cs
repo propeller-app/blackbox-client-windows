@@ -18,7 +18,7 @@ namespace Blackbox.Client.Events
         public int FileTotal { get; }
         public long BytesProcessed { get; }
         public long BytesTotal { get; }
-        public int FilePercent => (int)Math.Round((double)(100 * BytesProcessed) / BytesTotal);
+        public int FilePercent => (int)Math.Round(((double)BytesProcessed / BytesTotal) * 100);
         public int Percent => (int)Math.Round((double)100 * (((1.0 / FileTotal) * FileNum) + ((FilePercent / 100.0) * (1.0 / FileTotal))));
     }
 }

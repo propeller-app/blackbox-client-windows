@@ -1,0 +1,56 @@
+name: dotnet publish
+
+on:
+  push:
+    tags: [ 'v*' ]
+
+jobs:
+  build:
+    runs-on: windows-2019
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v1.7.2
+        with:
+          dotnet-version: 5.0.x
+      - name: Set envs for MSBuild
+        shell: powershell
+        run: |
+          echo "MSBuildExtensionsPath32=C:\Program Files (x86)\MSBuild" >> $env:GITHUB_ENV
+          echo "WixInstallPath=C:\Program Files (x86)\WiX Toolset v3.11\bin\" >> $env:GITHUB_ENV
+          echo "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+      - name: Install dependencies
+        run: dotnet restore
+      - name: Install NuGet
+        uses: nuget/setup-nuget@v1
+        with:
+          nuget-api-key: ${{ secrets.NuGetAPIKey }}
+          nuget-version: '5.x'
+      - name: NuGet Packages Restore
+        run: nuget restore Blackbox.sln
+      - name: Build
+        run: msbuild -p:Configuration=Release
+      - name: Test
+        run: dotnet test --no-restore --verbosity normal
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: Blackbox.Installer\bin\Release\Blackbox.Installer.msi
+          asset_name: blackbox-installer.msi
+          asset_content_type: application/octet-stream

@@ -1,0 +1,32 @@
+name: dotnet package
+
+on: [push,pull_request]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        dotnet-version: [ '5.0.x' ]
+        nuget-version: [ '5.x' ]
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v1.7.2
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+      - name: Install dependencies
+        run: dotnet restore
+      - name: Install NuGet
+        uses: nuget/setup-nuget@v1
+        with:
+          nuget-api-key: ${{ secrets.NuGetAPIKey }}
+          nuget-version: ${{ matrix.nuget-version }}
+      - name: NuGet Packages Restore
+        run: nuget restore Blackbox.sln
+      - name: Build
+        run: dotnet build --configuration Test --no-restore
+      - name: Test
+        run: dotnet test --no-restore --verbosity normal

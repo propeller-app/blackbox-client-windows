@@ -6,7 +6,7 @@
 <!-- manufacturer -->
 <?define Manufacturer = "Propeller Software" ?>
 <!-- software version -->
-<?define Version = "1.0.0" ?>
+<?define Version = "0.0.1" ?>
 <!-- target binary or executable -->
 <?define TargetBin = "Blackbox.exe" ?>
 <!-- primary upgrade or product guid -->

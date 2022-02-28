@@ -142,7 +142,7 @@ namespace Blackbox.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TranscodeComplete.
+        ///   Looks up a localized string similar to Transcode complete.
         /// </summary>
         internal static string JobStatusTranscodeComplete {
             get {

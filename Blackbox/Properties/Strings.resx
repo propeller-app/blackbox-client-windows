@@ -145,7 +145,7 @@
     <value>Ready</value>
   </data>
   <data name="JobStatusTranscodeComplete" xml:space="preserve">
-    <value>TranscodeComplete</value>
+    <value>Transcode complete</value>
   </data>
   <data name="JobStatusTranscoding" xml:space="preserve">
     <value>Transcoding: {0:hh\:mm\:ss} / {1:hh\:mm\:ss}</value>

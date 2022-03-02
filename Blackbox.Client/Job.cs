@@ -1,4 +1,4 @@
-﻿using Blackbox.Client.Enums;
+using Blackbox.Client.Enums;
 using Blackbox.Client.Events;
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
@@ -491,7 +491,7 @@ namespace Blackbox.Client
             {
                 CancellationToken ct = cancellationTokenSource.Token;
 
-                int bytesProcessed = 0;
+                long bytesProcessed = 0;
                 while (!ct.IsCancellationRequested && (Status == JobStatus.Transcoding || !videoDataQueue.IsEmpty))
                 {
                     byte[] buffer = Array.Empty<byte>();
@@ -510,7 +510,7 @@ namespace Blackbox.Client
                     if (Status == JobStatus.Uploading)
                     {
                         bytesProcessed += buffer.Length;
-                        int bytesTotal = bytesProcessed + videoDataQueue.Sum(bytes => bytes.Length);
+                        long bytesTotal = bytesProcessed + videoDataQueue.Sum(bytes => (long)bytes.Length);
                         OnUploadProgress(new UploadProgressEventArgs(bytesTotal, bytesProcessed));
                     }
                 }

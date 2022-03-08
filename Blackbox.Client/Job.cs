@@ -1,5 +1,6 @@
 using Blackbox.Client.Enums;
 using Blackbox.Client.Events;
+using Blackbox.Client.Rpc;
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
@@ -15,7 +16,8 @@ using System.Threading.Tasks;
 using Xabe.FFmpeg;
 using Xabe.FFmpeg.Events;
 using Xabe.FFmpeg.Exceptions;
-using static Redhvid.Rpc.JobSpool;
+using static Blackbox.Client.Rpc.Job.Types;
+using static Blackbox.Client.Rpc.JobSpool;
 
 namespace Blackbox.Client
 {
@@ -363,7 +365,7 @@ namespace Blackbox.Client
                 CancellationToken ct = cancellationTokenSource.Token;
                 while (Status != JobStatus.Complete && !ct.IsCancellationRequested)
                 {
-                    client.Heartbeat(new Redhvid.Rpc.JobIdentifier()
+                    client.Heartbeat(new JobIdentifier()
                     {
                         JobId = JobId
                     });
@@ -386,7 +388,7 @@ namespace Blackbox.Client
                 CancellationToken ct = cancellationTokenSource.Token;
                 ct.ThrowIfCancellationRequested();
 
-                Redhvid.Rpc.JobIdentifier newJob = client.GetNewJob(new Empty());
+                JobIdentifier newJob = client.GetNewJob(new Empty());
                 JobId = newJob.JobId;
 
                 Status = JobStatus.Cloning;
@@ -498,10 +500,9 @@ namespace Blackbox.Client
                     while (buffer.Length < maxMessageSize
                         && videoDataQueue.TryDequeue(out byte[] d))
                     {
-                        buffer = buffer.Concat(d).ToArray();
+                        client.Upload(new VideoData()
                     }
 
-                    client.Upload(new Redhvid.Rpc.VideoData()
                     {
                         JobId = JobId,
                         Content = ByteString.CopyFrom(buffer)
@@ -539,12 +540,12 @@ namespace Blackbox.Client
             {
                 DateTime expiresOn = DateTime.Now.AddDays(JobExpiryDays);
                 long expiresTimestamp = ((DateTimeOffset)expiresOn).ToUnixTimeSeconds();
-                client.Flush(new Redhvid.Rpc.Job()
+                client.Flush(new Rpc.Job()
                 {
                     JobId = JobId,
                     MachineId = Environment.MachineName,
                     Expires = (int)expiresTimestamp,
-                    Customer = new Redhvid.Rpc.Job.Types.Customer()
+                    Customer = new Customer()
                     {
                         FirstName = jobData.CustomerFirstName,
                         LastName = jobData.CustomerLastName,

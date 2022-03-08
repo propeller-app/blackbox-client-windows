@@ -75,9 +75,9 @@ namespace Blackbox.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("<ArrayOfDevice xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"h" +
             "ttp://www.w3.org/2001/XMLSchema\"></ArrayOfDevice>")]
-        public global::System.Collections.Generic.List<Blackbox.Device> Devices {
+        public global::System.Collections.Generic.List<Bespin.Device> Devices {
             get {
-                return ((global::System.Collections.Generic.List<Blackbox.Device>)(this["Devices"]));
+                return ((global::System.Collections.Generic.List<Bespin.Device>)(this["Devices"]));
             }
             set {
                 this["Devices"] = value;
@@ -117,18 +117,6 @@ namespace Blackbox.Properties {
             }
             set {
                 this["FFmpegFlags"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10")]
-        public uint MaxMessageSize {
-            get {
-                return ((uint)(this["MaxMessageSize"]));
-            }
-            set {
-                this["MaxMessageSize"] = value;
             }
         }
         

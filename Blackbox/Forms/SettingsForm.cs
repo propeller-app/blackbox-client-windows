@@ -23,7 +23,6 @@ namespace Blackbox
             transcodeCheckBox.Checked = Properties.Settings.Default.TranscodingEnabled;
             transcodeFlags.Text = Properties.Settings.Default.FFmpegFlags;
             expiryDaysInput.Text = Properties.Settings.Default.JobExpiryDays.ToString();
-            maxMessageSizeInput.Text = Properties.Settings.Default.MaxMessageSize.ToString();
             explorerPreviewCheckBox.Checked = Properties.Settings.Default.Explorer;
 
             foreach (Device device in Properties.Settings.Default.Devices)
@@ -41,7 +40,6 @@ namespace Blackbox
             Properties.Settings.Default.TranscodingEnabled = transcodeCheckBox.Checked;
             Properties.Settings.Default.FFmpegFlags = transcodeFlags.Text;
             Properties.Settings.Default.JobExpiryDays = int.Parse(expiryDaysInput.Text);
-            Properties.Settings.Default.MaxMessageSize = uint.Parse(maxMessageSizeInput.Text);
             Properties.Settings.Default.Explorer = explorerPreviewCheckBox.Checked;
 
             Properties.Settings.Default.Devices = new System.Collections.Generic.List<Device>();

@@ -45,10 +45,6 @@ namespace Blackbox
             this.transcodeTab = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.transcodeCheckBox = new System.Windows.Forms.CheckBox();
-            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
-            this.messageSizeLabel = new System.Windows.Forms.Label();
-            this.maxMessageSizeInput = new System.Windows.Forms.TextBox();
-            this.bytesLabel = new System.Windows.Forms.Label();
             this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
             this.transcodeFlagsLabel = new System.Windows.Forms.Label();
             this.transcodeFlags = new System.Windows.Forms.TextBox();
@@ -76,7 +72,6 @@ namespace Blackbox
             this.flowLayoutPanel3.SuspendLayout();
             this.transcodeTab.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            this.flowLayoutPanel4.SuspendLayout();
             this.flowLayoutPanel5.SuspendLayout();
             this.jobTab.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -240,16 +235,15 @@ namespace Blackbox
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel3.ColumnCount = 1;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.Controls.Add(this.transcodeCheckBox, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.flowLayoutPanel4, 0, 1);
-            this.tableLayoutPanel3.Controls.Add(this.flowLayoutPanel5, 0, 2);
+            this.tableLayoutPanel3.Controls.Add(this.flowLayoutPanel5, 0, 1);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(6, 6);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 3;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 253F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(345, 228);
             this.tableLayoutPanel3.TabIndex = 4;
             // 
@@ -264,52 +258,6 @@ namespace Blackbox
             this.transcodeCheckBox.UseVisualStyleBackColor = true;
             this.transcodeCheckBox.CheckedChanged += new System.EventHandler(this.SettingChange);
             // 
-            // flowLayoutPanel4
-            // 
-            this.flowLayoutPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.flowLayoutPanel4.AutoSize = true;
-            this.flowLayoutPanel4.Controls.Add(this.messageSizeLabel);
-            this.flowLayoutPanel4.Controls.Add(this.maxMessageSizeInput);
-            this.flowLayoutPanel4.Controls.Add(this.bytesLabel);
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(3, 28);
-            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(339, 29);
-            this.flowLayoutPanel4.TabIndex = 7;
-            // 
-            // messageSizeLabel
-            // 
-            this.messageSizeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.messageSizeLabel.AutoSize = true;
-            this.messageSizeLabel.Location = new System.Drawing.Point(3, 0);
-            this.messageSizeLabel.Name = "messageSizeLabel";
-            this.messageSizeLabel.Size = new System.Drawing.Size(104, 29);
-            this.messageSizeLabel.TabIndex = 9;
-            this.messageSizeLabel.Text = "Max Message Size:";
-            this.messageSizeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // maxMessageSizeInput
-            // 
-            this.maxMessageSizeInput.Location = new System.Drawing.Point(113, 3);
-            this.maxMessageSizeInput.Name = "maxMessageSizeInput";
-            this.maxMessageSizeInput.Size = new System.Drawing.Size(43, 23);
-            this.maxMessageSizeInput.TabIndex = 10;
-            this.maxMessageSizeInput.TextChanged += new System.EventHandler(this.SettingChange);
-            this.maxMessageSizeInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DigitOnlyInput);
-            // 
-            // bytesLabel
-            // 
-            this.bytesLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.bytesLabel.AutoSize = true;
-            this.bytesLabel.Location = new System.Drawing.Point(162, 0);
-            this.bytesLabel.Name = "bytesLabel";
-            this.bytesLabel.Size = new System.Drawing.Size(20, 29);
-            this.bytesLabel.TabIndex = 11;
-            this.bytesLabel.Text = "kb";
-            this.bytesLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // flowLayoutPanel5
             // 
             this.flowLayoutPanel5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -317,7 +265,7 @@ namespace Blackbox
             this.flowLayoutPanel5.AutoSize = true;
             this.flowLayoutPanel5.Controls.Add(this.transcodeFlagsLabel);
             this.flowLayoutPanel5.Controls.Add(this.transcodeFlags);
-            this.flowLayoutPanel5.Location = new System.Drawing.Point(3, 63);
+            this.flowLayoutPanel5.Location = new System.Drawing.Point(3, 28);
             this.flowLayoutPanel5.Name = "flowLayoutPanel5";
             this.flowLayoutPanel5.Size = new System.Drawing.Size(339, 130);
             this.flowLayoutPanel5.TabIndex = 8;
@@ -575,8 +523,6 @@ namespace Blackbox
             this.transcodeTab.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
-            this.flowLayoutPanel4.ResumeLayout(false);
-            this.flowLayoutPanel4.PerformLayout();
             this.flowLayoutPanel5.ResumeLayout(false);
             this.flowLayoutPanel5.PerformLayout();
             this.jobTab.ResumeLayout(false);
@@ -618,14 +564,10 @@ namespace Blackbox
         private TabPage jobTab;
         private TextBox expiryDaysInput;
         private Label jobExpiryLabel;
-        private Label bytesLabel;
-        private TextBox maxMessageSizeInput;
-        private Label messageSizeLabel;
         private TableLayoutPanel tableLayoutPanel2;
         private FlowLayoutPanel flowLayoutPanel2;
         private FlowLayoutPanel flowLayoutPanel3;
         private TableLayoutPanel tableLayoutPanel3;
-        private FlowLayoutPanel flowLayoutPanel4;
         private FlowLayoutPanel flowLayoutPanel5;
         private TableLayoutPanel tableLayoutPanel4;
         private FlowLayoutPanel flowLayoutPanel6;

@@ -453,7 +453,7 @@ namespace Blackbox.Client
                 IConversion conversion = converter.Result;
 
                 conversion.AddParameter(FfmpegFlags);
-                conversion.AddParameter("-f mp4 -movflags frag_keyframe+empty_moov");
+                conversion.AddParameter(Properties.Strings.RequiredFfmpegFlags);
                 conversion.PipeOutput();
 
                 videoDataQueue = new ConcurrentQueue<byte[]>();

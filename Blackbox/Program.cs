@@ -68,8 +68,7 @@ namespace Blackbox
                     .SetGrpcUrl(Utils.GetGrpcUrl())
                     .SetTempDirectory(Utils.GetTempJobDirectory())
                     .SetFfmpegFlags(Properties.Settings.Default.FFmpegFlags)
-                    .SetJobExpiryDays(Properties.Settings.Default.JobExpiryDays)
-                    .SetMaxMessageSize(Properties.Settings.Default.MaxMessageSize);
+                    .SetJobExpiryDays(Properties.Settings.Default.JobExpiryDays);
 
                 jobQueue.Enqueue(job);
 

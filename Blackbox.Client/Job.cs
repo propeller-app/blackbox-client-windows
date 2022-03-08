@@ -6,9 +6,7 @@ using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using Grpc.Net.Client;
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -71,12 +69,7 @@ namespace Blackbox.Client
         /// <summary>
         /// Queue video data is written to as it arrived from ffMPEG.
         /// </summary>
-        private ConcurrentQueue<byte[]> videoDataQueue;
-
-        /// <summary>
-        /// Max size of GRPC video message in bytes.
-        /// </summary>
-        private uint maxMessageSize = 10 * 1024;
+        private BufferedVideoDataQueue videoDataQueue;
 
         /// <summary>
         /// Source of cancellation token used to stop the job.
@@ -293,26 +286,6 @@ namespace Blackbox.Client
         }
 
         /// <summary>
-        /// Sets max GRPC upload message size.
-        /// </summary>
-        /// <param name="kb">Max message size in kilobytes.</param>
-        /// <returns>This job.</returns>
-        public Job SetMaxMessageSize(uint kb)
-        {
-            maxMessageSize = kb * 1024;
-            return this;
-        }
-
-        /// <summary>
-        /// Gets max GRPC upload message size.
-        /// </summary>
-        /// <returns>The max message size in kilobytes.</returns>
-        public uint GetMaxMessageSize()
-        {
-            return maxMessageSize / 1024;
-        }
-
-        /// <summary>
         /// Sets the gRPC URL used to locate the gRPC server.
         /// </summary>
         /// <param name="grpcUrl">String representing the URL of the gRPC server.</param>
@@ -456,7 +429,7 @@ namespace Blackbox.Client
                 conversion.AddParameter(Properties.Strings.RequiredFfmpegFlags);
                 conversion.PipeOutput();
 
-                videoDataQueue = new ConcurrentQueue<byte[]>();
+                videoDataQueue = new BufferedVideoDataQueue();
                 conversion.OnVideoDataReceived += (object sender, VideoDataEventArgs e) =>
                     videoDataQueue.Enqueue(e.Data);
 
@@ -494,25 +467,29 @@ namespace Blackbox.Client
                 CancellationToken ct = cancellationTokenSource.Token;
 
                 long bytesProcessed = 0;
-                while (!ct.IsCancellationRequested && (Status == JobStatus.Transcoding || !videoDataQueue.IsEmpty))
+                long bytesTotal = 0;
+                JobStatus status;
+                byte[] buffer = new byte[32 * 1024];
+                while (!ct.IsCancellationRequested && ((status = Status) == JobStatus.Transcoding || !videoDataQueue.IsEmpty))
                 {
-                    byte[] buffer = Array.Empty<byte>();
-                    while (buffer.Length < maxMessageSize
-                        && videoDataQueue.TryDequeue(out byte[] d))
+                    int count = videoDataQueue.Dequeue(buffer);
+
+                    if (count > 0)
                     {
                         client.Upload(new VideoData()
-                    }
-
-                    {
-                        JobId = JobId,
-                        Content = ByteString.CopyFrom(buffer)
-                    });
-
-                    if (Status == JobStatus.Uploading)
-                    {
-                        bytesProcessed += buffer.Length;
-                        long bytesTotal = bytesProcessed + videoDataQueue.Sum(bytes => (long)bytes.Length);
-                        OnUploadProgress(new UploadProgressEventArgs(bytesTotal, bytesProcessed));
+                        {
+                            JobId = JobId,
+                            Content = ByteString.CopyFrom(buffer, 0, count)
+                        });
+                        if (status == JobStatus.Uploading)
+                        {
+                            bytesProcessed += count;
+                            if (bytesTotal == 0)
+                            {
+                                bytesTotal = bytesProcessed + videoDataQueue.Sum(bytes => (long)bytes.Length);
+                            }
+                            OnUploadProgress(new UploadProgressEventArgs(bytesTotal, bytesProcessed));
+                        }
                     }
                 }
 

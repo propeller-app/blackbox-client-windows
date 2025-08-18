@@ -16,6 +16,7 @@ using Xabe.FFmpeg.Events;
 using Xabe.FFmpeg.Exceptions;
 using static Blackbox.Client.Rpc.Job.Types;
 using static Blackbox.Client.Rpc.JobSpool;
+using MediaDevices;
 
 namespace Blackbox.Client
 {
@@ -35,6 +36,8 @@ namespace Blackbox.Client
         /// Array of source files which should be transcoded.
         /// </summary>
         public List<string> SourceFiles { get; private set; } = new List<string>();
+
+        public MediaDevice MtpDevice { get; private set; } 
 
         /// <summary>
         /// Temporary directory to clone source files to.
@@ -250,6 +253,12 @@ namespace Blackbox.Client
             return this;
         }
 
+        public Job SetMtpDevice(MediaDevice device)
+        {
+            MtpDevice = device;
+            return this;
+        }
+
         /// <summary>
         /// Sets the temporary clone directory.
         /// </summary>
@@ -365,30 +374,76 @@ namespace Blackbox.Client
                 JobId = newJob.JobId;
 
                 Status = JobStatus.Cloning;
-                byte[] buffer = new byte[4096];
+                byte[] buffer = new byte[131072];
 
-                int i = 0;
-                foreach (string file in SourceFiles)
+                if (MtpDevice is null)
                 {
-                    ct.ThrowIfCancellationRequested();
-
-                    string fileName = Path.GetFileName(file);
-                    using Stream source = File.OpenRead(file);
-                    using Stream destination = File.Create(Path.Combine(TempDirectory.FullName, fileName));
-
-                    int count;
-                    while ((count = source.Read(buffer, 0, buffer.Length)) != 0)
+                    int i = 0;
+                    foreach (string file in SourceFiles)
                     {
                         ct.ThrowIfCancellationRequested();
 
-                        OnCloneProgress(new CloneProgressEventArgs(fileName, i, SourceFiles.Count, destination.Length, source.Length));
+                        string fileName = Path.GetFileName(file);
+                        using Stream source = File.OpenRead(file);
+                        using Stream destination = File.Create(Path.Combine(TempDirectory.FullName, fileName));
 
-                        destination.Write(buffer, 0, count);
+                        int count;
+                        while ((count = source.Read(buffer, 0, buffer.Length)) != 0)
+                        {
+                            ct.ThrowIfCancellationRequested();
+
+                            OnCloneProgress(new CloneProgressEventArgs(fileName, i, SourceFiles.Count, destination.Length, source.Length));
+
+                            destination.Write(buffer, 0, count);
+                        }
+                        i++;
                     }
-                    i++;
+                }
+                else
+                {
+                    // --- MTP device copy with progress ---
+                    MtpDevice.Connect();
+
+                    var root = MtpDevice.GetDirectoryInfo(@"\");
+                    var mp4Files = root.EnumerateFiles("*.mp4", SearchOption.AllDirectories).ToList();
+
+                    int i = 0;
+                    foreach (var file in mp4Files)
+                    {
+                        ct.ThrowIfCancellationRequested();
+
+                        string fileName = file.Name;
+                        string destPath = Path.Combine(TempDirectory.FullName, fileName);
+
+                        using FileStream destination = File.Create(destPath);
+
+                        long totalLength = (long)file.Length;
+                        long totalWritten = 0;
+
+                        // Wrap destination to intercept progress
+                        using Stream progressStream = new ProgressStream(destination, written =>
+                        {
+                            totalWritten = written;
+                            ct.ThrowIfCancellationRequested();
+
+                            OnCloneProgress(new CloneProgressEventArgs(
+                                fileName,
+                                i,
+                                mp4Files.Count,
+                                totalWritten,
+                                totalLength));
+                        });
+
+                        MtpDevice.DownloadFile(file.FullName, progressStream);
+
+                        i++;
+                    }
+
+                    MtpDevice.Disconnect();
                 }
 
-                OnCloneComplete(new CloneCompleteEventArgs(SourceFiles.Count, TempDirectory));
+                int completedCount = (MtpDevice is null ? SourceFiles.Count : TempDirectory.GetFiles().Length);
+                OnCloneComplete(new CloneCompleteEventArgs(completedCount, TempDirectory));
             }
             catch (Exception e) when (e is RpcException || e is IOException)
             {
@@ -401,6 +456,37 @@ namespace Blackbox.Client
             }
         }
 
+        private class ProgressStream : Stream
+        {
+            private readonly Stream inner;
+            private readonly Action<long> progressAction;
+            private long totalWritten;
+
+            public ProgressStream(Stream inner, Action<long> progressAction)
+            {
+                this.inner = inner;
+                this.progressAction = progressAction;
+            }
+
+            public override void Write(byte[] buffer, int offset, int count)
+            {
+                inner.Write(buffer, offset, count);
+                totalWritten += count;
+                progressAction(totalWritten);
+            }
+
+            // Forward everything else
+            public override bool CanRead => inner.CanRead;
+            public override bool CanSeek => inner.CanSeek;
+            public override bool CanWrite => inner.CanWrite;
+            public override long Length => inner.Length;
+            public override long Position { get => inner.Position; set => inner.Position = value; }
+            public override void Flush() => inner.Flush();
+            public override int Read(byte[] buffer, int offset, int count) => inner.Read(buffer, offset, count);
+            public override long Seek(long offset, SeekOrigin origin) => inner.Seek(offset, origin);
+            public override void SetLength(long value) => inner.SetLength(value);
+        }
+
         /// <summary>
         /// Starts the transcode job and runs upload in parallel.
         /// 
@@ -410,6 +496,9 @@ namespace Blackbox.Client
         {
             try
             {
+                string ffmpegFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ffmpeg");
+                FFmpeg.SetExecutablesPath(ffmpegFolder);
+
                 CancellationToken ct = cancellationTokenSource.Token;
                 ct.ThrowIfCancellationRequested();
 
@@ -420,14 +509,28 @@ namespace Blackbox.Client
                 Task.WaitAll(tasks);
                 TimeSpan totalDuration = tasks.Select(task => task.Result).Aggregate(new TimeSpan(), (acc, mi) => acc.Add(mi.Duration));
 
-                Task<IConversion> converter = (inputVideos.Length > 1) ? FFmpeg.Conversions.FromSnippet.Concatenate(null, inputVideos) :
-                    FFmpeg.Conversions.FromSnippet.Convert(inputVideos[0], null);
+                var frameRates = tasks
+                    .Select(task => task.Result.VideoStreams.FirstOrDefault()?.Framerate)
+                    .Where(fps => fps > 0)
+                    .ToList();
+
+                double outputFrameRate = (double)(frameRates.Any() ? frameRates.Min() : 30);
+
+                string outputFile = "pipe:stdout";
+
+                Task<IConversion> converter = (inputVideos.Length > 1)
+                    ? FFmpeg.Conversions.FromSnippet.Concatenate(outputFile, inputVideos)
+                    : FFmpeg.Conversions.FromSnippet.Convert(inputVideos[0], outputFile);
+
                 converter.Wait(ct);
                 IConversion conversion = converter.Result;
 
                 conversion.AddParameter(FfmpegFlags);
                 conversion.AddParameter(Properties.Strings.RequiredFfmpegFlags);
+                conversion.AddParameter("-r " + outputFrameRate);
                 conversion.PipeOutput();
+
+                //Console.WriteLine("Ffmpeg Command: " + conversion.Build()); // Writes the full ffmpeg command to console for debugging
 
                 videoDataQueue = new BufferedVideoDataQueue();
                 conversion.OnVideoDataReceived += (object sender, VideoDataEventArgs e) =>

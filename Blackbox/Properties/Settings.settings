@@ -24,7 +24,7 @@
       <Value Profile="(Default)">30</Value>
     </Setting>
     <Setting Name="FFmpegFlags" Type="System.String" Scope="User">
-      <Value Profile="(Default)">-preset ultrafast</Value>
+      <Value Profile="(Default)">-c:v libsvtav1 -crf 30 -preset 10</Value>
     </Setting>
     <Setting Name="Explorer" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>

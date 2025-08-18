@@ -1,10 +1,31 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net5.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="tools\Download-FFmpeg.ps1" />
+	  <None Remove="tools\Master.ps1" />
+	  <None Remove="tools\SendTo.ps1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="tools\Download-FFmpeg.ps1">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="tools\install-ffmpeg.ps1">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="tools\Master.ps1">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="tools\SendTo.ps1">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Google.Protobuf" Version="3.15.8" />
@@ -13,7 +34,13 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Xabe.FFmpeg" Version="5.1.0" />
+		<PackageReference Include="MediaDevices" Version="1.10.0" />
+		<PackageReference Include="System.Text.Json" Version="9.0.8" />
+		<PackageReference Include="Xabe.FFmpeg" Version="6.0.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\Xabe.FFmpeg\src\Xabe.FFmpeg\Xabe.FFmpeg.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -33,6 +60,10 @@
 	    <Generator>ResXFileCodeGenerator</Generator>
 	    <LastGenOutput>Strings.Designer.cs</LastGenOutput>
 	  </EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="ffmpeg\" />
 	</ItemGroup>
 
 </Project>

@@ -31,513 +31,502 @@ namespace Blackbox
         /// </summary>
         private void InitializeComponent()
         {
-            this.settingsTabControl = new System.Windows.Forms.TabControl();
-            this.serverTab = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.hostLabel = new System.Windows.Forms.Label();
-            this.hostInput = new System.Windows.Forms.TextBox();
-            this.serverTestButton = new System.Windows.Forms.Button();
-            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
-            this.portLabel = new System.Windows.Forms.Label();
-            this.portInput = new System.Windows.Forms.TextBox();
-            this.sslCheckBox = new System.Windows.Forms.CheckBox();
-            this.transcodeTab = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.transcodeCheckBox = new System.Windows.Forms.CheckBox();
-            this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
-            this.transcodeFlagsLabel = new System.Windows.Forms.Label();
-            this.transcodeFlags = new System.Windows.Forms.TextBox();
-            this.jobTab = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.flowLayoutPanel6 = new System.Windows.Forms.FlowLayoutPanel();
-            this.jobExpiryLabel = new System.Windows.Forms.Label();
-            this.expiryDaysInput = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.explorerPreviewCheckBox = new System.Windows.Forms.CheckBox();
-            this.deviceTab = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.devicesListView = new System.Windows.Forms.ListView();
-            this.flowLayoutPanel7 = new System.Windows.Forms.FlowLayoutPanel();
-            this.deviceAddButton = new System.Windows.Forms.Button();
-            this.deviceRemoveButton = new System.Windows.Forms.Button();
-            this.applyButton = new System.Windows.Forms.Button();
-            this.closeButton = new System.Windows.Forms.Button();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.settingsTabControl.SuspendLayout();
-            this.serverTab.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
-            this.flowLayoutPanel2.SuspendLayout();
-            this.flowLayoutPanel3.SuspendLayout();
-            this.transcodeTab.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
-            this.flowLayoutPanel5.SuspendLayout();
-            this.jobTab.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
-            this.flowLayoutPanel6.SuspendLayout();
-            this.deviceTab.SuspendLayout();
-            this.tableLayoutPanel5.SuspendLayout();
-            this.flowLayoutPanel7.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
-            this.SuspendLayout();
+            settingsTabControl = new TabControl();
+            serverTab = new TabPage();
+            tableLayoutPanel2 = new TableLayoutPanel();
+            flowLayoutPanel2 = new FlowLayoutPanel();
+            hostLabel = new Label();
+            hostInput = new TextBox();
+            serverTestButton = new Button();
+            flowLayoutPanel3 = new FlowLayoutPanel();
+            portLabel = new Label();
+            portInput = new TextBox();
+            sslCheckBox = new CheckBox();
+            transcodeTab = new TabPage();
+            InstallFfmpeg = new Button();
+            tableLayoutPanel3 = new TableLayoutPanel();
+            transcodeCheckBox = new CheckBox();
+            flowLayoutPanel5 = new FlowLayoutPanel();
+            transcodeFlagsLabel = new Label();
+            transcodeFlags = new TextBox();
+            jobTab = new TabPage();
+            tableLayoutPanel4 = new TableLayoutPanel();
+            flowLayoutPanel6 = new FlowLayoutPanel();
+            jobExpiryLabel = new Label();
+            expiryDaysInput = new TextBox();
+            label1 = new Label();
+            explorerPreviewCheckBox = new CheckBox();
+            deviceTab = new TabPage();
+            tableLayoutPanel5 = new TableLayoutPanel();
+            devicesListView = new ListView();
+            flowLayoutPanel7 = new FlowLayoutPanel();
+            deviceAddButton = new Button();
+            deviceRemoveButton = new Button();
+            applyButton = new Button();
+            closeButton = new Button();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            settingsTabControl.SuspendLayout();
+            serverTab.SuspendLayout();
+            tableLayoutPanel2.SuspendLayout();
+            flowLayoutPanel2.SuspendLayout();
+            flowLayoutPanel3.SuspendLayout();
+            transcodeTab.SuspendLayout();
+            tableLayoutPanel3.SuspendLayout();
+            flowLayoutPanel5.SuspendLayout();
+            jobTab.SuspendLayout();
+            tableLayoutPanel4.SuspendLayout();
+            flowLayoutPanel6.SuspendLayout();
+            deviceTab.SuspendLayout();
+            tableLayoutPanel5.SuspendLayout();
+            flowLayoutPanel7.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
+            flowLayoutPanel1.SuspendLayout();
+            SuspendLayout();
             // 
             // settingsTabControl
             // 
-            this.settingsTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.settingsTabControl.Controls.Add(this.serverTab);
-            this.settingsTabControl.Controls.Add(this.transcodeTab);
-            this.settingsTabControl.Controls.Add(this.jobTab);
-            this.settingsTabControl.Controls.Add(this.deviceTab);
-            this.settingsTabControl.Location = new System.Drawing.Point(3, 3);
-            this.settingsTabControl.Name = "settingsTabControl";
-            this.settingsTabControl.SelectedIndex = 0;
-            this.settingsTabControl.Size = new System.Drawing.Size(380, 273);
-            this.settingsTabControl.TabIndex = 0;
+            settingsTabControl.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            settingsTabControl.Controls.Add(serverTab);
+            settingsTabControl.Controls.Add(transcodeTab);
+            settingsTabControl.Controls.Add(jobTab);
+            settingsTabControl.Controls.Add(deviceTab);
+            settingsTabControl.Location = new System.Drawing.Point(3, 3);
+            settingsTabControl.Name = "settingsTabControl";
+            settingsTabControl.SelectedIndex = 0;
+            settingsTabControl.Size = new System.Drawing.Size(380, 273);
+            settingsTabControl.TabIndex = 0;
             // 
             // serverTab
             // 
-            this.serverTab.Controls.Add(this.tableLayoutPanel2);
-            this.serverTab.Location = new System.Drawing.Point(4, 24);
-            this.serverTab.Name = "serverTab";
-            this.serverTab.Padding = new System.Windows.Forms.Padding(3);
-            this.serverTab.Size = new System.Drawing.Size(372, 245);
-            this.serverTab.TabIndex = 0;
-            this.serverTab.Text = "Server";
-            this.serverTab.UseVisualStyleBackColor = true;
+            serverTab.Controls.Add(tableLayoutPanel2);
+            serverTab.Location = new System.Drawing.Point(4, 24);
+            serverTab.Name = "serverTab";
+            serverTab.Padding = new Padding(3);
+            serverTab.Size = new System.Drawing.Size(372, 245);
+            serverTab.TabIndex = 0;
+            serverTab.Text = "Server";
+            serverTab.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.flowLayoutPanel2, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.serverTestButton, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.flowLayoutPanel3, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.sslCheckBox, 0, 1);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(6, 6);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 82.22222F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(360, 233);
-            this.tableLayoutPanel2.TabIndex = 7;
+            tableLayoutPanel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tableLayoutPanel2.ColumnCount = 2;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.Controls.Add(flowLayoutPanel2, 0, 0);
+            tableLayoutPanel2.Controls.Add(serverTestButton, 1, 1);
+            tableLayoutPanel2.Controls.Add(flowLayoutPanel3, 1, 0);
+            tableLayoutPanel2.Controls.Add(sslCheckBox, 0, 1);
+            tableLayoutPanel2.Location = new System.Drawing.Point(6, 6);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 2;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle());
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 82.22222F));
+            tableLayoutPanel2.Size = new System.Drawing.Size(360, 233);
+            tableLayoutPanel2.TabIndex = 7;
             // 
             // flowLayoutPanel2
             // 
-            this.flowLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.flowLayoutPanel2.AutoSize = true;
-            this.flowLayoutPanel2.Controls.Add(this.hostLabel);
-            this.flowLayoutPanel2.Controls.Add(this.hostInput);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 3);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(174, 29);
-            this.flowLayoutPanel2.TabIndex = 0;
-            this.flowLayoutPanel2.WrapContents = false;
+            flowLayoutPanel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            flowLayoutPanel2.AutoSize = true;
+            flowLayoutPanel2.Controls.Add(hostLabel);
+            flowLayoutPanel2.Controls.Add(hostInput);
+            flowLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+            flowLayoutPanel2.Name = "flowLayoutPanel2";
+            flowLayoutPanel2.Size = new System.Drawing.Size(174, 29);
+            flowLayoutPanel2.TabIndex = 0;
+            flowLayoutPanel2.WrapContents = false;
             // 
             // hostLabel
             // 
-            this.hostLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.hostLabel.AutoSize = true;
-            this.hostLabel.Location = new System.Drawing.Point(3, 0);
-            this.hostLabel.Name = "hostLabel";
-            this.hostLabel.Size = new System.Drawing.Size(35, 29);
-            this.hostLabel.TabIndex = 0;
-            this.hostLabel.Text = "Host:";
-            this.hostLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            hostLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            hostLabel.AutoSize = true;
+            hostLabel.Location = new System.Drawing.Point(3, 0);
+            hostLabel.Name = "hostLabel";
+            hostLabel.Size = new System.Drawing.Size(35, 29);
+            hostLabel.TabIndex = 0;
+            hostLabel.Text = "Host:";
+            hostLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // hostInput
             // 
-            this.hostInput.Location = new System.Drawing.Point(44, 3);
-            this.hostInput.Name = "hostInput";
-            this.hostInput.Size = new System.Drawing.Size(126, 23);
-            this.hostInput.TabIndex = 1;
-            this.hostInput.TextChanged += new System.EventHandler(this.SettingChange);
+            hostInput.Location = new System.Drawing.Point(44, 3);
+            hostInput.Name = "hostInput";
+            hostInput.Size = new System.Drawing.Size(126, 23);
+            hostInput.TabIndex = 1;
+            hostInput.TextChanged += SettingChange;
             // 
             // serverTestButton
             // 
-            this.serverTestButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.serverTestButton.Location = new System.Drawing.Point(251, 38);
-            this.serverTestButton.Name = "serverTestButton";
-            this.serverTestButton.Size = new System.Drawing.Size(106, 23);
-            this.serverTestButton.TabIndex = 6;
-            this.serverTestButton.Text = "Test Connection";
-            this.serverTestButton.UseVisualStyleBackColor = true;
+            serverTestButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            serverTestButton.Location = new System.Drawing.Point(251, 38);
+            serverTestButton.Name = "serverTestButton";
+            serverTestButton.Size = new System.Drawing.Size(106, 23);
+            serverTestButton.TabIndex = 6;
+            serverTestButton.Text = "Test Connection";
+            serverTestButton.UseVisualStyleBackColor = true;
             // 
             // flowLayoutPanel3
             // 
-            this.flowLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.flowLayoutPanel3.AutoSize = true;
-            this.flowLayoutPanel3.Controls.Add(this.portLabel);
-            this.flowLayoutPanel3.Controls.Add(this.portInput);
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(183, 3);
-            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(174, 29);
-            this.flowLayoutPanel3.TabIndex = 1;
-            this.flowLayoutPanel3.WrapContents = false;
+            flowLayoutPanel3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            flowLayoutPanel3.AutoSize = true;
+            flowLayoutPanel3.Controls.Add(portLabel);
+            flowLayoutPanel3.Controls.Add(portInput);
+            flowLayoutPanel3.Location = new System.Drawing.Point(183, 3);
+            flowLayoutPanel3.Name = "flowLayoutPanel3";
+            flowLayoutPanel3.Size = new System.Drawing.Size(174, 29);
+            flowLayoutPanel3.TabIndex = 1;
+            flowLayoutPanel3.WrapContents = false;
             // 
             // portLabel
             // 
-            this.portLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.portLabel.AutoSize = true;
-            this.portLabel.Location = new System.Drawing.Point(3, 0);
-            this.portLabel.Name = "portLabel";
-            this.portLabel.Size = new System.Drawing.Size(32, 29);
-            this.portLabel.TabIndex = 2;
-            this.portLabel.Text = "Port:";
-            this.portLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            portLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            portLabel.AutoSize = true;
+            portLabel.Location = new System.Drawing.Point(3, 0);
+            portLabel.Name = "portLabel";
+            portLabel.Size = new System.Drawing.Size(32, 29);
+            portLabel.TabIndex = 2;
+            portLabel.Text = "Port:";
+            portLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // portInput
             // 
-            this.portInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.portInput.Location = new System.Drawing.Point(41, 3);
-            this.portInput.Name = "portInput";
-            this.portInput.Size = new System.Drawing.Size(129, 23);
-            this.portInput.TabIndex = 3;
-            this.portInput.TextChanged += new System.EventHandler(this.SettingChange);
+            portInput.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            portInput.Location = new System.Drawing.Point(41, 3);
+            portInput.Name = "portInput";
+            portInput.Size = new System.Drawing.Size(129, 23);
+            portInput.TabIndex = 3;
+            portInput.TextChanged += SettingChange;
             // 
             // sslCheckBox
             // 
-            this.sslCheckBox.AutoSize = true;
-            this.sslCheckBox.Location = new System.Drawing.Point(3, 38);
-            this.sslCheckBox.Name = "sslCheckBox";
-            this.sslCheckBox.Size = new System.Drawing.Size(71, 19);
-            this.sslCheckBox.TabIndex = 5;
-            this.sslCheckBox.Text = "Use SSL?";
-            this.sslCheckBox.UseVisualStyleBackColor = true;
-            this.sslCheckBox.CheckedChanged += new System.EventHandler(this.SettingChange);
+            sslCheckBox.AutoSize = true;
+            sslCheckBox.Location = new System.Drawing.Point(3, 38);
+            sslCheckBox.Name = "sslCheckBox";
+            sslCheckBox.Size = new System.Drawing.Size(71, 19);
+            sslCheckBox.TabIndex = 5;
+            sslCheckBox.Text = "Use SSL?";
+            sslCheckBox.UseVisualStyleBackColor = true;
+            sslCheckBox.CheckedChanged += SettingChange;
             // 
             // transcodeTab
             // 
-            this.transcodeTab.Controls.Add(this.tableLayoutPanel3);
-            this.transcodeTab.Location = new System.Drawing.Point(4, 24);
-            this.transcodeTab.Name = "transcodeTab";
-            this.transcodeTab.Padding = new System.Windows.Forms.Padding(3);
-            this.transcodeTab.Size = new System.Drawing.Size(372, 245);
-            this.transcodeTab.TabIndex = 1;
-            this.transcodeTab.Text = "Transcoding";
-            this.transcodeTab.UseVisualStyleBackColor = true;
+            transcodeTab.Controls.Add(InstallFfmpeg);
+            transcodeTab.Controls.Add(tableLayoutPanel3);
+            transcodeTab.Location = new System.Drawing.Point(4, 24);
+            transcodeTab.Name = "transcodeTab";
+            transcodeTab.Padding = new Padding(3);
+            transcodeTab.Size = new System.Drawing.Size(372, 245);
+            transcodeTab.TabIndex = 1;
+            transcodeTab.Text = "Transcoding";
+            transcodeTab.UseVisualStyleBackColor = true;
+            // 
+            // InstallFfmpeg
+            // 
+            InstallFfmpeg.Location = new System.Drawing.Point(9, 216);
+            InstallFfmpeg.Name = "InstallFfmpeg";
+            InstallFfmpeg.Size = new System.Drawing.Size(100, 23);
+            InstallFfmpeg.TabIndex = 5;
+            InstallFfmpeg.Text = "Install FFmpeg";
+            InstallFfmpeg.UseVisualStyleBackColor = true;
+            InstallFfmpeg.Click += InstallFfmpeg_Click;
             // 
             // tableLayoutPanel3
             // 
-            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel3.ColumnCount = 1;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Controls.Add(this.transcodeCheckBox, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.flowLayoutPanel5, 0, 1);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(6, 6);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 2;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 253F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(345, 228);
-            this.tableLayoutPanel3.TabIndex = 4;
+            tableLayoutPanel3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tableLayoutPanel3.ColumnCount = 1;
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel3.Controls.Add(transcodeCheckBox, 0, 0);
+            tableLayoutPanel3.Controls.Add(flowLayoutPanel5, 0, 1);
+            tableLayoutPanel3.Location = new System.Drawing.Point(6, 6);
+            tableLayoutPanel3.Name = "tableLayoutPanel3";
+            tableLayoutPanel3.RowCount = 2;
+            tableLayoutPanel3.RowStyles.Add(new RowStyle());
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 253F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel3.Size = new System.Drawing.Size(345, 171);
+            tableLayoutPanel3.TabIndex = 4;
             // 
             // transcodeCheckBox
             // 
-            this.transcodeCheckBox.AutoSize = true;
-            this.transcodeCheckBox.Location = new System.Drawing.Point(3, 3);
-            this.transcodeCheckBox.Name = "transcodeCheckBox";
-            this.transcodeCheckBox.Size = new System.Drawing.Size(118, 19);
-            this.transcodeCheckBox.TabIndex = 6;
-            this.transcodeCheckBox.Text = "Use Transcoding?";
-            this.transcodeCheckBox.UseVisualStyleBackColor = true;
-            this.transcodeCheckBox.CheckedChanged += new System.EventHandler(this.SettingChange);
+            transcodeCheckBox.AutoSize = true;
+            transcodeCheckBox.Location = new System.Drawing.Point(3, 3);
+            transcodeCheckBox.Name = "transcodeCheckBox";
+            transcodeCheckBox.Size = new System.Drawing.Size(117, 19);
+            transcodeCheckBox.TabIndex = 6;
+            transcodeCheckBox.Text = "Use Transcoding?";
+            transcodeCheckBox.UseVisualStyleBackColor = true;
+            transcodeCheckBox.CheckedChanged += SettingChange;
             // 
             // flowLayoutPanel5
             // 
-            this.flowLayoutPanel5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.flowLayoutPanel5.AutoSize = true;
-            this.flowLayoutPanel5.Controls.Add(this.transcodeFlagsLabel);
-            this.flowLayoutPanel5.Controls.Add(this.transcodeFlags);
-            this.flowLayoutPanel5.Location = new System.Drawing.Point(3, 28);
-            this.flowLayoutPanel5.Name = "flowLayoutPanel5";
-            this.flowLayoutPanel5.Size = new System.Drawing.Size(339, 130);
-            this.flowLayoutPanel5.TabIndex = 8;
-            this.flowLayoutPanel5.WrapContents = false;
+            flowLayoutPanel5.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            flowLayoutPanel5.AutoSize = true;
+            flowLayoutPanel5.Controls.Add(transcodeFlagsLabel);
+            flowLayoutPanel5.Controls.Add(transcodeFlags);
+            flowLayoutPanel5.Location = new System.Drawing.Point(3, 28);
+            flowLayoutPanel5.Name = "flowLayoutPanel5";
+            flowLayoutPanel5.Size = new System.Drawing.Size(339, 130);
+            flowLayoutPanel5.TabIndex = 8;
+            flowLayoutPanel5.WrapContents = false;
             // 
             // transcodeFlagsLabel
             // 
-            this.transcodeFlagsLabel.AutoSize = true;
-            this.transcodeFlagsLabel.Location = new System.Drawing.Point(3, 0);
-            this.transcodeFlagsLabel.Name = "transcodeFlagsLabel";
-            this.transcodeFlagsLabel.Size = new System.Drawing.Size(37, 15);
-            this.transcodeFlagsLabel.TabIndex = 8;
-            this.transcodeFlagsLabel.Text = "Flags:";
+            transcodeFlagsLabel.AutoSize = true;
+            transcodeFlagsLabel.Location = new System.Drawing.Point(3, 0);
+            transcodeFlagsLabel.Name = "transcodeFlagsLabel";
+            transcodeFlagsLabel.Size = new System.Drawing.Size(37, 15);
+            transcodeFlagsLabel.TabIndex = 8;
+            transcodeFlagsLabel.Text = "Flags:";
             // 
             // transcodeFlags
             // 
-            this.transcodeFlags.Location = new System.Drawing.Point(46, 3);
-            this.transcodeFlags.Multiline = true;
-            this.transcodeFlags.Name = "transcodeFlags";
-            this.transcodeFlags.Size = new System.Drawing.Size(283, 124);
-            this.transcodeFlags.TabIndex = 7;
-            this.transcodeFlags.TextChanged += new System.EventHandler(this.SettingChange);
+            transcodeFlags.Location = new System.Drawing.Point(46, 3);
+            transcodeFlags.Multiline = true;
+            transcodeFlags.Name = "transcodeFlags";
+            transcodeFlags.Size = new System.Drawing.Size(283, 124);
+            transcodeFlags.TabIndex = 7;
+            transcodeFlags.TextChanged += SettingChange;
             // 
             // jobTab
             // 
-            this.jobTab.Controls.Add(this.tableLayoutPanel4);
-            this.jobTab.Location = new System.Drawing.Point(4, 24);
-            this.jobTab.Name = "jobTab";
-            this.jobTab.Padding = new System.Windows.Forms.Padding(3);
-            this.jobTab.Size = new System.Drawing.Size(372, 245);
-            this.jobTab.TabIndex = 3;
-            this.jobTab.Text = "Job";
-            this.jobTab.UseVisualStyleBackColor = true;
+            jobTab.Controls.Add(tableLayoutPanel4);
+            jobTab.Location = new System.Drawing.Point(4, 24);
+            jobTab.Name = "jobTab";
+            jobTab.Padding = new Padding(3);
+            jobTab.Size = new System.Drawing.Size(372, 245);
+            jobTab.TabIndex = 3;
+            jobTab.Text = "Job";
+            jobTab.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel4
             // 
-            this.tableLayoutPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel4.ColumnCount = 1;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Controls.Add(this.flowLayoutPanel6, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.explorerPreviewCheckBox, 0, 1);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(6, 6);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 3;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(352, 228);
-            this.tableLayoutPanel4.TabIndex = 2;
+            tableLayoutPanel4.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tableLayoutPanel4.ColumnCount = 1;
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel4.Controls.Add(flowLayoutPanel6, 0, 0);
+            tableLayoutPanel4.Controls.Add(explorerPreviewCheckBox, 0, 1);
+            tableLayoutPanel4.Location = new System.Drawing.Point(6, 6);
+            tableLayoutPanel4.Name = "tableLayoutPanel4";
+            tableLayoutPanel4.RowCount = 3;
+            tableLayoutPanel4.RowStyles.Add(new RowStyle());
+            tableLayoutPanel4.RowStyles.Add(new RowStyle());
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel4.Size = new System.Drawing.Size(352, 228);
+            tableLayoutPanel4.TabIndex = 2;
             // 
             // flowLayoutPanel6
             // 
-            this.flowLayoutPanel6.AutoSize = true;
-            this.flowLayoutPanel6.Controls.Add(this.jobExpiryLabel);
-            this.flowLayoutPanel6.Controls.Add(this.expiryDaysInput);
-            this.flowLayoutPanel6.Controls.Add(this.label1);
-            this.flowLayoutPanel6.Location = new System.Drawing.Point(3, 3);
-            this.flowLayoutPanel6.Name = "flowLayoutPanel6";
-            this.flowLayoutPanel6.Size = new System.Drawing.Size(188, 29);
-            this.flowLayoutPanel6.TabIndex = 0;
+            flowLayoutPanel6.AutoSize = true;
+            flowLayoutPanel6.Controls.Add(jobExpiryLabel);
+            flowLayoutPanel6.Controls.Add(expiryDaysInput);
+            flowLayoutPanel6.Controls.Add(label1);
+            flowLayoutPanel6.Location = new System.Drawing.Point(3, 3);
+            flowLayoutPanel6.Name = "flowLayoutPanel6";
+            flowLayoutPanel6.Size = new System.Drawing.Size(189, 29);
+            flowLayoutPanel6.TabIndex = 0;
             // 
             // jobExpiryLabel
             // 
-            this.jobExpiryLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.jobExpiryLabel.AutoSize = true;
-            this.jobExpiryLabel.Location = new System.Drawing.Point(3, 0);
-            this.jobExpiryLabel.Name = "jobExpiryLabel";
-            this.jobExpiryLabel.Size = new System.Drawing.Size(112, 29);
-            this.jobExpiryLabel.TabIndex = 0;
-            this.jobExpiryLabel.Text = "Jobs will expire after";
-            this.jobExpiryLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            jobExpiryLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            jobExpiryLabel.AutoSize = true;
+            jobExpiryLabel.Location = new System.Drawing.Point(3, 0);
+            jobExpiryLabel.Name = "jobExpiryLabel";
+            jobExpiryLabel.Size = new System.Drawing.Size(113, 29);
+            jobExpiryLabel.TabIndex = 0;
+            jobExpiryLabel.Text = "Jobs will expire after";
+            jobExpiryLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // expiryDaysInput
             // 
-            this.expiryDaysInput.Location = new System.Drawing.Point(121, 3);
-            this.expiryDaysInput.MaxLength = 3;
-            this.expiryDaysInput.Name = "expiryDaysInput";
-            this.expiryDaysInput.Size = new System.Drawing.Size(24, 23);
-            this.expiryDaysInput.TabIndex = 1;
-            this.expiryDaysInput.TextChanged += new System.EventHandler(this.SettingChange);
-            this.expiryDaysInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DigitOnlyInput);
+            expiryDaysInput.Location = new System.Drawing.Point(122, 3);
+            expiryDaysInput.MaxLength = 3;
+            expiryDaysInput.Name = "expiryDaysInput";
+            expiryDaysInput.Size = new System.Drawing.Size(24, 23);
+            expiryDaysInput.TabIndex = 1;
+            expiryDaysInput.TextChanged += SettingChange;
+            expiryDaysInput.KeyPress += DigitOnlyInput;
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(151, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(34, 29);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "days.";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(152, 0);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(34, 29);
+            label1.TabIndex = 2;
+            label1.Text = "days.";
+            label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // explorerPreviewCheckBox
             // 
-            this.explorerPreviewCheckBox.AutoSize = true;
-            this.explorerPreviewCheckBox.Location = new System.Drawing.Point(3, 38);
-            this.explorerPreviewCheckBox.Name = "explorerPreviewCheckBox";
-            this.explorerPreviewCheckBox.Size = new System.Drawing.Size(236, 19);
-            this.explorerPreviewCheckBox.TabIndex = 1;
-            this.explorerPreviewCheckBox.Text = "Show drive in explorer when connected.";
-            this.explorerPreviewCheckBox.UseVisualStyleBackColor = true;
-            this.explorerPreviewCheckBox.CheckedChanged += new System.EventHandler(this.SettingChange);
+            explorerPreviewCheckBox.AutoSize = true;
+            explorerPreviewCheckBox.Location = new System.Drawing.Point(3, 38);
+            explorerPreviewCheckBox.Name = "explorerPreviewCheckBox";
+            explorerPreviewCheckBox.Size = new System.Drawing.Size(237, 19);
+            explorerPreviewCheckBox.TabIndex = 1;
+            explorerPreviewCheckBox.Text = "Show drive in explorer when connected.";
+            explorerPreviewCheckBox.UseVisualStyleBackColor = true;
+            explorerPreviewCheckBox.CheckedChanged += SettingChange;
             // 
             // deviceTab
             // 
-            this.deviceTab.Controls.Add(this.tableLayoutPanel5);
-            this.deviceTab.Location = new System.Drawing.Point(4, 24);
-            this.deviceTab.Name = "deviceTab";
-            this.deviceTab.Padding = new System.Windows.Forms.Padding(3);
-            this.deviceTab.Size = new System.Drawing.Size(372, 245);
-            this.deviceTab.TabIndex = 2;
-            this.deviceTab.Text = "Devices";
-            this.deviceTab.UseVisualStyleBackColor = true;
+            deviceTab.Controls.Add(tableLayoutPanel5);
+            deviceTab.Location = new System.Drawing.Point(4, 24);
+            deviceTab.Name = "deviceTab";
+            deviceTab.Padding = new Padding(3);
+            deviceTab.Size = new System.Drawing.Size(372, 245);
+            deviceTab.TabIndex = 2;
+            deviceTab.Text = "Devices";
+            deviceTab.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel5
             // 
-            this.tableLayoutPanel5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel5.ColumnCount = 2;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 72.35577F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel5.Controls.Add(this.devicesListView, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.flowLayoutPanel7, 1, 0);
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(6, 6);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 1;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(352, 228);
-            this.tableLayoutPanel5.TabIndex = 0;
+            tableLayoutPanel5.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tableLayoutPanel5.ColumnCount = 2;
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 72.35577F));
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle());
+            tableLayoutPanel5.Controls.Add(devicesListView, 0, 0);
+            tableLayoutPanel5.Controls.Add(flowLayoutPanel7, 1, 0);
+            tableLayoutPanel5.Location = new System.Drawing.Point(6, 6);
+            tableLayoutPanel5.Name = "tableLayoutPanel5";
+            tableLayoutPanel5.RowCount = 1;
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel5.Size = new System.Drawing.Size(352, 228);
+            tableLayoutPanel5.TabIndex = 0;
             // 
             // devicesListView
             // 
-            this.devicesListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.devicesListView.FullRowSelect = true;
-            this.devicesListView.HideSelection = false;
-            this.devicesListView.Location = new System.Drawing.Point(3, 3);
-            this.devicesListView.Name = "devicesListView";
-            this.devicesListView.Size = new System.Drawing.Size(259, 222);
-            this.devicesListView.TabIndex = 0;
-            this.devicesListView.UseCompatibleStateImageBehavior = false;
-            this.devicesListView.View = System.Windows.Forms.View.List;
+            devicesListView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            devicesListView.FullRowSelect = true;
+            devicesListView.Location = new System.Drawing.Point(3, 3);
+            devicesListView.Name = "devicesListView";
+            devicesListView.Size = new System.Drawing.Size(259, 222);
+            devicesListView.TabIndex = 0;
+            devicesListView.UseCompatibleStateImageBehavior = false;
+            devicesListView.View = View.List;
             // 
             // flowLayoutPanel7
             // 
-            this.flowLayoutPanel7.AutoSize = true;
-            this.flowLayoutPanel7.Controls.Add(this.deviceAddButton);
-            this.flowLayoutPanel7.Controls.Add(this.deviceRemoveButton);
-            this.flowLayoutPanel7.Location = new System.Drawing.Point(268, 3);
-            this.flowLayoutPanel7.Name = "flowLayoutPanel7";
-            this.flowLayoutPanel7.Size = new System.Drawing.Size(81, 58);
-            this.flowLayoutPanel7.TabIndex = 1;
+            flowLayoutPanel7.AutoSize = true;
+            flowLayoutPanel7.Controls.Add(deviceAddButton);
+            flowLayoutPanel7.Controls.Add(deviceRemoveButton);
+            flowLayoutPanel7.Location = new System.Drawing.Point(268, 3);
+            flowLayoutPanel7.Name = "flowLayoutPanel7";
+            flowLayoutPanel7.Size = new System.Drawing.Size(81, 58);
+            flowLayoutPanel7.TabIndex = 1;
             // 
             // deviceAddButton
             // 
-            this.deviceAddButton.Location = new System.Drawing.Point(3, 3);
-            this.deviceAddButton.Name = "deviceAddButton";
-            this.deviceAddButton.Size = new System.Drawing.Size(75, 23);
-            this.deviceAddButton.TabIndex = 1;
-            this.deviceAddButton.Text = "Add";
-            this.deviceAddButton.UseVisualStyleBackColor = true;
-            this.deviceAddButton.Click += new System.EventHandler(this.AddDeviceClick);
+            deviceAddButton.Location = new System.Drawing.Point(3, 3);
+            deviceAddButton.Name = "deviceAddButton";
+            deviceAddButton.Size = new System.Drawing.Size(75, 23);
+            deviceAddButton.TabIndex = 1;
+            deviceAddButton.Text = "Add";
+            deviceAddButton.UseVisualStyleBackColor = true;
+            deviceAddButton.Click += AddDeviceClick;
             // 
             // deviceRemoveButton
             // 
-            this.deviceRemoveButton.Location = new System.Drawing.Point(3, 32);
-            this.deviceRemoveButton.Name = "deviceRemoveButton";
-            this.deviceRemoveButton.Size = new System.Drawing.Size(75, 23);
-            this.deviceRemoveButton.TabIndex = 2;
-            this.deviceRemoveButton.Text = "Remove";
-            this.deviceRemoveButton.UseVisualStyleBackColor = true;
-            this.deviceRemoveButton.Click += new System.EventHandler(this.RemoveDeviceClick);
+            deviceRemoveButton.Location = new System.Drawing.Point(3, 32);
+            deviceRemoveButton.Name = "deviceRemoveButton";
+            deviceRemoveButton.Size = new System.Drawing.Size(75, 23);
+            deviceRemoveButton.TabIndex = 2;
+            deviceRemoveButton.Text = "Remove";
+            deviceRemoveButton.UseVisualStyleBackColor = true;
+            deviceRemoveButton.Click += RemoveDeviceClick;
             // 
             // applyButton
             // 
-            this.applyButton.Enabled = false;
-            this.applyButton.Location = new System.Drawing.Point(84, 3);
-            this.applyButton.Name = "applyButton";
-            this.applyButton.Size = new System.Drawing.Size(75, 23);
-            this.applyButton.TabIndex = 1;
-            this.applyButton.Text = "Apply";
-            this.applyButton.UseVisualStyleBackColor = true;
-            this.applyButton.Click += new System.EventHandler(this.ApplyButtonClick);
+            applyButton.Enabled = false;
+            applyButton.Location = new System.Drawing.Point(84, 3);
+            applyButton.Name = "applyButton";
+            applyButton.Size = new System.Drawing.Size(75, 23);
+            applyButton.TabIndex = 1;
+            applyButton.Text = "Apply";
+            applyButton.UseVisualStyleBackColor = true;
+            applyButton.Click += ApplyButtonClick;
             // 
             // closeButton
             // 
-            this.closeButton.Location = new System.Drawing.Point(3, 3);
-            this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(75, 23);
-            this.closeButton.TabIndex = 2;
-            this.closeButton.Text = "Close";
-            this.closeButton.UseVisualStyleBackColor = true;
-            this.closeButton.Click += new System.EventHandler(this.CloseButtonClick);
+            closeButton.Location = new System.Drawing.Point(3, 3);
+            closeButton.Name = "closeButton";
+            closeButton.Size = new System.Drawing.Size(75, 23);
+            closeButton.TabIndex = 2;
+            closeButton.Text = "Close";
+            closeButton.UseVisualStyleBackColor = true;
+            closeButton.Click += CloseButtonClick;
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.settingsTabControl, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 12);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 87.78626F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(386, 314);
-            this.tableLayoutPanel1.TabIndex = 3;
+            tableLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tableLayoutPanel1.ColumnCount = 1;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.Controls.Add(flowLayoutPanel1, 0, 1);
+            tableLayoutPanel1.Controls.Add(settingsTabControl, 0, 0);
+            tableLayoutPanel1.Location = new System.Drawing.Point(12, 12);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 2;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 87.78626F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle());
+            tableLayoutPanel1.Size = new System.Drawing.Size(386, 314);
+            tableLayoutPanel1.TabIndex = 3;
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.flowLayoutPanel1.AutoSize = true;
-            this.flowLayoutPanel1.Controls.Add(this.applyButton);
-            this.flowLayoutPanel1.Controls.Add(this.closeButton);
-            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(221, 282);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(162, 29);
-            this.flowLayoutPanel1.TabIndex = 0;
+            flowLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            flowLayoutPanel1.AutoSize = true;
+            flowLayoutPanel1.Controls.Add(applyButton);
+            flowLayoutPanel1.Controls.Add(closeButton);
+            flowLayoutPanel1.FlowDirection = FlowDirection.RightToLeft;
+            flowLayoutPanel1.Location = new System.Drawing.Point(221, 282);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new System.Drawing.Size(162, 29);
+            flowLayoutPanel1.TabIndex = 0;
             // 
             // SettingsForm
             // 
-            this.AcceptButton = this.applyButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.closeButton;
-            this.ClientSize = new System.Drawing.Size(410, 338);
-            this.Controls.Add(this.tableLayoutPanel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "SettingsForm";
-            this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "Settings";
-            this.TopMost = true;
-            this.settingsTabControl.ResumeLayout(false);
-            this.serverTab.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
-            this.flowLayoutPanel2.ResumeLayout(false);
-            this.flowLayoutPanel2.PerformLayout();
-            this.flowLayoutPanel3.ResumeLayout(false);
-            this.flowLayoutPanel3.PerformLayout();
-            this.transcodeTab.ResumeLayout(false);
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
-            this.flowLayoutPanel5.ResumeLayout(false);
-            this.flowLayoutPanel5.PerformLayout();
-            this.jobTab.ResumeLayout(false);
-            this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel4.PerformLayout();
-            this.flowLayoutPanel6.ResumeLayout(false);
-            this.flowLayoutPanel6.PerformLayout();
-            this.deviceTab.ResumeLayout(false);
-            this.tableLayoutPanel5.ResumeLayout(false);
-            this.tableLayoutPanel5.PerformLayout();
-            this.flowLayoutPanel7.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.ResumeLayout(false);
+            AcceptButton = applyButton;
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = closeButton;
+            ClientSize = new System.Drawing.Size(410, 338);
+            Controls.Add(tableLayoutPanel1);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "SettingsForm";
+            ShowInTaskbar = false;
+            StartPosition = FormStartPosition.Manual;
+            Text = "Settings";
+            TopMost = true;
+            settingsTabControl.ResumeLayout(false);
+            serverTab.ResumeLayout(false);
+            tableLayoutPanel2.ResumeLayout(false);
+            tableLayoutPanel2.PerformLayout();
+            flowLayoutPanel2.ResumeLayout(false);
+            flowLayoutPanel2.PerformLayout();
+            flowLayoutPanel3.ResumeLayout(false);
+            flowLayoutPanel3.PerformLayout();
+            transcodeTab.ResumeLayout(false);
+            tableLayoutPanel3.ResumeLayout(false);
+            tableLayoutPanel3.PerformLayout();
+            flowLayoutPanel5.ResumeLayout(false);
+            flowLayoutPanel5.PerformLayout();
+            jobTab.ResumeLayout(false);
+            tableLayoutPanel4.ResumeLayout(false);
+            tableLayoutPanel4.PerformLayout();
+            flowLayoutPanel6.ResumeLayout(false);
+            flowLayoutPanel6.PerformLayout();
+            deviceTab.ResumeLayout(false);
+            tableLayoutPanel5.ResumeLayout(false);
+            tableLayoutPanel5.PerformLayout();
+            flowLayoutPanel7.ResumeLayout(false);
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
+            flowLayoutPanel1.ResumeLayout(false);
+            ResumeLayout(false);
 
         }
 
@@ -577,5 +566,6 @@ namespace Blackbox
         private TableLayoutPanel tableLayoutPanel1;
         private FlowLayoutPanel flowLayoutPanel1;
         private CheckBox explorerPreviewCheckBox;
+        private Button InstallFfmpeg;
     }
 }

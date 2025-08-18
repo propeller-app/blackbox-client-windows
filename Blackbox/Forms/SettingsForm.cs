@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
+using System.Management;
 using System.Windows.Forms;
 using Usb.Events;
 
@@ -7,6 +10,7 @@ namespace Blackbox
     public partial class SettingsForm : Utils.RightBottomAlignedForm
     {
         private bool settingLoaded = false;
+        private static ManagementEventWatcher pnpWatcher;
 
         public SettingsForm()
         {
@@ -55,9 +59,17 @@ namespace Blackbox
         {
             if (settingLoaded)
             {
-                applyButton.Enabled = true;
+                if (applyButton.InvokeRequired)
+                {
+                    applyButton.Invoke(new Action(() => applyButton.Enabled = true));
+                }
+                else
+                {
+                    applyButton.Enabled = true;
+                }
             }
         }
+
 
         private void DigitOnlyInput(object sender, KeyPressEventArgs e)
         {
@@ -80,37 +92,55 @@ namespace Blackbox
 
         private void AddDeviceClick(object sender, EventArgs e)
         {
-            IUsbEventWatcher usbEventWatcher = new UsbEventWatcher();
+            string pnpQuery = "SELECT * FROM __InstanceCreationEvent " +
+                              "WITHIN 2 " +
+                              "WHERE TargetInstance ISA 'Win32_PnPEntity'";
+            pnpWatcher = new ManagementEventWatcher(new WqlEventQuery(pnpQuery));
+
             AddDeviceForm addDeviceForm = new();
+
+            pnpWatcher.EventArrived += (s, evt) =>
+            {
+                var instance = (ManagementBaseObject)evt.NewEvent["TargetInstance"];
+                string name = instance["Name"]?.ToString() ?? "(Unknown)";
+                string pnpId = instance["PNPDeviceID"]?.ToString();
+
+                // Always marshal to the main form’s thread (this), not the AddDeviceForm
+                if (!IsDisposed && InvokeRequired)
+                {
+                    BeginInvoke(new Action(() =>
+                    {
+                        if (addDeviceForm != null && !addDeviceForm.IsDisposed)
+                        {
+                            var res = MessageBox.Show(
+                                addDeviceForm,
+                                $"Device '{name}' has been connected. Add to list of devices?",
+                                "New Device Detected",
+                                MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Question);
+
+                            if (res == DialogResult.Yes)
+                            {
+                                devicesListView.Items.Add(pnpId, name, null);
+                                SettingChange(sender, EventArgs.Empty);
+                            }
+
+                            // Close the AddDeviceForm safely
+                            addDeviceForm.Close();
+                        }
+                    }));
+                }
+
+                pnpWatcher.Stop();
+            };
+
+            pnpWatcher.Start();
             addDeviceForm.Left = Left + (Width / 2) - (addDeviceForm.Width / 2);
             addDeviceForm.Top = Top + (Height / 2) - (addDeviceForm.Height / 2);
 
-            void HandleNewDeviceConnected(object sender, UsbDevice device) => Invoke(new Action(() =>
-            {
-                if (devicesListView.Items.ContainsKey(device.DeviceSystemPath))
-                {
-                    return;
-                }
-
-                DialogResult res = MessageBox.Show(
-                    addDeviceForm,
-                    $"Device '{device.DeviceName}' has been connected. Add to list of devices?",
-                    "New Device Detected",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question);
-                if (res == DialogResult.Yes)
-                {
-                    devicesListView.Items.Add(device.DeviceSystemPath, device.DeviceName, null);
-                    SettingChange(sender, e);
-                }
-                addDeviceForm.Close();
-            }));
-
-            usbEventWatcher.UsbDeviceAdded += HandleNewDeviceConnected;
-
-            DialogResult res = addDeviceForm.ShowDialog();
-            usbEventWatcher.UsbDeviceAdded -= HandleNewDeviceConnected;
+            addDeviceForm.ShowDialog();
         }
+
 
         private void RemoveDeviceClick(object sender, EventArgs e)
         {
@@ -120,5 +150,46 @@ namespace Blackbox
             }
             SettingChange(sender, e);
         }
+
+        private void InstallFfmpeg_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string scriptPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "tools/Master.ps1");
+
+                if (!File.Exists(scriptPath))
+                {
+                    MessageBox.Show("Script not found: " + scriptPath, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                ProcessStartInfo psi = new ProcessStartInfo()
+                {
+                    FileName = "powershell.exe",
+                    Arguments = $"-ExecutionPolicy Bypass -File \"{scriptPath}\"",
+                    //Verb = "runas", // 🚨 This triggers the UAC prompt to run as Administrator
+                    UseShellExecute = true,
+                    CreateNoWindow = false
+                };
+
+                Process.Start(psi);
+            }
+            catch (System.ComponentModel.Win32Exception ex)
+            {
+                if (ex.NativeErrorCode == 1223) // User clicked "No" on UAC
+                {
+                    MessageBox.Show("Administrator privileges are required to install FFmpeg.", "Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unexpected error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
+

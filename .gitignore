@@ -10,3 +10,6 @@ __pycache__
 protocol-dev
 
 packages
+
+\Blackbox.Client\ffmpeg\
+/Blackbox.Client/Blackbox.Client/ffmpeg

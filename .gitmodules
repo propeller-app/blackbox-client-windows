@@ -1,0 +1,3 @@
+[submodule ".\\Blackbox.Client\\protocol"]
+	path = .\\Blackbox.Client\\protocol
+	url = git@github.com:propeller-app/blackbox-protocol.git

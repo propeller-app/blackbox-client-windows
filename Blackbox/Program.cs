@@ -159,7 +159,7 @@ namespace Blackbox
         // Store last job-start times per device
         private static DateTime _lastJob = DateTime.MinValue;
         private static readonly object _jobLock = new object();
-        private const int JobCooldownMs = 1000; // 10 seconds
+        private const int JobCooldownMs = 1000; // 1 seconds
 
 
         private static void PnpDeviceConnected(object sender, EventArrivedEventArgs e)

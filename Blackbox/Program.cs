@@ -1,20 +1,21 @@
 using Blackbox.Client;
 using Blackbox.Client.Enums;
 using Blackbox.Client.Events;
+using Grpc.Core;
+using MediaDevices;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Management;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-using MediaDevices;
 
 namespace Blackbox
 {
     public static class Program
     {
         private static readonly JobProgressForm jobProgressForm = new();
-        //private static ManagementEventWatcher volumeWatcher;
         private static ManagementEventWatcher pnpWatcher;
 
         private static readonly Queue<Job> jobQueue = new();
@@ -33,6 +34,16 @@ namespace Blackbox
                 Properties.Strings.TaskTrayTitle,
                 Properties.Resources.AppName,
                 Properties.Strings.TaskTrayReady);
+
+            string grpcUrl = Utils.GetGrpcUrl();
+            var tokenStore = new TokenStore();
+            Program.AuthClient = new AuthClient(grpcUrl);
+            var authClient = Program.AuthClient;
+            Console.WriteLine("AuthClient created: " + authClient);
+
+            // Try refreshing token automatically
+            bool refreshed = Task.Run(async () => await authClient.RefreshAsync(tokenStore)).Result;
+
 
             InitApplication();
 
@@ -159,8 +170,9 @@ namespace Blackbox
         // Store last job-start times per device
         private static DateTime _lastJob = DateTime.MinValue;
         private static readonly object _jobLock = new object();
-        private const int JobCooldownMs = 1000; // 1 seconds
+        private const int JobCooldownMs = 1000; // 1 second
 
+        public static AuthClient AuthClient { get; internal set; }
 
         private static void PnpDeviceConnected(object sender, EventArrivedEventArgs e)
         {
@@ -241,10 +253,15 @@ namespace Blackbox
                     job
                         .SetSourceFiles(Utils.GetAllAccessibleFiles(sourceDirectory, "*.mp4"))
                         .SetMtpDevice(null)
-                        .SetGrpcUrl(Utils.GetGrpcUrl())
+                        .SetGrpcUrl(
+                            Utils.GetGrpcUrl(),
+                            () => Program.AuthClient?.GetAuthHeaders() ?? new Metadata()
+                        )
                         .SetTempDirectory(Utils.GetTempJobDirectory())
                         .SetFfmpegFlags(Properties.Settings.Default.FFmpegFlags)
-                        .SetJobExpiryDays(Properties.Settings.Default.JobExpiryDays);
+                        .SetJobExpiryDays(Properties.Settings.Default.JobExpiryDays)
+                        .SetSelectedTemplateId(Properties.Settings.Default.SelectedTemplateId);
+                        
 
                     jobQueue.Enqueue(job);
 
@@ -268,10 +285,14 @@ namespace Blackbox
                     Job job = new();
                     job
                         .SetMtpDevice(mtp)
-                        .SetGrpcUrl(Utils.GetGrpcUrl())
+                        .SetGrpcUrl(
+                            Utils.GetGrpcUrl(),
+                            () => Program.AuthClient?.GetAuthHeaders() ?? new Metadata()
+                        )
                         .SetTempDirectory(Utils.GetTempJobDirectory())
                         .SetFfmpegFlags(Properties.Settings.Default.FFmpegFlags)
-                        .SetJobExpiryDays(Properties.Settings.Default.JobExpiryDays);
+                        .SetJobExpiryDays(Properties.Settings.Default.JobExpiryDays)
+                        .SetSelectedTemplateId(Properties.Settings.Default.SelectedTemplateId);
 
                     jobQueue.Enqueue(job);
 
@@ -296,10 +317,14 @@ namespace Blackbox
             Job job = new();
             job
                 .SetSourceFiles(selectedFiles)
-                .SetGrpcUrl(Utils.GetGrpcUrl())
+                .SetGrpcUrl(
+                    Utils.GetGrpcUrl(),
+                    () => Program.AuthClient?.GetAuthHeaders() ?? new Metadata()
+                )
                 .SetTempDirectory(Utils.GetTempJobDirectory())
                 .SetFfmpegFlags(Properties.Settings.Default.FFmpegFlags)
-                .SetJobExpiryDays(Properties.Settings.Default.JobExpiryDays);
+                .SetJobExpiryDays(Properties.Settings.Default.JobExpiryDays)
+                .SetSelectedTemplateId(Properties.Settings.Default.SelectedTemplateId);
 
             jobQueue.Enqueue(job);
 

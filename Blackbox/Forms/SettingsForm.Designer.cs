@@ -33,15 +33,32 @@ namespace Blackbox
         {
             settingsTabControl = new TabControl();
             serverTab = new TabPage();
+            LoggedInTable = new TableLayoutPanel();
+            tableLayoutPanel9 = new TableLayoutPanel();
+            CreditsRemaining = new Label();
+            LoggedInUser = new Label();
+            LogOut = new Button();
+            tableLayoutPanel8 = new TableLayoutPanel();
+            label2 = new Label();
+            templateBox = new ComboBox();
+            loginTable = new TableLayoutPanel();
+            loginRequiredLabel = new Label();
+            loginButton = new Button();
+            tableLayoutPanel6 = new TableLayoutPanel();
+            usernameInput = new TextBox();
+            passwordInput = new TextBox();
+            passwordLabel = new Label();
+            usernameLabel = new Label();
             tableLayoutPanel2 = new TableLayoutPanel();
             flowLayoutPanel2 = new FlowLayoutPanel();
             hostLabel = new Label();
             hostInput = new TextBox();
-            serverTestButton = new Button();
             flowLayoutPanel3 = new FlowLayoutPanel();
             portLabel = new Label();
             portInput = new TextBox();
             sslCheckBox = new CheckBox();
+            serverTestButton = new Button();
+            tableLayoutPanel7 = new TableLayoutPanel();
             transcodeTab = new TabPage();
             InstallFfmpeg = new Button();
             tableLayoutPanel3 = new TableLayoutPanel();
@@ -68,6 +85,11 @@ namespace Blackbox
             flowLayoutPanel1 = new FlowLayoutPanel();
             settingsTabControl.SuspendLayout();
             serverTab.SuspendLayout();
+            LoggedInTable.SuspendLayout();
+            tableLayoutPanel9.SuspendLayout();
+            tableLayoutPanel8.SuspendLayout();
+            loginTable.SuspendLayout();
+            tableLayoutPanel6.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             flowLayoutPanel2.SuspendLayout();
             flowLayoutPanel3.SuspendLayout();
@@ -99,6 +121,8 @@ namespace Blackbox
             // 
             // serverTab
             // 
+            serverTab.Controls.Add(LoggedInTable);
+            serverTab.Controls.Add(loginTable);
             serverTab.Controls.Add(tableLayoutPanel2);
             serverTab.Location = new System.Drawing.Point(4, 24);
             serverTab.Name = "serverTab";
@@ -108,6 +132,193 @@ namespace Blackbox
             serverTab.Text = "Server";
             serverTab.UseVisualStyleBackColor = true;
             // 
+            // LoggedInTable
+            // 
+            LoggedInTable.ColumnCount = 1;
+            LoggedInTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            LoggedInTable.Controls.Add(tableLayoutPanel9, 0, 0);
+            LoggedInTable.Location = new System.Drawing.Point(5, 3);
+            LoggedInTable.Name = "LoggedInTable";
+            LoggedInTable.RowCount = 1;
+            LoggedInTable.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            LoggedInTable.Size = new System.Drawing.Size(369, 233);
+            LoggedInTable.TabIndex = 14;
+            // 
+            // tableLayoutPanel9
+            // 
+            tableLayoutPanel9.ColumnCount = 1;
+            tableLayoutPanel9.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel9.Controls.Add(CreditsRemaining, 0, 2);
+            tableLayoutPanel9.Controls.Add(LoggedInUser, 0, 1);
+            tableLayoutPanel9.Controls.Add(LogOut, 0, 4);
+            tableLayoutPanel9.Controls.Add(tableLayoutPanel8, 0, 3);
+            tableLayoutPanel9.Location = new System.Drawing.Point(3, 3);
+            tableLayoutPanel9.Name = "tableLayoutPanel9";
+            tableLayoutPanel9.RowCount = 5;
+            tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Percent, 10.6796112F));
+            tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Percent, 89.32039F));
+            tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Absolute, 94F));
+            tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Absolute, 29F));
+            tableLayoutPanel9.Size = new System.Drawing.Size(363, 218);
+            tableLayoutPanel9.TabIndex = 0;
+            // 
+            // CreditsRemaining
+            // 
+            CreditsRemaining.Location = new System.Drawing.Point(3, 44);
+            CreditsRemaining.Name = "CreditsRemaining";
+            CreditsRemaining.Size = new System.Drawing.Size(357, 45);
+            CreditsRemaining.TabIndex = 1;
+            CreditsRemaining.Text = "Credits Remaining";
+            // 
+            // LoggedInUser
+            // 
+            LoggedInUser.AutoSize = true;
+            LoggedInUser.Location = new System.Drawing.Point(3, 4);
+            LoggedInUser.Name = "LoggedInUser";
+            LoggedInUser.Size = new System.Drawing.Size(74, 15);
+            LoggedInUser.TabIndex = 0;
+            LoggedInUser.Text = "Logged in as";
+            // 
+            // LogOut
+            // 
+            LogOut.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            LogOut.Location = new System.Drawing.Point(285, 191);
+            LogOut.Name = "LogOut";
+            LogOut.Size = new System.Drawing.Size(75, 23);
+            LogOut.TabIndex = 2;
+            LogOut.Text = "Log Out";
+            LogOut.UseVisualStyleBackColor = true;
+            LogOut.Click += LogOut_Click;
+            // 
+            // tableLayoutPanel8
+            // 
+            tableLayoutPanel8.ColumnCount = 1;
+            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel8.Controls.Add(label2, 0, 0);
+            tableLayoutPanel8.Controls.Add(templateBox, 0, 1);
+            tableLayoutPanel8.Location = new System.Drawing.Point(3, 97);
+            tableLayoutPanel8.Name = "tableLayoutPanel8";
+            tableLayoutPanel8.RowCount = 2;
+            tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 28.7356319F));
+            tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 71.2643661F));
+            tableLayoutPanel8.Size = new System.Drawing.Size(357, 87);
+            tableLayoutPanel8.TabIndex = 3;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(3, 0);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(165, 15);
+            label2.TabIndex = 0;
+            label2.Text = "Current Template for Uploads:";
+            // 
+            // templateBox
+            // 
+            templateBox.FormattingEnabled = true;
+            templateBox.Location = new System.Drawing.Point(3, 28);
+            templateBox.Name = "templateBox";
+            templateBox.Size = new System.Drawing.Size(278, 23);
+            templateBox.TabIndex = 1;
+            templateBox.SelectedIndexChanged += TemplateBox_SelectedIndexChanged;
+            // 
+            // loginTable
+            // 
+            loginTable.ColumnCount = 1;
+            loginTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            loginTable.Controls.Add(loginRequiredLabel, 0, 0);
+            loginTable.Controls.Add(loginButton, 0, 2);
+            loginTable.Controls.Add(tableLayoutPanel6, 0, 1);
+            loginTable.Location = new System.Drawing.Point(0, 121);
+            loginTable.Name = "loginTable";
+            loginTable.RowCount = 3;
+            loginTable.RowStyles.Add(new RowStyle(SizeType.Percent, 30.434782F));
+            loginTable.RowStyles.Add(new RowStyle(SizeType.Percent, 69.5652161F));
+            loginTable.RowStyles.Add(new RowStyle(SizeType.Absolute, 27F));
+            loginTable.Size = new System.Drawing.Size(372, 118);
+            loginTable.TabIndex = 13;
+            // 
+            // loginRequiredLabel
+            // 
+            loginRequiredLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            loginRequiredLabel.AutoSize = true;
+            loginRequiredLabel.Location = new System.Drawing.Point(3, 0);
+            loginRequiredLabel.Name = "loginRequiredLabel";
+            loginRequiredLabel.RightToLeft = RightToLeft.No;
+            loginRequiredLabel.Size = new System.Drawing.Size(223, 27);
+            loginRequiredLabel.TabIndex = 7;
+            loginRequiredLabel.Text = "Login to Blackbox (required for uploads):";
+            loginRequiredLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // loginButton
+            // 
+            loginButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            loginButton.Location = new System.Drawing.Point(294, 93);
+            loginButton.Name = "loginButton";
+            loginButton.Size = new System.Drawing.Size(75, 22);
+            loginButton.TabIndex = 12;
+            loginButton.Text = "Login";
+            loginButton.UseVisualStyleBackColor = true;
+            loginButton.Click += loginButtonClick;
+            // 
+            // tableLayoutPanel6
+            // 
+            tableLayoutPanel6.ColumnCount = 2;
+            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 281F));
+            tableLayoutPanel6.Controls.Add(usernameInput, 1, 0);
+            tableLayoutPanel6.Controls.Add(passwordInput, 1, 1);
+            tableLayoutPanel6.Controls.Add(passwordLabel, 0, 1);
+            tableLayoutPanel6.Controls.Add(usernameLabel, 0, 0);
+            tableLayoutPanel6.Location = new System.Drawing.Point(3, 30);
+            tableLayoutPanel6.Name = "tableLayoutPanel6";
+            tableLayoutPanel6.RowCount = 2;
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel6.Size = new System.Drawing.Size(360, 57);
+            tableLayoutPanel6.TabIndex = 11;
+            // 
+            // usernameInput
+            // 
+            usernameInput.Location = new System.Drawing.Point(82, 3);
+            usernameInput.Name = "usernameInput";
+            usernameInput.Size = new System.Drawing.Size(275, 23);
+            usernameInput.TabIndex = 8;
+            // 
+            // passwordInput
+            // 
+            passwordInput.Location = new System.Drawing.Point(82, 31);
+            passwordInput.Name = "passwordInput";
+            passwordInput.PasswordChar = '●';
+            passwordInput.Size = new System.Drawing.Size(275, 23);
+            passwordInput.TabIndex = 11;
+            // 
+            // passwordLabel
+            // 
+            passwordLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            passwordLabel.AutoSize = true;
+            passwordLabel.Location = new System.Drawing.Point(2, 30);
+            passwordLabel.Margin = new Padding(2);
+            passwordLabel.Name = "passwordLabel";
+            passwordLabel.Size = new System.Drawing.Size(60, 25);
+            passwordLabel.TabIndex = 10;
+            passwordLabel.Text = "Password:";
+            passwordLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // usernameLabel
+            // 
+            usernameLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            usernameLabel.AutoSize = true;
+            usernameLabel.Location = new System.Drawing.Point(2, 2);
+            usernameLabel.Margin = new Padding(2);
+            usernameLabel.Name = "usernameLabel";
+            usernameLabel.Size = new System.Drawing.Size(63, 24);
+            usernameLabel.TabIndex = 9;
+            usernameLabel.Text = "Username:";
+            usernameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // tableLayoutPanel2
             // 
             tableLayoutPanel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
@@ -115,15 +326,17 @@ namespace Blackbox
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel2.Controls.Add(flowLayoutPanel2, 0, 0);
-            tableLayoutPanel2.Controls.Add(serverTestButton, 1, 1);
             tableLayoutPanel2.Controls.Add(flowLayoutPanel3, 1, 0);
             tableLayoutPanel2.Controls.Add(sslCheckBox, 0, 1);
+            tableLayoutPanel2.Controls.Add(serverTestButton, 1, 1);
+            tableLayoutPanel2.Controls.Add(tableLayoutPanel7, 0, 2);
             tableLayoutPanel2.Location = new System.Drawing.Point(6, 6);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
-            tableLayoutPanel2.RowCount = 2;
+            tableLayoutPanel2.RowCount = 3;
             tableLayoutPanel2.RowStyles.Add(new RowStyle());
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 82.22222F));
-            tableLayoutPanel2.Size = new System.Drawing.Size(360, 233);
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 31F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel2.Size = new System.Drawing.Size(360, 69);
             tableLayoutPanel2.TabIndex = 7;
             // 
             // flowLayoutPanel2
@@ -156,16 +369,6 @@ namespace Blackbox
             hostInput.Size = new System.Drawing.Size(126, 23);
             hostInput.TabIndex = 1;
             hostInput.TextChanged += SettingChange;
-            // 
-            // serverTestButton
-            // 
-            serverTestButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            serverTestButton.Location = new System.Drawing.Point(251, 38);
-            serverTestButton.Name = "serverTestButton";
-            serverTestButton.Size = new System.Drawing.Size(106, 23);
-            serverTestButton.TabIndex = 6;
-            serverTestButton.Text = "Test Connection";
-            serverTestButton.UseVisualStyleBackColor = true;
             // 
             // flowLayoutPanel3
             // 
@@ -209,6 +412,29 @@ namespace Blackbox
             sslCheckBox.Text = "Use SSL?";
             sslCheckBox.UseVisualStyleBackColor = true;
             sslCheckBox.CheckedChanged += SettingChange;
+            // 
+            // serverTestButton
+            // 
+            serverTestButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            serverTestButton.Location = new System.Drawing.Point(251, 38);
+            serverTestButton.Name = "serverTestButton";
+            serverTestButton.Size = new System.Drawing.Size(106, 23);
+            serverTestButton.TabIndex = 6;
+            serverTestButton.Text = "Test Connection";
+            serverTestButton.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel7
+            // 
+            tableLayoutPanel7.ColumnCount = 2;
+            tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel7.Location = new System.Drawing.Point(3, 69);
+            tableLayoutPanel7.Name = "tableLayoutPanel7";
+            tableLayoutPanel7.RowCount = 2;
+            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel7.Size = new System.Drawing.Size(174, 14);
+            tableLayoutPanel7.TabIndex = 7;
             // 
             // transcodeTab
             // 
@@ -503,6 +729,15 @@ namespace Blackbox
             TopMost = true;
             settingsTabControl.ResumeLayout(false);
             serverTab.ResumeLayout(false);
+            LoggedInTable.ResumeLayout(false);
+            tableLayoutPanel9.ResumeLayout(false);
+            tableLayoutPanel9.PerformLayout();
+            tableLayoutPanel8.ResumeLayout(false);
+            tableLayoutPanel8.PerformLayout();
+            loginTable.ResumeLayout(false);
+            loginTable.PerformLayout();
+            tableLayoutPanel6.ResumeLayout(false);
+            tableLayoutPanel6.PerformLayout();
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel2.PerformLayout();
             flowLayoutPanel2.ResumeLayout(false);
@@ -567,5 +802,22 @@ namespace Blackbox
         private FlowLayoutPanel flowLayoutPanel1;
         private CheckBox explorerPreviewCheckBox;
         private Button InstallFfmpeg;
+        private Label loginRequiredLabel;
+        private Label passwordLabel;
+        private Label usernameLabel;
+        private TextBox usernameInput;
+        private TableLayoutPanel tableLayoutPanel6;
+        private Button loginButton;
+        private TextBox passwordInput;
+        private TableLayoutPanel loginTable;
+        private TableLayoutPanel LoggedInTable;
+        private TableLayoutPanel tableLayoutPanel9;
+        private TableLayoutPanel tableLayoutPanel7;
+        private Label LoggedInUser;
+        private Label CreditsRemaining;
+        private Button LogOut;
+        private TableLayoutPanel tableLayoutPanel8;
+        private Label label2;
+        private ComboBox templateBox;
     }
 }

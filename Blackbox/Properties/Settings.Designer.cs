@@ -110,7 +110,7 @@ namespace Blackbox.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-c:v libsvtav1 -crf 30 -preset 10")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-c:v libsvtav1 -crf 30 -preset 8")]
         public string FFmpegFlags {
             get {
                 return ((string)(this["FFmpegFlags"]));
@@ -129,6 +129,18 @@ namespace Blackbox.Properties {
             }
             set {
                 this["Explorer"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int SelectedTemplateId {
+            get {
+                return ((int)(this["SelectedTemplateId"]));
+            }
+            set {
+                this["SelectedTemplateId"] = value;
             }
         }
     }

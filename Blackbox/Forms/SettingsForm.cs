@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Blackbox.Client;
+using Grpc.Net.Client;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Management;
@@ -17,6 +19,7 @@ namespace Blackbox
             InitializeComponent();
             AlignForm();
             GetSettings();
+            this.Load += SettingsForm_Load;
         }
 
         public void GetSettings()
@@ -32,6 +35,11 @@ namespace Blackbox
             foreach (Device device in Properties.Settings.Default.Devices)
             {
                 devicesListView.Items.Add(device.Id, device.Name, null);
+            }
+
+            if (Properties.Settings.Default.SelectedTemplateId != 0)
+            {
+                templateBox.SelectedValue = Properties.Settings.Default.SelectedTemplateId;
             }
 
             settingLoaded = true;
@@ -50,6 +58,15 @@ namespace Blackbox
             foreach (ListViewItem item in devicesListView.Items)
             {
                 Properties.Settings.Default.Devices.Add(new Device(item.Name, item.Text));
+            }
+
+            if (templateBox.SelectedItem is TemplateItem selected)
+            {
+                Properties.Settings.Default.SelectedTemplateId = selected.Id;
+            }
+            else
+            {
+                Properties.Settings.Default.SelectedTemplateId = 1;
             }
 
             Properties.Settings.Default.Save();
@@ -190,6 +207,146 @@ namespace Blackbox
                 MessageBox.Show("Unexpected error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        public class TemplateItem
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public override string ToString()
+            {
+                return Name;
+            }
+
+        }
+
+        private void PopulateTemplates(AuthClient authClient)
+        {
+            templateBox.Items.Clear();
+
+            foreach (var item in Program.AuthClient.Templates)
+            {
+                templateBox.Items.Add(new TemplateItem
+                {
+                    Name = item.Name,
+                    Id = item.Id,
+                });
+            }
+
+            int storedId = Properties.Settings.Default.SelectedTemplateId;
+            for (int i = 0; i < templateBox.Items.Count; i++)
+            {
+                if (templateBox.Items[i] is TemplateItem t && t.Id == storedId)
+                {
+                    templateBox.SelectedIndex = i;
+                    break;
+                }
+            }
+        }
+
+        private async void SettingsForm_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Program.AuthClient == null)
+                {
+                    string grpcUrl = Utils.GetGrpcUrl();
+                    Program.AuthClient = new AuthClient(grpcUrl);
+                }
+                bool loggedIn = await Program.AuthClient.RefreshAsync();
+                if (loggedIn)
+                {
+                    LoggedInUser.Text = $"Logged in as {Program.AuthClient.LoggedInEmail}";
+                    int credits = Program.AuthClient.Credits;
+                    decimal valueInPounds = credits / 1000m;
+                    string valueHumanised = valueInPounds.ToString("N2");
+                    CreditsRemaining.Text = $"You have {credits:N0} credits remaining, worth about £{valueHumanised}.";
+                    PopulateTemplates(Program.AuthClient);
+                    
+                    loginTable.Visible = false;
+                    tableLayoutPanel2.Visible = false;
+                    LoggedInTable.Visible = true;
+                }
+                else
+                {
+                    loginTable.Visible = true;
+                    tableLayoutPanel2.Visible = true;
+                    LoggedInTable.Visible = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error refreshing login: {ex.Message}");
+                loginTable.Visible = true;
+            }
+        }
+
+        private async void loginButtonClick(object sender, EventArgs e)
+        {
+            string email = usernameInput.Text.Trim();
+            string password = passwordInput.Text.Trim();
+
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+            {
+                MessageBox.Show("Please enter both username and password.",
+                                "Validation Error",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                return;
+            }
+            try
+            {
+                string grpcUrl = Utils.GetGrpcUrl();
+                var authClient = new AuthClient(grpcUrl);
+                bool success = await authClient.LoginAsync(email, password);
+                if (success)
+                {
+                    Program.AuthClient = authClient;
+                    LoggedInUser.Text = $"Logged in as {Program.AuthClient.LoggedInEmail}";
+                    int credits = Program.AuthClient.Credits;
+                    decimal valueInPounds = credits / 1000m;
+                    string valueHumanised = valueInPounds.ToString("N2");
+                    CreditsRemaining.Text = $"You have {credits:N0} credits remaining, worth about £{valueHumanised}.";
+                    PopulateTemplates(Program.AuthClient);
+
+                    loginTable.Visible = false;
+                    tableLayoutPanel2.Visible = false;
+                    LoggedInTable.Visible = true;
+                    passwordInput.Text = "";
+                }
+                else
+                {
+                    MessageBox.Show("❌ Login failed. Please check your credentials.");
+                }
+                return;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error connecting to server: {ex.Message}", "Connection Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void TemplateBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (templateBox.SelectedItem is TemplateItem selected)
+            {
+                Properties.Settings.Default.SelectedTemplateId = selected.Id;
+                Properties.Settings.Default.Save();
+
+                Console.WriteLine($"Template saved: {selected.Name} (ID: {Properties.Settings.Default.SelectedTemplateId})");
+            }
+        }
+
+
+        private void LogOut_Click(object sender, EventArgs e)
+        {
+            TokenStore store = new TokenStore();
+            store.Clear();
+            Program.AuthClient = null;
+            loginTable.Visible = true;
+            tableLayoutPanel2.Visible = true;
+            LoggedInTable.Visible = false;
+        }
     }
 }
-

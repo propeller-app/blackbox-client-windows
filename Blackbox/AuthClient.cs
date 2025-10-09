@@ -1,4 +1,5 @@
 ﻿using Blackbox.Client.Rpc;
+using Blackbox;
 using Grpc.Core;
 using Grpc.Net.Client;
 using System;
@@ -106,7 +107,7 @@ public class TokenStore
     {
         var appData = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-            "Blackbox"
+            Blackbox.Properties.Strings.ApplicationShortName
         );
         Directory.CreateDirectory(appData);
         FilePath = Path.Combine(appData, "auth_tokens.json");

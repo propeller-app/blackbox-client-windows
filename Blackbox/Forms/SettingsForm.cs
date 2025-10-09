@@ -6,6 +6,7 @@ using System.IO;
 using System.Management;
 using System.Windows.Forms;
 using Usb.Events;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Blackbox
 {
@@ -27,8 +28,6 @@ namespace Blackbox
             hostInput.Text = Properties.Settings.Default.GrpcHost;
             portInput.Text = Properties.Settings.Default.GrpcPort.ToString();
             sslCheckBox.Checked = Properties.Settings.Default.GrpcSSL;
-            transcodeCheckBox.Checked = Properties.Settings.Default.TranscodingEnabled;
-            transcodeFlags.Text = Properties.Settings.Default.FFmpegFlags;
             expiryDaysInput.Text = Properties.Settings.Default.JobExpiryDays.ToString();
             explorerPreviewCheckBox.Checked = Properties.Settings.Default.Explorer;
 
@@ -49,8 +48,6 @@ namespace Blackbox
             Properties.Settings.Default.GrpcHost = hostInput.Text;
             Properties.Settings.Default.GrpcPort = uint.Parse(portInput.Text);
             Properties.Settings.Default.GrpcSSL = sslCheckBox.Checked;
-            Properties.Settings.Default.TranscodingEnabled = transcodeCheckBox.Checked;
-            Properties.Settings.Default.FFmpegFlags = transcodeFlags.Text;
             Properties.Settings.Default.JobExpiryDays = int.Parse(expiryDaysInput.Text);
             Properties.Settings.Default.Explorer = explorerPreviewCheckBox.Checked;
 
@@ -255,19 +252,21 @@ namespace Blackbox
                 bool loggedIn = await Program.AuthClient.RefreshAsync();
                 if (loggedIn)
                 {
+                    serverTab.Text = "My Account";
                     LoggedInUser.Text = $"Logged in as {Program.AuthClient.LoggedInEmail}";
                     int credits = Program.AuthClient.Credits;
                     decimal valueInPounds = credits / 1000m;
                     string valueHumanised = valueInPounds.ToString("N2");
                     CreditsRemaining.Text = $"You have {credits:N0} credits remaining, worth about £{valueHumanised}.";
                     PopulateTemplates(Program.AuthClient);
-                    
+
                     loginTable.Visible = false;
                     tableLayoutPanel2.Visible = false;
                     LoggedInTable.Visible = true;
                 }
                 else
                 {
+                    serverTab.Text = "Blackbox Login";
                     loginTable.Visible = true;
                     tableLayoutPanel2.Visible = true;
                     LoggedInTable.Visible = false;
@@ -301,6 +300,7 @@ namespace Blackbox
                 bool success = await authClient.LoginAsync(email, password);
                 if (success)
                 {
+                    serverTab.Text = "My Account";
                     Program.AuthClient = authClient;
                     LoggedInUser.Text = $"Logged in as {Program.AuthClient.LoggedInEmail}";
                     int credits = Program.AuthClient.Credits;
@@ -345,8 +345,76 @@ namespace Blackbox
             store.Clear();
             Program.AuthClient = null;
             loginTable.Visible = true;
+            serverTab.Text = "Blackbox Login";
             tableLayoutPanel2.Visible = true;
             LoggedInTable.Visible = false;
         }
+
+        private void InstallFfmpeg_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                string scriptPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "tools/Master.ps1");
+
+                if (!File.Exists(scriptPath))
+                {
+                    MessageBox.Show("Script not found: " + scriptPath, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                ProcessStartInfo psi = new ProcessStartInfo()
+                {
+                    FileName = "powershell.exe",
+                    Arguments = $"-ExecutionPolicy Bypass -File \"{scriptPath}\"",
+                    //Verb = "runas", // 🚨 This triggers the UAC prompt to run as Administrator
+                    UseShellExecute = true,
+                    CreateNoWindow = false
+                };
+
+                Process.Start(psi);
+            }
+            catch (System.ComponentModel.Win32Exception ex)
+            {
+                if (ex.NativeErrorCode == 1223) // User clicked "No" on UAC
+                {
+                    MessageBox.Show("Administrator privileges are required to install FFmpeg.", "Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unexpected error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        async private void BenchmarkEncoderButton_Click(object sender, EventArgs e)
+        {
+            BenchmarkEncoderButton.Enabled = false;
+            InstallFfmpeg.Enabled = false;
+            jobScreenBar1.Visible = true;
+            try
+            {
+                jobScreenBar1.Style = ProgressBarStyle.Marquee;
+                jobScreenBar1.MarqueeAnimationSpeed = 60;
+                await Program.BenchmarkFlavors(true);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Benchmark failed: {ex.Message}");
+            }
+            finally
+            {
+                InstallFfmpeg.Enabled = true;
+                BenchmarkEncoderButton.Enabled = true;
+                jobScreenBar1.Visible = false;
+                jobScreenBar1.Style = ProgressBarStyle.Blocks;
+                jobScreenBar1.MarqueeAnimationSpeed = 0;
+            }
+        }
+
     }
 }
+

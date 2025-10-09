@@ -108,5 +108,15 @@ namespace Blackbox.Properties {
                 return ResourceManager.GetString("AppName", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] compressed_sample_video {
+            get {
+                object obj = ResourceManager.GetObject("compressed_sample_video", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

@@ -512,6 +512,9 @@ namespace Blackbox.Client
         /// </summary>
         private void Transcode()
         {
+            // Wait until FFmpeg flags are set
+            ffmpegFlagsReady.Wait();
+
             try
             {
                 string ffmpegFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ffmpeg");
@@ -661,6 +664,13 @@ namespace Blackbox.Client
                 cancellationTokenSource.Cancel();
                 throw;
             }
+        }
+
+        private ManualResetEventSlim ffmpegFlagsReady = new(false);
+
+        public void SignalFfmpegFlagsReady()
+        {
+            ffmpegFlagsReady.Set();
         }
     }
 }

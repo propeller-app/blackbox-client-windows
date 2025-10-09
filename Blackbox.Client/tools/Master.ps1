@@ -8,8 +8,8 @@ if (Test-Path $versionFile) {
 	$currentVersion = Get-Content $versionFile
 	if ($currentVersion -eq $ffmpegUrl) {
 		Write-Host "FFmpeg is already up to date: $currentVersion"
-		Write-Host "Program will exit in 5 seconds."
-		Start-Sleep -Seconds 5
+		Write-Host "Program will exit in 3 seconds."
+		Start-Sleep -Seconds 3
 		exit 0
 	} else {
 		Write-Host "Current FFmpeg version: $currentVersion"

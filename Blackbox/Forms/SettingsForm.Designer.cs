@@ -31,6 +31,10 @@ namespace Blackbox
         /// </summary>
         private void InitializeComponent()
         {
+            applyButton = new Button();
+            closeButton = new Button();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            flowLayoutPanel1 = new FlowLayoutPanel();
             settingsTabControl = new TabControl();
             serverTab = new TabPage();
             LoggedInTable = new TableLayoutPanel();
@@ -59,14 +63,13 @@ namespace Blackbox
             sslCheckBox = new CheckBox();
             serverTestButton = new Button();
             tableLayoutPanel7 = new TableLayoutPanel();
-            transcodeTab = new TabPage();
-            InstallFfmpeg = new Button();
-            tableLayoutPanel3 = new TableLayoutPanel();
-            transcodeCheckBox = new CheckBox();
-            flowLayoutPanel5 = new FlowLayoutPanel();
-            transcodeFlagsLabel = new Label();
-            transcodeFlags = new TextBox();
             jobTab = new TabPage();
+            jobScreenBar1 = new ProgressBar();
+            tableLayoutPanel3 = new TableLayoutPanel();
+            InstallFfmpeg = new Button();
+            BenchmarkEncoderButton = new Button();
+            label3 = new Label();
+            label4 = new Label();
             tableLayoutPanel4 = new TableLayoutPanel();
             flowLayoutPanel6 = new FlowLayoutPanel();
             jobExpiryLabel = new Label();
@@ -79,10 +82,8 @@ namespace Blackbox
             flowLayoutPanel7 = new FlowLayoutPanel();
             deviceAddButton = new Button();
             deviceRemoveButton = new Button();
-            applyButton = new Button();
-            closeButton = new Button();
-            tableLayoutPanel1 = new TableLayoutPanel();
-            flowLayoutPanel1 = new FlowLayoutPanel();
+            tableLayoutPanel1.SuspendLayout();
+            flowLayoutPanel1.SuspendLayout();
             settingsTabControl.SuspendLayout();
             serverTab.SuspendLayout();
             LoggedInTable.SuspendLayout();
@@ -93,24 +94,67 @@ namespace Blackbox
             tableLayoutPanel2.SuspendLayout();
             flowLayoutPanel2.SuspendLayout();
             flowLayoutPanel3.SuspendLayout();
-            transcodeTab.SuspendLayout();
-            tableLayoutPanel3.SuspendLayout();
-            flowLayoutPanel5.SuspendLayout();
             jobTab.SuspendLayout();
+            tableLayoutPanel3.SuspendLayout();
             tableLayoutPanel4.SuspendLayout();
             flowLayoutPanel6.SuspendLayout();
             deviceTab.SuspendLayout();
             tableLayoutPanel5.SuspendLayout();
             flowLayoutPanel7.SuspendLayout();
-            tableLayoutPanel1.SuspendLayout();
-            flowLayoutPanel1.SuspendLayout();
             SuspendLayout();
+            // 
+            // applyButton
+            // 
+            applyButton.Enabled = false;
+            applyButton.Location = new System.Drawing.Point(84, 3);
+            applyButton.Name = "applyButton";
+            applyButton.Size = new System.Drawing.Size(75, 23);
+            applyButton.TabIndex = 1;
+            applyButton.Text = "Apply";
+            applyButton.UseVisualStyleBackColor = true;
+            applyButton.Click += ApplyButtonClick;
+            // 
+            // closeButton
+            // 
+            closeButton.Location = new System.Drawing.Point(3, 3);
+            closeButton.Name = "closeButton";
+            closeButton.Size = new System.Drawing.Size(75, 23);
+            closeButton.TabIndex = 2;
+            closeButton.Text = "Close";
+            closeButton.UseVisualStyleBackColor = true;
+            closeButton.Click += CloseButtonClick;
+            // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tableLayoutPanel1.ColumnCount = 1;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.Controls.Add(flowLayoutPanel1, 0, 1);
+            tableLayoutPanel1.Controls.Add(settingsTabControl, 0, 0);
+            tableLayoutPanel1.Location = new System.Drawing.Point(12, 12);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 2;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 87.78626F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle());
+            tableLayoutPanel1.Size = new System.Drawing.Size(386, 314);
+            tableLayoutPanel1.TabIndex = 3;
+            // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            flowLayoutPanel1.AutoSize = true;
+            flowLayoutPanel1.Controls.Add(applyButton);
+            flowLayoutPanel1.Controls.Add(closeButton);
+            flowLayoutPanel1.FlowDirection = FlowDirection.RightToLeft;
+            flowLayoutPanel1.Location = new System.Drawing.Point(221, 282);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new System.Drawing.Size(162, 29);
+            flowLayoutPanel1.TabIndex = 0;
             // 
             // settingsTabControl
             // 
             settingsTabControl.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             settingsTabControl.Controls.Add(serverTab);
-            settingsTabControl.Controls.Add(transcodeTab);
             settingsTabControl.Controls.Add(jobTab);
             settingsTabControl.Controls.Add(deviceTab);
             settingsTabControl.Location = new System.Drawing.Point(3, 3);
@@ -129,7 +173,7 @@ namespace Blackbox
             serverTab.Padding = new Padding(3);
             serverTab.Size = new System.Drawing.Size(372, 245);
             serverTab.TabIndex = 0;
-            serverTab.Text = "Server";
+            serverTab.Text = "My Account";
             serverTab.UseVisualStyleBackColor = true;
             // 
             // LoggedInTable
@@ -436,95 +480,87 @@ namespace Blackbox
             tableLayoutPanel7.Size = new System.Drawing.Size(174, 14);
             tableLayoutPanel7.TabIndex = 7;
             // 
-            // transcodeTab
-            // 
-            transcodeTab.Controls.Add(InstallFfmpeg);
-            transcodeTab.Controls.Add(tableLayoutPanel3);
-            transcodeTab.Location = new System.Drawing.Point(4, 24);
-            transcodeTab.Name = "transcodeTab";
-            transcodeTab.Padding = new Padding(3);
-            transcodeTab.Size = new System.Drawing.Size(372, 245);
-            transcodeTab.TabIndex = 1;
-            transcodeTab.Text = "Transcoding";
-            transcodeTab.UseVisualStyleBackColor = true;
-            // 
-            // InstallFfmpeg
-            // 
-            InstallFfmpeg.Location = new System.Drawing.Point(9, 216);
-            InstallFfmpeg.Name = "InstallFfmpeg";
-            InstallFfmpeg.Size = new System.Drawing.Size(100, 23);
-            InstallFfmpeg.TabIndex = 5;
-            InstallFfmpeg.Text = "Install FFmpeg";
-            InstallFfmpeg.UseVisualStyleBackColor = true;
-            InstallFfmpeg.Click += InstallFfmpeg_Click;
-            // 
-            // tableLayoutPanel3
-            // 
-            tableLayoutPanel3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            tableLayoutPanel3.ColumnCount = 1;
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel3.Controls.Add(transcodeCheckBox, 0, 0);
-            tableLayoutPanel3.Controls.Add(flowLayoutPanel5, 0, 1);
-            tableLayoutPanel3.Location = new System.Drawing.Point(6, 6);
-            tableLayoutPanel3.Name = "tableLayoutPanel3";
-            tableLayoutPanel3.RowCount = 2;
-            tableLayoutPanel3.RowStyles.Add(new RowStyle());
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 253F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel3.Size = new System.Drawing.Size(345, 171);
-            tableLayoutPanel3.TabIndex = 4;
-            // 
-            // transcodeCheckBox
-            // 
-            transcodeCheckBox.AutoSize = true;
-            transcodeCheckBox.Location = new System.Drawing.Point(3, 3);
-            transcodeCheckBox.Name = "transcodeCheckBox";
-            transcodeCheckBox.Size = new System.Drawing.Size(117, 19);
-            transcodeCheckBox.TabIndex = 6;
-            transcodeCheckBox.Text = "Use Transcoding?";
-            transcodeCheckBox.UseVisualStyleBackColor = true;
-            transcodeCheckBox.CheckedChanged += SettingChange;
-            // 
-            // flowLayoutPanel5
-            // 
-            flowLayoutPanel5.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            flowLayoutPanel5.AutoSize = true;
-            flowLayoutPanel5.Controls.Add(transcodeFlagsLabel);
-            flowLayoutPanel5.Controls.Add(transcodeFlags);
-            flowLayoutPanel5.Location = new System.Drawing.Point(3, 28);
-            flowLayoutPanel5.Name = "flowLayoutPanel5";
-            flowLayoutPanel5.Size = new System.Drawing.Size(339, 130);
-            flowLayoutPanel5.TabIndex = 8;
-            flowLayoutPanel5.WrapContents = false;
-            // 
-            // transcodeFlagsLabel
-            // 
-            transcodeFlagsLabel.AutoSize = true;
-            transcodeFlagsLabel.Location = new System.Drawing.Point(3, 0);
-            transcodeFlagsLabel.Name = "transcodeFlagsLabel";
-            transcodeFlagsLabel.Size = new System.Drawing.Size(37, 15);
-            transcodeFlagsLabel.TabIndex = 8;
-            transcodeFlagsLabel.Text = "Flags:";
-            // 
-            // transcodeFlags
-            // 
-            transcodeFlags.Location = new System.Drawing.Point(46, 3);
-            transcodeFlags.Multiline = true;
-            transcodeFlags.Name = "transcodeFlags";
-            transcodeFlags.Size = new System.Drawing.Size(283, 124);
-            transcodeFlags.TabIndex = 7;
-            transcodeFlags.TextChanged += SettingChange;
-            // 
             // jobTab
             // 
+            jobTab.Controls.Add(jobScreenBar1);
+            jobTab.Controls.Add(tableLayoutPanel3);
             jobTab.Controls.Add(tableLayoutPanel4);
             jobTab.Location = new System.Drawing.Point(4, 24);
             jobTab.Name = "jobTab";
             jobTab.Padding = new Padding(3);
             jobTab.Size = new System.Drawing.Size(372, 245);
             jobTab.TabIndex = 3;
-            jobTab.Text = "Job";
+            jobTab.Text = "Video Upload Settings";
             jobTab.UseVisualStyleBackColor = true;
+            // 
+            // jobScreenBar1
+            // 
+            jobScreenBar1.Location = new System.Drawing.Point(9, 130);
+            jobScreenBar1.Name = "jobScreenBar1";
+            jobScreenBar1.Size = new System.Drawing.Size(343, 12);
+            jobScreenBar1.TabIndex = 4;
+            jobScreenBar1.Visible = false;
+            // 
+            // tableLayoutPanel3
+            // 
+            tableLayoutPanel3.ColumnCount = 2;
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 29.26136F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70.73864F));
+            tableLayoutPanel3.Controls.Add(InstallFfmpeg, 0, 0);
+            tableLayoutPanel3.Controls.Add(BenchmarkEncoderButton, 0, 1);
+            tableLayoutPanel3.Controls.Add(label3, 1, 0);
+            tableLayoutPanel3.Controls.Add(label4, 1, 1);
+            tableLayoutPanel3.Location = new System.Drawing.Point(6, 145);
+            tableLayoutPanel3.Name = "tableLayoutPanel3";
+            tableLayoutPanel3.RowCount = 2;
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel3.Size = new System.Drawing.Size(352, 94);
+            tableLayoutPanel3.TabIndex = 3;
+            // 
+            // InstallFfmpeg
+            // 
+            InstallFfmpeg.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            InstallFfmpeg.Location = new System.Drawing.Point(3, 3);
+            InstallFfmpeg.Name = "InstallFfmpeg";
+            InstallFfmpeg.Size = new System.Drawing.Size(96, 41);
+            InstallFfmpeg.TabIndex = 7;
+            InstallFfmpeg.Text = "Install FFmpeg";
+            InstallFfmpeg.UseVisualStyleBackColor = true;
+            InstallFfmpeg.Click += InstallFfmpeg_Click_1;
+            // 
+            // BenchmarkEncoderButton
+            // 
+            BenchmarkEncoderButton.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            BenchmarkEncoderButton.Location = new System.Drawing.Point(3, 50);
+            BenchmarkEncoderButton.Name = "BenchmarkEncoderButton";
+            BenchmarkEncoderButton.Size = new System.Drawing.Size(96, 41);
+            BenchmarkEncoderButton.TabIndex = 9;
+            BenchmarkEncoderButton.Text = "Benchmark FFmpeg";
+            BenchmarkEncoderButton.UseVisualStyleBackColor = true;
+            BenchmarkEncoderButton.Click += BenchmarkEncoderButton_Click;
+            // 
+            // label3
+            // 
+            label3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(105, 0);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(244, 47);
+            label3.TabIndex = 3;
+            label3.Text = "Use to check the installed encoder version and update if needed.";
+            label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label4
+            // 
+            label4.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            label4.AutoSize = true;
+            label4.Location = new System.Drawing.Point(105, 47);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(244, 47);
+            label4.TabIndex = 2;
+            label4.Text = "Tests system encoding performance and updates the results for upload optimisation.";
+            label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel4
             // 
@@ -535,11 +571,12 @@ namespace Blackbox
             tableLayoutPanel4.Controls.Add(explorerPreviewCheckBox, 0, 1);
             tableLayoutPanel4.Location = new System.Drawing.Point(6, 6);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
-            tableLayoutPanel4.RowCount = 3;
+            tableLayoutPanel4.RowCount = 4;
             tableLayoutPanel4.RowStyles.Add(new RowStyle());
             tableLayoutPanel4.RowStyles.Add(new RowStyle());
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel4.Size = new System.Drawing.Size(352, 228);
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel4.Size = new System.Drawing.Size(352, 118);
             tableLayoutPanel4.TabIndex = 2;
             // 
             // flowLayoutPanel6
@@ -550,7 +587,7 @@ namespace Blackbox
             flowLayoutPanel6.Controls.Add(label1);
             flowLayoutPanel6.Location = new System.Drawing.Point(3, 3);
             flowLayoutPanel6.Name = "flowLayoutPanel6";
-            flowLayoutPanel6.Size = new System.Drawing.Size(189, 29);
+            flowLayoutPanel6.Size = new System.Drawing.Size(252, 29);
             flowLayoutPanel6.TabIndex = 0;
             // 
             // jobExpiryLabel
@@ -559,14 +596,14 @@ namespace Blackbox
             jobExpiryLabel.AutoSize = true;
             jobExpiryLabel.Location = new System.Drawing.Point(3, 0);
             jobExpiryLabel.Name = "jobExpiryLabel";
-            jobExpiryLabel.Size = new System.Drawing.Size(113, 29);
+            jobExpiryLabel.Size = new System.Drawing.Size(176, 29);
             jobExpiryLabel.TabIndex = 0;
-            jobExpiryLabel.Text = "Jobs will expire after";
+            jobExpiryLabel.Text = "Video download will expire after";
             jobExpiryLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // expiryDaysInput
             // 
-            expiryDaysInput.Location = new System.Drawing.Point(122, 3);
+            expiryDaysInput.Location = new System.Drawing.Point(185, 3);
             expiryDaysInput.MaxLength = 3;
             expiryDaysInput.Name = "expiryDaysInput";
             expiryDaysInput.Size = new System.Drawing.Size(24, 23);
@@ -578,7 +615,7 @@ namespace Blackbox
             // 
             label1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(152, 0);
+            label1.Location = new System.Drawing.Point(215, 0);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(34, 29);
             label1.TabIndex = 2;
@@ -663,54 +700,6 @@ namespace Blackbox
             deviceRemoveButton.UseVisualStyleBackColor = true;
             deviceRemoveButton.Click += RemoveDeviceClick;
             // 
-            // applyButton
-            // 
-            applyButton.Enabled = false;
-            applyButton.Location = new System.Drawing.Point(84, 3);
-            applyButton.Name = "applyButton";
-            applyButton.Size = new System.Drawing.Size(75, 23);
-            applyButton.TabIndex = 1;
-            applyButton.Text = "Apply";
-            applyButton.UseVisualStyleBackColor = true;
-            applyButton.Click += ApplyButtonClick;
-            // 
-            // closeButton
-            // 
-            closeButton.Location = new System.Drawing.Point(3, 3);
-            closeButton.Name = "closeButton";
-            closeButton.Size = new System.Drawing.Size(75, 23);
-            closeButton.TabIndex = 2;
-            closeButton.Text = "Close";
-            closeButton.UseVisualStyleBackColor = true;
-            closeButton.Click += CloseButtonClick;
-            // 
-            // tableLayoutPanel1
-            // 
-            tableLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            tableLayoutPanel1.ColumnCount = 1;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.Controls.Add(flowLayoutPanel1, 0, 1);
-            tableLayoutPanel1.Controls.Add(settingsTabControl, 0, 0);
-            tableLayoutPanel1.Location = new System.Drawing.Point(12, 12);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 2;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 87.78626F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle());
-            tableLayoutPanel1.Size = new System.Drawing.Size(386, 314);
-            tableLayoutPanel1.TabIndex = 3;
-            // 
-            // flowLayoutPanel1
-            // 
-            flowLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            flowLayoutPanel1.AutoSize = true;
-            flowLayoutPanel1.Controls.Add(applyButton);
-            flowLayoutPanel1.Controls.Add(closeButton);
-            flowLayoutPanel1.FlowDirection = FlowDirection.RightToLeft;
-            flowLayoutPanel1.Location = new System.Drawing.Point(221, 282);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new System.Drawing.Size(162, 29);
-            flowLayoutPanel1.TabIndex = 0;
-            // 
             // SettingsForm
             // 
             AcceptButton = applyButton;
@@ -727,6 +716,9 @@ namespace Blackbox
             StartPosition = FormStartPosition.Manual;
             Text = "Settings";
             TopMost = true;
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
+            flowLayoutPanel1.ResumeLayout(false);
             settingsTabControl.ResumeLayout(false);
             serverTab.ResumeLayout(false);
             LoggedInTable.ResumeLayout(false);
@@ -744,12 +736,9 @@ namespace Blackbox
             flowLayoutPanel2.PerformLayout();
             flowLayoutPanel3.ResumeLayout(false);
             flowLayoutPanel3.PerformLayout();
-            transcodeTab.ResumeLayout(false);
+            jobTab.ResumeLayout(false);
             tableLayoutPanel3.ResumeLayout(false);
             tableLayoutPanel3.PerformLayout();
-            flowLayoutPanel5.ResumeLayout(false);
-            flowLayoutPanel5.PerformLayout();
-            jobTab.ResumeLayout(false);
             tableLayoutPanel4.ResumeLayout(false);
             tableLayoutPanel4.PerformLayout();
             flowLayoutPanel6.ResumeLayout(false);
@@ -758,66 +747,61 @@ namespace Blackbox
             tableLayoutPanel5.ResumeLayout(false);
             tableLayoutPanel5.PerformLayout();
             flowLayoutPanel7.ResumeLayout(false);
-            tableLayoutPanel1.ResumeLayout(false);
-            tableLayoutPanel1.PerformLayout();
-            flowLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TabControl settingsTabControl;
-        private System.Windows.Forms.TabPage serverTab;
-        private System.Windows.Forms.TabPage transcodeTab;
-        private System.Windows.Forms.TabPage deviceTab;
-        private Label hostLabel;
-        private Label portLabel;
-        private TextBox hostInput;
-        private Button serverTestButton;
-        private CheckBox sslCheckBox;
-        private TextBox portInput;
         private Button applyButton;
         private Button closeButton;
-        private Button deviceRemoveButton;
-        private Button deviceAddButton;
-        private ListView devicesListView;
-        private CheckBox transcodeCheckBox;
-        private Label transcodeFlagsLabel;
-        private TextBox transcodeFlags;
-        private TabPage jobTab;
-        private TextBox expiryDaysInput;
-        private Label jobExpiryLabel;
-        private TableLayoutPanel tableLayoutPanel2;
-        private FlowLayoutPanel flowLayoutPanel2;
-        private FlowLayoutPanel flowLayoutPanel3;
-        private TableLayoutPanel tableLayoutPanel3;
-        private FlowLayoutPanel flowLayoutPanel5;
-        private TableLayoutPanel tableLayoutPanel4;
-        private FlowLayoutPanel flowLayoutPanel6;
-        private Label label1;
-        private TableLayoutPanel tableLayoutPanel5;
-        private FlowLayoutPanel flowLayoutPanel7;
         private TableLayoutPanel tableLayoutPanel1;
         private FlowLayoutPanel flowLayoutPanel1;
-        private CheckBox explorerPreviewCheckBox;
-        private Button InstallFfmpeg;
-        private Label loginRequiredLabel;
-        private Label passwordLabel;
-        private Label usernameLabel;
-        private TextBox usernameInput;
-        private TableLayoutPanel tableLayoutPanel6;
-        private Button loginButton;
-        private TextBox passwordInput;
-        private TableLayoutPanel loginTable;
+        private TabControl settingsTabControl;
+        private TabPage serverTab;
         private TableLayoutPanel LoggedInTable;
         private TableLayoutPanel tableLayoutPanel9;
-        private TableLayoutPanel tableLayoutPanel7;
-        private Label LoggedInUser;
         private Label CreditsRemaining;
+        private Label LoggedInUser;
         private Button LogOut;
         private TableLayoutPanel tableLayoutPanel8;
         private Label label2;
         private ComboBox templateBox;
+        private TableLayoutPanel loginTable;
+        private Label loginRequiredLabel;
+        private Button loginButton;
+        private TableLayoutPanel tableLayoutPanel6;
+        private TextBox usernameInput;
+        private TextBox passwordInput;
+        private Label passwordLabel;
+        private Label usernameLabel;
+        private TableLayoutPanel tableLayoutPanel2;
+        private FlowLayoutPanel flowLayoutPanel2;
+        private Label hostLabel;
+        private TextBox hostInput;
+        private FlowLayoutPanel flowLayoutPanel3;
+        private Label portLabel;
+        private TextBox portInput;
+        private CheckBox sslCheckBox;
+        private Button serverTestButton;
+        private TableLayoutPanel tableLayoutPanel7;
+        private TabPage jobTab;
+        private TableLayoutPanel tableLayoutPanel4;
+        private FlowLayoutPanel flowLayoutPanel6;
+        private Label jobExpiryLabel;
+        private TextBox expiryDaysInput;
+        private Label label1;
+        private CheckBox explorerPreviewCheckBox;
+        private Button InstallFfmpeg;
+        private TabPage deviceTab;
+        private TableLayoutPanel tableLayoutPanel5;
+        private ListView devicesListView;
+        private FlowLayoutPanel flowLayoutPanel7;
+        private Button deviceAddButton;
+        private Button deviceRemoveButton;
+        private TableLayoutPanel tableLayoutPanel3;
+        private Button BenchmarkEncoderButton;
+        private ProgressBar jobScreenBar1;
+        private Label label3;
+        private Label label4;
     }
 }

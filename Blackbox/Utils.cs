@@ -1,12 +1,17 @@
 ﻿using Blackbox.Client.Events;
 using ByteSizeLib;
+using Microsoft.Toolkit.Uwp.Notifications;
+using SpeedTestSharp.Client;
+using SpeedTestSharp.Enums;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Management;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using Xabe.FFmpeg;
 
 namespace Blackbox
 {
@@ -56,6 +61,41 @@ namespace Blackbox
             }
 
             return alreadyFound;
+        }
+
+        async public static Task<(TimeSpan Duration, long FileSize)> BenchmarkFlavor(string flavor, string testVideoPath)
+        {
+            Console.WriteLine($"Benchmarking: {flavor} with {testVideoPath}.");
+            string outputPath = Path.Combine(Path.GetTempPath(), $"benchmark_{flavor}_{Guid.NewGuid()}.mp4");
+
+            long fileSize = 0;
+            var stopwatch = Stopwatch.StartNew();
+
+            try
+            {
+                string ffmpegFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ffmpeg");
+                FFmpeg.SetExecutablesPath(ffmpegFolder);
+                var conversion = await FFmpeg.Conversions.FromSnippet.Convert(testVideoPath, outputPath);
+                conversion.AddParameter(flavor);
+
+                await conversion.Start();
+            }
+            finally
+            {
+                stopwatch.Stop();
+                // Clean up the temporary file
+                if (File.Exists(outputPath))
+                    fileSize = new FileInfo(outputPath).Length;
+                    File.Delete(outputPath);
+            }
+            return (stopwatch.Elapsed, fileSize);
+        }
+
+        public static async Task<double> GetUploadSpeedMbpsAsync()
+        {
+            ISpeedTestClient speedTestClient = new SpeedTestClient();
+            var result = await speedTestClient.TestSpeedAsync(SpeedUnit.Mbps, testDownload: false, testLatency: false);
+            return result.UploadSpeed;
         }
 
         public static void CloseOpenProcesses()

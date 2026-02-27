@@ -55,6 +55,11 @@ namespace Blackbox.Client
         public int JobExpiryDays { get; private set; } = 30;
 
         /// <summary>
+        /// Represents the identifier of the currently selected template.
+        /// </summary>
+        public int SelectedTemplateId { get; private set; } = 0;
+
+        /// <summary>
         /// URL of gRPC server.
         /// </summary>
         public string GrpcUrl { get; private set; }
@@ -68,6 +73,8 @@ namespace Blackbox.Client
         /// RPC client used by the job.
         /// </summary>
         private JobSpoolClient client;
+
+        private Func<Metadata> _getAuthHeaders;
 
         /// <summary>
         /// Queue video data is written to as it arrived from ffMPEG.
@@ -118,7 +125,6 @@ namespace Blackbox.Client
         /// Event fired when job is cancelled.
         /// </summary>
         public event EventHandler<JobCancelledEventArgs> JobCancelled;
-
 
         /// <summary>
         /// Fires the clone progress event.
@@ -295,15 +301,27 @@ namespace Blackbox.Client
         }
 
         /// <summary>
+        /// Sets the delivery server template to use for the job
+        /// </summary>
+        /// <param name="selectedTemplateId"></param>
+        /// <returns></returns>
+        public Job SetSelectedTemplateId(int selectedTemplateId)
+        {
+            SelectedTemplateId = selectedTemplateId;
+            return this;
+        }
+
+        /// <summary>
         /// Sets the gRPC URL used to locate the gRPC server.
         /// </summary>
         /// <param name="grpcUrl">String representing the URL of the gRPC server.</param>
         /// <returns>This job.</returns>
-        public Job SetGrpcUrl(String grpcUrl)
+        public Job SetGrpcUrl(string grpcUrl, Func<Metadata> getAuthHeaders)
         {
-            GrpcChannel channel = GrpcChannel.ForAddress(grpcUrl);
-            client = new(channel);
+            var channel = GrpcChannel.ForAddress(grpcUrl);
+            client = new JobSpool.JobSpoolClient(channel);
             GrpcUrl = grpcUrl;
+            _getAuthHeaders = getAuthHeaders;
             return this;
         }
 
@@ -350,7 +368,7 @@ namespace Blackbox.Client
                     client.Heartbeat(new JobIdentifier()
                     {
                         JobId = JobId
-                    });
+                    }, _getAuthHeaders?.Invoke());
                     Thread.Sleep(60 * 1000);
                 }
             }
@@ -370,7 +388,7 @@ namespace Blackbox.Client
                 CancellationToken ct = cancellationTokenSource.Token;
                 ct.ThrowIfCancellationRequested();
 
-                JobIdentifier newJob = client.GetNewJob(new Empty());
+                JobIdentifier newJob = client.GetNewJob(new Empty(), _getAuthHeaders?.Invoke());
                 JobId = newJob.JobId;
 
                 Status = JobStatus.Cloning;
@@ -494,6 +512,9 @@ namespace Blackbox.Client
         /// </summary>
         private void Transcode()
         {
+            // Wait until FFmpeg flags are set
+            ffmpegFlagsReady.Wait();
+
             try
             {
                 string ffmpegFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ffmpeg");
@@ -583,7 +604,7 @@ namespace Blackbox.Client
                         {
                             JobId = JobId,
                             Content = ByteString.CopyFrom(buffer, 0, count)
-                        });
+                        }, _getAuthHeaders?.Invoke());
                         if (status == JobStatus.Uploading)
                         {
                             bytesProcessed += count;
@@ -625,13 +646,14 @@ namespace Blackbox.Client
                     JobId = JobId,
                     MachineId = Environment.MachineName,
                     Expires = (int)expiresTimestamp,
+                    TemplateId = SelectedTemplateId,
                     Customer = new Customer()
                     {
                         FirstName = jobData.CustomerFirstName,
                         LastName = jobData.CustomerLastName,
                         Email = jobData.CustomerEmail
                     }
-                });
+                }, _getAuthHeaders?.Invoke());
 
                 OnJobComplete(new JobCompleteEventArgs());
 
@@ -642,6 +664,13 @@ namespace Blackbox.Client
                 cancellationTokenSource.Cancel();
                 throw;
             }
+        }
+
+        private ManualResetEventSlim ffmpegFlagsReady = new(false);
+
+        public void SignalFfmpegFlagsReady()
+        {
+            ffmpegFlagsReady.Set();
         }
     }
 }

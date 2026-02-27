@@ -24,10 +24,22 @@
       <Value Profile="(Default)">30</Value>
     </Setting>
     <Setting Name="FFmpegFlags" Type="System.String" Scope="User">
-      <Value Profile="(Default)">-c:v libsvtav1 -crf 30 -preset 10</Value>
+      <Value Profile="(Default)">-c:v libsvtav1 -crf 30 -preset 8</Value>
     </Setting>
     <Setting Name="Explorer" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="SelectedTemplateId" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="FFmpegFlavors" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;string&gt;-c:v libx264 -preset ultrafast -crf 18&lt;/string&gt;
+  &lt;string&gt;-c:v libx264 -preset superfast -crf 19&lt;/string&gt;
+  &lt;string&gt;-c:v libsvtav1 -crf 28 -preset 10 -g 600&lt;/string&gt;
+  &lt;string&gt;-c:v libsvtav1 -crf 30 -preset 8 -g 600&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
     </Setting>
   </Settings>
 </SettingsFile>

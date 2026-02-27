@@ -133,4 +133,8 @@
   <data name="AppName" xml:space="preserve">
     <value>Blackbox Video Delivery</value>
   </data>
+  <data name="compressed_sample_video" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\compressed_sample_video.mp4;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <comment>Sample video for testing projects transcode speeds</comment>
+  </data>
 </root>

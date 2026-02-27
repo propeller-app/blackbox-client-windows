@@ -110,7 +110,7 @@ namespace Blackbox.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-c:v libsvtav1 -crf 30 -preset 10")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-c:v libsvtav1 -crf 30 -preset 8")]
         public string FFmpegFlags {
             get {
                 return ((string)(this["FFmpegFlags"]));
@@ -129,6 +129,36 @@ namespace Blackbox.Properties {
             }
             set {
                 this["Explorer"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int SelectedTemplateId {
+            get {
+                return ((int)(this["SelectedTemplateId"]));
+            }
+            set {
+                this["SelectedTemplateId"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
+  <string>-c:v libx264 -preset ultrafast -crf 18</string>
+  <string>-c:v libx264 -preset superfast -crf 19</string>
+  <string>-c:v libsvtav1 -crf 28 -preset 10 -g 600</string>
+  <string>-c:v libsvtav1 -crf 30 -preset 8 -g 600</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection FFmpegFlavors {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["FFmpegFlavors"]));
+            }
+            set {
+                this["FFmpegFlavors"] = value;
             }
         }
     }

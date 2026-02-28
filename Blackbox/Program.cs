@@ -99,6 +99,10 @@ namespace Blackbox
 
         async private static Task<string> SelectFlavor()
         {
+            if (Properties.Settings.Default.FlavorSelection != "Automatic Selection")
+            {
+                return Properties.Settings.Default.FlavorSelection;
+            }
             Task<double> uploadSpeedTask = Utils.GetUploadSpeedMbpsAsync();
             Task encoder = BenchmarkFlavors();
 

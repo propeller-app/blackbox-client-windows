@@ -392,7 +392,7 @@ namespace Blackbox.Client
                 JobId = newJob.JobId;
 
                 Status = JobStatus.Cloning;
-                byte[] buffer = new byte[131072];
+                byte[] buffer = new byte[16354];
 
                 if (MtpDevice is null)
                 {

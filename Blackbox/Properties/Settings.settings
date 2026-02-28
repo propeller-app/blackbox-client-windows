@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="GrpcHost" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">localhost</Value>
     </Setting>
     <Setting Name="GrpcPort" Type="System.UInt32" Scope="User">
       <Value Profile="(Default)">50051</Value>
@@ -40,6 +40,9 @@
   &lt;string&gt;-c:v libsvtav1 -crf 28 -preset 10 -g 600&lt;/string&gt;
   &lt;string&gt;-c:v libsvtav1 -crf 30 -preset 8 -g 600&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="FlavorSelection" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Automatic Selection</Value>
     </Setting>
   </Settings>
 </SettingsFile>

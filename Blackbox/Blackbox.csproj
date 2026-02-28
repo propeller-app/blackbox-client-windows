@@ -12,7 +12,7 @@
 		<StartupObject>Blackbox.Program</StartupObject>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-		<Version>0.0.4-beta</Version>
+		<Version>0.1.1</Version>
 		<SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
 	</PropertyGroup>
 

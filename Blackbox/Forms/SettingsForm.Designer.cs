@@ -76,6 +76,8 @@ namespace Blackbox
             expiryDaysInput = new TextBox();
             label1 = new Label();
             explorerPreviewCheckBox = new CheckBox();
+            encoderSelectionBox = new ComboBox();
+            encoderSelectLabel = new Label();
             deviceTab = new TabPage();
             tableLayoutPanel5 = new TableLayoutPanel();
             devicesListView = new ListView();
@@ -260,6 +262,7 @@ namespace Blackbox
             // 
             // templateBox
             // 
+            templateBox.DropDownStyle = ComboBoxStyle.DropDownList;
             templateBox.FormattingEnabled = true;
             templateBox.Location = new System.Drawing.Point(3, 28);
             templateBox.Name = "templateBox";
@@ -569,13 +572,15 @@ namespace Blackbox
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel4.Controls.Add(flowLayoutPanel6, 0, 0);
             tableLayoutPanel4.Controls.Add(explorerPreviewCheckBox, 0, 1);
+            tableLayoutPanel4.Controls.Add(encoderSelectionBox, 0, 3);
+            tableLayoutPanel4.Controls.Add(encoderSelectLabel, 0, 2);
             tableLayoutPanel4.Location = new System.Drawing.Point(6, 6);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
             tableLayoutPanel4.RowCount = 4;
             tableLayoutPanel4.RowStyles.Add(new RowStyle());
             tableLayoutPanel4.RowStyles.Add(new RowStyle());
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 28F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 12F));
             tableLayoutPanel4.Size = new System.Drawing.Size(352, 118);
             tableLayoutPanel4.TabIndex = 2;
             // 
@@ -632,6 +637,29 @@ namespace Blackbox
             explorerPreviewCheckBox.Text = "Show drive in explorer when connected.";
             explorerPreviewCheckBox.UseVisualStyleBackColor = true;
             explorerPreviewCheckBox.CheckedChanged += SettingChange;
+            // 
+            // encoderSelectionBox
+            // 
+            encoderSelectionBox.AutoCompleteMode = AutoCompleteMode.Append;
+            encoderSelectionBox.AutoCompleteSource = AutoCompleteSource.ListItems;
+            encoderSelectionBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            encoderSelectionBox.FormattingEnabled = true;
+            encoderSelectionBox.Location = new System.Drawing.Point(3, 91);
+            encoderSelectionBox.Name = "encoderSelectionBox";
+            encoderSelectionBox.Size = new System.Drawing.Size(346, 23);
+            encoderSelectionBox.TabIndex = 2;
+            encoderSelectionBox.SelectedIndexChanged += EncodeBox_SelectedIndexChanged;
+            // 
+            // encoderSelectLabel
+            // 
+            encoderSelectLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            encoderSelectLabel.AutoSize = true;
+            encoderSelectLabel.Location = new System.Drawing.Point(3, 60);
+            encoderSelectLabel.Name = "encoderSelectLabel";
+            encoderSelectLabel.Size = new System.Drawing.Size(170, 28);
+            encoderSelectLabel.TabIndex = 3;
+            encoderSelectLabel.Text = "Select the local encoder to use:";
+            encoderSelectLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // deviceTab
             // 
@@ -803,5 +831,7 @@ namespace Blackbox
         private ProgressBar jobScreenBar1;
         private Label label3;
         private Label label4;
+        private ComboBox encoderSelectionBox;
+        private Label encoderSelectLabel;
     }
 }

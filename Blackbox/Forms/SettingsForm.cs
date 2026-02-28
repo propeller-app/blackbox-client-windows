@@ -6,6 +6,7 @@ using System.IO;
 using System.Management;
 using System.Windows.Forms;
 using Usb.Events;
+using Xabe.FFmpeg;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Blackbox
@@ -240,6 +241,47 @@ namespace Blackbox
             }
         }
 
+        public class EncoderItem
+        {
+            public string Name { get; set; }
+            public override string ToString()
+            {
+                return Name;
+            }
+
+        }
+
+        private void PopulateEncodes()
+        {
+            encoderSelectionBox.Items.Clear();
+
+            encoderSelectionBox.Items.Add(new EncoderItem
+            {
+                Name = "Automatic Selection"
+            });
+
+            foreach (string ffmpeg in Properties.Settings.Default.FFmpegFlavors)
+            {
+                encoderSelectionBox.Items.Add(new EncoderItem
+                {
+                    Name = ffmpeg
+                });
+            }
+
+            string storedFlavor = Properties.Settings.Default.FlavorSelection;
+            
+            for (int i = 0; i < encoderSelectionBox.Items.Count; i++)
+            {   
+                Console.WriteLine($"Checking encoder item {i}: {encoderSelectionBox.Items[i]}");
+                if (encoderSelectionBox.Items[i] is EncoderItem t && t.Name == storedFlavor)
+                {
+                    encoderSelectionBox.SelectedIndex = i;
+                    break;
+                }
+            }
+
+        }
+
         private async void SettingsForm_Load(object sender, EventArgs e)
         {
             try
@@ -259,6 +301,8 @@ namespace Blackbox
                     string valueHumanised = valueInPounds.ToString("N2");
                     CreditsRemaining.Text = $"You have {credits:N0} credits remaining, worth about £{valueHumanised}.";
                     PopulateTemplates(Program.AuthClient);
+                    PopulateEncodes();
+
 
                     loginTable.Visible = false;
                     tableLayoutPanel2.Visible = false;
@@ -308,6 +352,7 @@ namespace Blackbox
                     string valueHumanised = valueInPounds.ToString("N2");
                     CreditsRemaining.Text = $"You have {credits:N0} credits remaining, worth about £{valueHumanised}.";
                     PopulateTemplates(Program.AuthClient);
+                    PopulateEncodes();
 
                     loginTable.Visible = false;
                     tableLayoutPanel2.Visible = false;
@@ -335,6 +380,17 @@ namespace Blackbox
                 Properties.Settings.Default.Save();
 
                 Console.WriteLine($"Template saved: {selected.Name} (ID: {Properties.Settings.Default.SelectedTemplateId})");
+            }
+        }
+
+        private void EncodeBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (encoderSelectionBox.SelectedItem is EncoderItem selected)
+            {
+                Properties.Settings.Default.FlavorSelection = selected.Name;
+                Properties.Settings.Default.Save();
+
+                Console.WriteLine($"Flavor saved: {selected.Name} (and in the settings: {Properties.Settings.Default.FlavorSelection})");
             }
         }
 

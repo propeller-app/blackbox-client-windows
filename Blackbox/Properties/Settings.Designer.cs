@@ -25,7 +25,7 @@ namespace Blackbox.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("localhost")]
         public string GrpcHost {
             get {
                 return ((string)(this["GrpcHost"]));
@@ -159,6 +159,18 @@ namespace Blackbox.Properties {
             }
             set {
                 this["FFmpegFlavors"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Automatic Selection")]
+        public string FlavorSelection {
+            get {
+                return ((string)(this["FlavorSelection"]));
+            }
+            set {
+                this["FlavorSelection"] = value;
             }
         }
     }

@@ -1,5 +1,5 @@
 $downloadPath = Join-Path $PSScriptRoot "\Download-FFmpeg.ps1"
-$ffmpegUrl = "https://github.com/GyanD/codexffmpeg/releases/download/2025-08-14-git-cdbb5f1b93/ffmpeg-2025-08-14-git-cdbb5f1b93-full_build.zip"
+$ffmpegUrl = "https://github.com/GyanD/codexffmpeg/releases/download/2026-02-26-git-6695528af6/ffmpeg-2026-02-26-git-6695528af6-full_build.zip"
 
 
 # Check current ffmpeg version using ffmpeg_version.txt which has the currently installed ffmpegUrl

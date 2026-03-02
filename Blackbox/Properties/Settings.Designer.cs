@@ -148,10 +148,11 @@ namespace Blackbox.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
 <ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
+  <string>-c:v copy</string>
   <string>-c:v libx264 -preset ultrafast -crf 18</string>
   <string>-c:v libx264 -preset superfast -crf 19</string>
-  <string>-c:v libsvtav1 -crf 28 -preset 10 -g 600</string>
-  <string>-c:v libsvtav1 -crf 30 -preset 8 -g 600</string>
+  <string>-c:v libsvtav1 -crf 27.5 -preset 10 -g 600</string>
+  <string>-c:v libsvtav1 -crf 29.5 -preset 8 -g 600</string>
 </ArrayOfString>")]
         public global::System.Collections.Specialized.StringCollection FFmpegFlavors {
             get {
@@ -171,6 +172,18 @@ namespace Blackbox.Properties {
             }
             set {
                 this["FlavorSelection"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool FirstRun {
+            get {
+                return ((bool)(this["FirstRun"]));
+            }
+            set {
+                this["FirstRun"] = value;
             }
         }
     }

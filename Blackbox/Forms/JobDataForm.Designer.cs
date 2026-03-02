@@ -29,220 +29,209 @@ namespace Blackbox
         /// </summary>
         private void InitializeComponent()
         {
-            this.firstNameLabel = new System.Windows.Forms.Label();
-            this.emailTextBox = new System.Windows.Forms.TextBox();
-            this.lastNameLabel = new System.Windows.Forms.Label();
-            this.lastNameTextBox = new System.Windows.Forms.TextBox();
-            this.emailLabel = new System.Windows.Forms.Label();
-            this.firstNameTextBox = new System.Windows.Forms.TextBox();
-            this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.statusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
-            this.uploadButton = new System.Windows.Forms.Button();
-            this.cancelButton = new System.Windows.Forms.Button();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.statusStrip.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.SuspendLayout();
+            firstNameLabel = new System.Windows.Forms.Label();
+            emailTextBox = new System.Windows.Forms.TextBox();
+            lastNameLabel = new System.Windows.Forms.Label();
+            lastNameTextBox = new System.Windows.Forms.TextBox();
+            emailLabel = new System.Windows.Forms.Label();
+            firstNameTextBox = new System.Windows.Forms.TextBox();
+            statusStrip = new System.Windows.Forms.StatusStrip();
+            statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            statusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
+            uploadButton = new System.Windows.Forms.Button();
+            cancelButton = new System.Windows.Forms.Button();
+            tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            groupBox1 = new System.Windows.Forms.GroupBox();
+            tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            statusStrip.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
+            groupBox1.SuspendLayout();
+            tableLayoutPanel2.SuspendLayout();
+            SuspendLayout();
             // 
             // firstNameLabel
             // 
-            this.firstNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.firstNameLabel.AutoSize = true;
-            this.firstNameLabel.Location = new System.Drawing.Point(3, 0);
-            this.firstNameLabel.Name = "firstNameLabel";
-            this.firstNameLabel.Size = new System.Drawing.Size(77, 33);
-            this.firstNameLabel.TabIndex = 0;
-            this.firstNameLabel.Text = "First Name:";
-            this.firstNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            firstNameLabel.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            firstNameLabel.AutoSize = true;
+            firstNameLabel.Location = new System.Drawing.Point(3, 0);
+            firstNameLabel.Name = "firstNameLabel";
+            firstNameLabel.Size = new System.Drawing.Size(77, 33);
+            firstNameLabel.TabIndex = 0;
+            firstNameLabel.Text = "First Name:";
+            firstNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // emailTextBox
             // 
-            this.emailTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.emailTextBox.Location = new System.Drawing.Point(88, 71);
-            this.emailTextBox.Margin = new System.Windows.Forms.Padding(5);
-            this.emailTextBox.Name = "emailTextBox";
-            this.emailTextBox.Size = new System.Drawing.Size(234, 23);
-            this.emailTextBox.TabIndex = 3;
-            this.emailTextBox.TextChanged += new System.EventHandler(this.Validate);
+            emailTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            emailTextBox.Location = new System.Drawing.Point(88, 71);
+            emailTextBox.Margin = new System.Windows.Forms.Padding(5);
+            emailTextBox.Name = "emailTextBox";
+            emailTextBox.Size = new System.Drawing.Size(234, 23);
+            emailTextBox.TabIndex = 3;
+            emailTextBox.TextChanged += Validate;
             // 
             // lastNameLabel
             // 
-            this.lastNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lastNameLabel.AutoSize = true;
-            this.lastNameLabel.Location = new System.Drawing.Point(3, 33);
-            this.lastNameLabel.Name = "lastNameLabel";
-            this.lastNameLabel.Size = new System.Drawing.Size(77, 33);
-            this.lastNameLabel.TabIndex = 2;
-            this.lastNameLabel.Text = "Last Name:";
-            this.lastNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            lastNameLabel.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            lastNameLabel.AutoSize = true;
+            lastNameLabel.Location = new System.Drawing.Point(3, 33);
+            lastNameLabel.Name = "lastNameLabel";
+            lastNameLabel.Size = new System.Drawing.Size(77, 33);
+            lastNameLabel.TabIndex = 2;
+            lastNameLabel.Text = "Last Name:";
+            lastNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lastNameTextBox
             // 
-            this.lastNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lastNameTextBox.Location = new System.Drawing.Point(88, 38);
-            this.lastNameTextBox.Margin = new System.Windows.Forms.Padding(5);
-            this.lastNameTextBox.Name = "lastNameTextBox";
-            this.lastNameTextBox.Size = new System.Drawing.Size(234, 23);
-            this.lastNameTextBox.TabIndex = 2;
-            this.lastNameTextBox.TextChanged += new System.EventHandler(this.Validate);
+            lastNameTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            lastNameTextBox.Location = new System.Drawing.Point(88, 38);
+            lastNameTextBox.Margin = new System.Windows.Forms.Padding(5);
+            lastNameTextBox.Name = "lastNameTextBox";
+            lastNameTextBox.Size = new System.Drawing.Size(234, 23);
+            lastNameTextBox.TabIndex = 2;
+            lastNameTextBox.TextChanged += Validate;
             // 
             // emailLabel
             // 
-            this.emailLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.emailLabel.AutoSize = true;
-            this.emailLabel.Location = new System.Drawing.Point(3, 66);
-            this.emailLabel.Name = "emailLabel";
-            this.emailLabel.Size = new System.Drawing.Size(77, 33);
-            this.emailLabel.TabIndex = 4;
-            this.emailLabel.Text = "Email:";
-            this.emailLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            emailLabel.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            emailLabel.AutoSize = true;
+            emailLabel.Location = new System.Drawing.Point(3, 66);
+            emailLabel.Name = "emailLabel";
+            emailLabel.Size = new System.Drawing.Size(77, 34);
+            emailLabel.TabIndex = 4;
+            emailLabel.Text = "Email:";
+            emailLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // firstNameTextBox
             // 
-            this.firstNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.firstNameTextBox.Location = new System.Drawing.Point(88, 5);
-            this.firstNameTextBox.Margin = new System.Windows.Forms.Padding(5);
-            this.firstNameTextBox.Name = "firstNameTextBox";
-            this.firstNameTextBox.Size = new System.Drawing.Size(234, 23);
-            this.firstNameTextBox.TabIndex = 1;
-            this.firstNameTextBox.TextChanged += new System.EventHandler(this.Validate);
+            firstNameTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            firstNameTextBox.Location = new System.Drawing.Point(88, 5);
+            firstNameTextBox.Margin = new System.Windows.Forms.Padding(5);
+            firstNameTextBox.Name = "firstNameTextBox";
+            firstNameTextBox.Size = new System.Drawing.Size(234, 23);
+            firstNameTextBox.TabIndex = 1;
+            firstNameTextBox.TextChanged += Validate;
             // 
             // statusStrip
             // 
-            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.statusLabel,
-            this.statusProgressBar});
-            this.statusStrip.Location = new System.Drawing.Point(0, 178);
-            this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(363, 22);
-            this.statusStrip.TabIndex = 6;
-            this.statusStrip.Text = "Text";
+            statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { statusLabel, statusProgressBar });
+            statusStrip.Location = new System.Drawing.Point(0, 219);
+            statusStrip.Name = "statusStrip";
+            statusStrip.Size = new System.Drawing.Size(363, 22);
+            statusStrip.TabIndex = 6;
+            statusStrip.Text = "Text";
             // 
             // statusLabel
             // 
-            this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(246, 17);
-            this.statusLabel.Spring = true;
-            this.statusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            statusLabel.Name = "statusLabel";
+            statusLabel.Size = new System.Drawing.Size(246, 17);
+            statusLabel.Spring = true;
+            statusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // statusProgressBar
             // 
-            this.statusProgressBar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.statusProgressBar.Name = "statusProgressBar";
-            this.statusProgressBar.Size = new System.Drawing.Size(100, 16);
+            statusProgressBar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            statusProgressBar.Name = "statusProgressBar";
+            statusProgressBar.Size = new System.Drawing.Size(100, 16);
             // 
             // uploadButton
             // 
-            this.uploadButton.Enabled = false;
-            this.uploadButton.Location = new System.Drawing.Point(243, 3);
-            this.uploadButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 8);
-            this.uploadButton.Name = "uploadButton";
-            this.uploadButton.Size = new System.Drawing.Size(75, 23);
-            this.uploadButton.TabIndex = 4;
-            this.uploadButton.Text = "Upload";
-            this.uploadButton.UseVisualStyleBackColor = true;
+            uploadButton.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            uploadButton.Enabled = false;
+            uploadButton.Location = new System.Drawing.Point(227, 3);
+            uploadButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 8);
+            uploadButton.Name = "uploadButton";
+            uploadButton.Size = new System.Drawing.Size(97, 28);
+            uploadButton.TabIndex = 4;
+            uploadButton.Text = "Upload";
+            uploadButton.UseVisualStyleBackColor = true;
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(162, 3);
-            this.cancelButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 8);
-            this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 5;
-            this.cancelButton.Text = "Cancel";
-            this.cancelButton.UseVisualStyleBackColor = true;
+            cancelButton.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            cancelButton.Location = new System.Drawing.Point(3, 3);
+            cancelButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 8);
+            cancelButton.Name = "cancelButton";
+            cancelButton.Size = new System.Drawing.Size(97, 28);
+            cancelButton.TabIndex = 5;
+            cancelButton.Text = "Cancel";
+            cancelButton.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.53192F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 74.46809F));
-            this.tableLayoutPanel1.Controls.Add(this.firstNameLabel, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.lastNameLabel, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.emailLabel, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.firstNameTextBox, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.emailTextBox, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.lastNameTextBox, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 1, 3);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 22);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(327, 135);
-            this.tableLayoutPanel1.TabIndex = 7;
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.SetColumnSpan(this.flowLayoutPanel1, 2);
-            this.flowLayoutPanel1.Controls.Add(this.uploadButton);
-            this.flowLayoutPanel1.Controls.Add(this.cancelButton);
-            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 102);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(321, 32);
-            this.flowLayoutPanel1.TabIndex = 5;
+            tableLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            tableLayoutPanel1.ColumnCount = 2;
+            tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.53192F));
+            tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 74.46809F));
+            tableLayoutPanel1.Controls.Add(firstNameLabel, 0, 0);
+            tableLayoutPanel1.Controls.Add(lastNameLabel, 0, 1);
+            tableLayoutPanel1.Controls.Add(emailLabel, 0, 2);
+            tableLayoutPanel1.Controls.Add(firstNameTextBox, 1, 0);
+            tableLayoutPanel1.Controls.Add(emailTextBox, 1, 2);
+            tableLayoutPanel1.Controls.Add(lastNameTextBox, 1, 1);
+            tableLayoutPanel1.Location = new System.Drawing.Point(6, 22);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 3;
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            tableLayoutPanel1.Size = new System.Drawing.Size(327, 100);
+            tableLayoutPanel1.TabIndex = 7;
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.tableLayoutPanel1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(339, 163);
-            this.groupBox1.TabIndex = 8;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Customer Data";
+            groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            groupBox1.Controls.Add(tableLayoutPanel2);
+            groupBox1.Controls.Add(tableLayoutPanel1);
+            groupBox1.Location = new System.Drawing.Point(12, 12);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new System.Drawing.Size(339, 204);
+            groupBox1.TabIndex = 8;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Customer Data";
+            // 
+            // tableLayoutPanel2
+            // 
+            tableLayoutPanel2.ColumnCount = 3;
+            tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.9821434F));
+            tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 54.0178566F));
+            tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 102F));
+            tableLayoutPanel2.Controls.Add(cancelButton, 0, 0);
+            tableLayoutPanel2.Controls.Add(uploadButton, 2, 0);
+            tableLayoutPanel2.Location = new System.Drawing.Point(6, 159);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 1;
+            tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            tableLayoutPanel2.Size = new System.Drawing.Size(327, 39);
+            tableLayoutPanel2.TabIndex = 8;
             // 
             // JobDataForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(363, 200);
-            this.ControlBox = false;
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.statusStrip);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Name = "JobDataForm";
-            this.ShowIcon = false;
-            this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "New Job";
-            this.TopMost = true;
-            this.Load += new System.EventHandler(this.JobDataForm_Load);
-            this.statusStrip.ResumeLayout(false);
-            this.statusStrip.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(363, 241);
+            ControlBox = false;
+            Controls.Add(groupBox1);
+            Controls.Add(statusStrip);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            Name = "JobDataForm";
+            ShowIcon = false;
+            ShowInTaskbar = false;
+            StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            Text = "New Job";
+            TopMost = true;
+            Load += JobDataForm_Load;
+            statusStrip.ResumeLayout(false);
+            statusStrip.PerformLayout();
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
+            groupBox1.ResumeLayout(false);
+            tableLayoutPanel2.ResumeLayout(false);
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
@@ -260,7 +249,7 @@ namespace Blackbox
         public System.Windows.Forms.Button uploadButton;
         public System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
     }
 }

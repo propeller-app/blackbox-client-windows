@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Blackbox"
-#define MyAppVersion "0.1.1"
+#define MyAppVersion "0.1.3"
 #define MyAppPublisher "Propeller Software Ltd"
 #define MyAppExeName "Blackbox.exe"
 

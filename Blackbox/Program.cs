@@ -36,6 +36,12 @@ namespace Blackbox
         [STAThread]
         public static void Main(string[] args)
         {
+            if (Properties.Settings.Default.FirstRun)
+            {
+                Properties.Settings.Default.Reset();
+                Properties.Settings.Default.FirstRun = false;
+                Properties.Settings.Default.Save();
+            }
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -110,6 +116,13 @@ namespace Blackbox
             await encoder;
 
             Console.WriteLine($"Upload speed: {uploadSpeed}");
+
+            // Temporary cap of 25Mbps on upload speed due to bottleneck issue with server.
+            if (uploadSpeed > 25)
+            {
+                uploadSpeed = 25;
+            }
+
             var benchmarks = LoadBenchmarkResults();
 
             var closest = benchmarks

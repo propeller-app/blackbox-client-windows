@@ -51,80 +51,85 @@ namespace Blackbox
             // 
             // firstNameLabel
             // 
-            firstNameLabel.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             firstNameLabel.AutoSize = true;
-            firstNameLabel.Location = new System.Drawing.Point(3, 0);
+            firstNameLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            firstNameLabel.Location = new System.Drawing.Point(4, 0);
+            firstNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             firstNameLabel.Name = "firstNameLabel";
-            firstNameLabel.Size = new System.Drawing.Size(77, 33);
+            firstNameLabel.Size = new System.Drawing.Size(113, 47);
             firstNameLabel.TabIndex = 0;
             firstNameLabel.Text = "First Name:";
             firstNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // emailTextBox
             // 
-            emailTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            emailTextBox.Location = new System.Drawing.Point(88, 71);
-            emailTextBox.Margin = new System.Windows.Forms.Padding(5);
+            emailTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            emailTextBox.Location = new System.Drawing.Point(128, 102);
+            emailTextBox.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
             emailTextBox.Name = "emailTextBox";
-            emailTextBox.Size = new System.Drawing.Size(234, 23);
+            emailTextBox.Size = new System.Drawing.Size(341, 31);
             emailTextBox.TabIndex = 3;
             emailTextBox.TextChanged += Validate;
             // 
             // lastNameLabel
             // 
-            lastNameLabel.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             lastNameLabel.AutoSize = true;
-            lastNameLabel.Location = new System.Drawing.Point(3, 33);
+            lastNameLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            lastNameLabel.Location = new System.Drawing.Point(4, 47);
+            lastNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lastNameLabel.Name = "lastNameLabel";
-            lastNameLabel.Size = new System.Drawing.Size(77, 33);
+            lastNameLabel.Size = new System.Drawing.Size(113, 47);
             lastNameLabel.TabIndex = 2;
             lastNameLabel.Text = "Last Name:";
             lastNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lastNameTextBox
             // 
-            lastNameTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            lastNameTextBox.Location = new System.Drawing.Point(88, 38);
-            lastNameTextBox.Margin = new System.Windows.Forms.Padding(5);
+            lastNameTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            lastNameTextBox.Location = new System.Drawing.Point(128, 55);
+            lastNameTextBox.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
             lastNameTextBox.Name = "lastNameTextBox";
-            lastNameTextBox.Size = new System.Drawing.Size(234, 23);
+            lastNameTextBox.Size = new System.Drawing.Size(341, 31);
             lastNameTextBox.TabIndex = 2;
             lastNameTextBox.TextChanged += Validate;
             // 
             // emailLabel
             // 
-            emailLabel.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             emailLabel.AutoSize = true;
-            emailLabel.Location = new System.Drawing.Point(3, 66);
+            emailLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            emailLabel.Location = new System.Drawing.Point(4, 94);
+            emailLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             emailLabel.Name = "emailLabel";
-            emailLabel.Size = new System.Drawing.Size(77, 34);
+            emailLabel.Size = new System.Drawing.Size(113, 50);
             emailLabel.TabIndex = 4;
             emailLabel.Text = "Email:";
             emailLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // firstNameTextBox
             // 
-            firstNameTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            firstNameTextBox.Location = new System.Drawing.Point(88, 5);
-            firstNameTextBox.Margin = new System.Windows.Forms.Padding(5);
+            firstNameTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            firstNameTextBox.Location = new System.Drawing.Point(128, 8);
+            firstNameTextBox.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
             firstNameTextBox.Name = "firstNameTextBox";
-            firstNameTextBox.Size = new System.Drawing.Size(234, 23);
+            firstNameTextBox.Size = new System.Drawing.Size(341, 31);
             firstNameTextBox.TabIndex = 1;
             firstNameTextBox.TextChanged += Validate;
             // 
             // statusStrip
             // 
+            statusStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { statusLabel, statusProgressBar });
-            statusStrip.Location = new System.Drawing.Point(0, 219);
+            statusStrip.Location = new System.Drawing.Point(0, 287);
             statusStrip.Name = "statusStrip";
-            statusStrip.Size = new System.Drawing.Size(363, 22);
+            statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 20, 0);
+            statusStrip.Size = new System.Drawing.Size(519, 31);
             statusStrip.TabIndex = 6;
             statusStrip.Text = "Text";
             // 
             // statusLabel
             // 
             statusLabel.Name = "statusLabel";
-            statusLabel.Size = new System.Drawing.Size(246, 17);
+            statusLabel.Size = new System.Drawing.Size(351, 24);
             statusLabel.Spring = true;
             statusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -132,34 +137,34 @@ namespace Blackbox
             // 
             statusProgressBar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             statusProgressBar.Name = "statusProgressBar";
-            statusProgressBar.Size = new System.Drawing.Size(100, 16);
+            statusProgressBar.Size = new System.Drawing.Size(143, 23);
             // 
             // uploadButton
             // 
-            uploadButton.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            uploadButton.Dock = System.Windows.Forms.DockStyle.Fill;
             uploadButton.Enabled = false;
-            uploadButton.Location = new System.Drawing.Point(227, 3);
-            uploadButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 8);
+            uploadButton.Location = new System.Drawing.Point(333, 5);
+            uploadButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 13);
             uploadButton.Name = "uploadButton";
-            uploadButton.Size = new System.Drawing.Size(97, 28);
+            uploadButton.Size = new System.Drawing.Size(139, 45);
             uploadButton.TabIndex = 4;
             uploadButton.Text = "Upload";
             uploadButton.UseVisualStyleBackColor = true;
             // 
             // cancelButton
             // 
-            cancelButton.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            cancelButton.Location = new System.Drawing.Point(3, 3);
-            cancelButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 8);
+            cancelButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            cancelButton.Location = new System.Drawing.Point(4, 5);
+            cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 13);
             cancelButton.Name = "cancelButton";
-            cancelButton.Size = new System.Drawing.Size(97, 28);
+            cancelButton.Size = new System.Drawing.Size(143, 45);
             cancelButton.TabIndex = 5;
             cancelButton.Text = "Cancel";
             cancelButton.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel1
             // 
-            tableLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             tableLayoutPanel1.ColumnCount = 2;
             tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.53192F));
             tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 74.46809F));
@@ -169,7 +174,9 @@ namespace Blackbox
             tableLayoutPanel1.Controls.Add(firstNameTextBox, 1, 0);
             tableLayoutPanel1.Controls.Add(emailTextBox, 1, 2);
             tableLayoutPanel1.Controls.Add(lastNameTextBox, 1, 1);
-            tableLayoutPanel1.Location = new System.Drawing.Point(6, 22);
+            tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            tableLayoutPanel1.Location = new System.Drawing.Point(4, 29);
+            tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 3;
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -177,7 +184,7 @@ namespace Blackbox
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            tableLayoutPanel1.Size = new System.Drawing.Size(327, 100);
+            tableLayoutPanel1.Size = new System.Drawing.Size(476, 144);
             tableLayoutPanel1.TabIndex = 7;
             // 
             // groupBox1
@@ -185,38 +192,44 @@ namespace Blackbox
             groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             groupBox1.Controls.Add(tableLayoutPanel2);
             groupBox1.Controls.Add(tableLayoutPanel1);
-            groupBox1.Location = new System.Drawing.Point(12, 12);
+            groupBox1.Location = new System.Drawing.Point(17, 20);
+            groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new System.Drawing.Size(339, 204);
+            groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            groupBox1.Size = new System.Drawing.Size(484, 256);
             groupBox1.TabIndex = 8;
             groupBox1.TabStop = false;
             groupBox1.Text = "Customer Data";
             // 
             // tableLayoutPanel2
             // 
+            tableLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             tableLayoutPanel2.ColumnCount = 3;
             tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.9821434F));
             tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 54.0178566F));
-            tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 102F));
+            tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 146F));
             tableLayoutPanel2.Controls.Add(cancelButton, 0, 0);
             tableLayoutPanel2.Controls.Add(uploadButton, 2, 0);
-            tableLayoutPanel2.Location = new System.Drawing.Point(6, 159);
+            tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            tableLayoutPanel2.Location = new System.Drawing.Point(4, 188);
+            tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            tableLayoutPanel2.Size = new System.Drawing.Size(327, 39);
+            tableLayoutPanel2.Size = new System.Drawing.Size(476, 63);
             tableLayoutPanel2.TabIndex = 8;
             // 
             // JobDataForm
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(363, 241);
+            ClientSize = new System.Drawing.Size(519, 318);
             ControlBox = false;
             Controls.Add(groupBox1);
             Controls.Add(statusStrip);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             Name = "JobDataForm";
             ShowIcon = false;
             ShowInTaskbar = false;

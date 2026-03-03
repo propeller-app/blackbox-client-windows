@@ -29,184 +29,180 @@ namespace Blackbox
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.jobProgressMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.jobQueueMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.jobHistoryMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newJobMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.settingsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.exitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.closeButton = new System.Windows.Forms.Button();
-            this.jobProgress = new System.Windows.Forms.ProgressBar();
-            this.progressLabel = new System.Windows.Forms.Label();
-            this.userNotifyLabel = new System.Windows.Forms.Label();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.contextMenu.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            trayIcon = new System.Windows.Forms.NotifyIcon(components);
+            contextMenu = new System.Windows.Forms.ContextMenuStrip(components);
+            jobProgressMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            jobQueueMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            jobHistoryMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            newJobMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            settingsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
+            exitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            closeButton = new System.Windows.Forms.Button();
+            jobProgress = new System.Windows.Forms.ProgressBar();
+            progressLabel = new System.Windows.Forms.Label();
+            userNotifyLabel = new System.Windows.Forms.Label();
+            tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            contextMenu.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
+            SuspendLayout();
             // 
             // trayIcon
             // 
-            this.trayIcon.ContextMenuStrip = this.contextMenu;
-            this.trayIcon.Visible = true;
-            this.trayIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.Show);
+            trayIcon.ContextMenuStrip = contextMenu;
+            trayIcon.Visible = true;
+            trayIcon.MouseDoubleClick += Show;
             // 
             // contextMenu
             // 
-            this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.jobProgressMenuItem,
-            this.jobQueueMenuItem,
-            this.jobHistoryMenuItem,
-            this.newJobMenuItem,
-            this.settingsMenuItem,
-            this.toolStripSeparator,
-            this.exitMenuItem});
-            this.contextMenu.Name = "contextMenuStrip1";
-            this.contextMenu.Size = new System.Drawing.Size(169, 142);
+            contextMenu.ImageScalingSize = new System.Drawing.Size(24, 24);
+            contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { jobProgressMenuItem, jobQueueMenuItem, jobHistoryMenuItem, newJobMenuItem, settingsMenuItem, toolStripSeparator, exitMenuItem });
+            contextMenu.Name = "contextMenuStrip1";
+            contextMenu.Size = new System.Drawing.Size(229, 202);
             // 
             // jobProgressMenuItem
             // 
-            this.jobProgressMenuItem.Name = "jobProgressMenuItem";
-            this.jobProgressMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.jobProgressMenuItem.Text = "View Job Progress";
-            this.jobProgressMenuItem.Click += new System.EventHandler(this.Show);
+            jobProgressMenuItem.Name = "jobProgressMenuItem";
+            jobProgressMenuItem.Size = new System.Drawing.Size(228, 32);
+            jobProgressMenuItem.Text = "View Job Progress";
+            jobProgressMenuItem.Click += Show;
             // 
             // jobQueueMenuItem
             // 
-            this.jobQueueMenuItem.Enabled = false;
-            this.jobQueueMenuItem.Name = "jobQueueMenuItem";
-            this.jobQueueMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.jobQueueMenuItem.Text = "View Job Queue";
-            this.jobQueueMenuItem.Click += new System.EventHandler(this.OpenJobQueueMenu);
+            jobQueueMenuItem.Enabled = false;
+            jobQueueMenuItem.Name = "jobQueueMenuItem";
+            jobQueueMenuItem.Size = new System.Drawing.Size(228, 32);
+            jobQueueMenuItem.Text = "View Job Queue";
+            jobQueueMenuItem.Click += OpenJobQueueMenu;
             // 
             // jobHistoryMenuItem
             // 
-            this.jobHistoryMenuItem.Enabled = false;
-            this.jobHistoryMenuItem.Name = "jobHistoryMenuItem";
-            this.jobHistoryMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.jobHistoryMenuItem.Text = "View Job History";
-            this.jobHistoryMenuItem.Click += new System.EventHandler(this.OpenJobHistoryMenu);
+            jobHistoryMenuItem.Enabled = false;
+            jobHistoryMenuItem.Name = "jobHistoryMenuItem";
+            jobHistoryMenuItem.Size = new System.Drawing.Size(228, 32);
+            jobHistoryMenuItem.Text = "View Job History";
+            jobHistoryMenuItem.Click += OpenJobHistoryMenu;
             // 
             // newJobMenuItem
             // 
-            this.newJobMenuItem.Enabled = false;
-            this.newJobMenuItem.Name = "newJobMenuItem";
-            this.newJobMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.newJobMenuItem.Text = "Create New Job";
-            this.newJobMenuItem.Click += new System.EventHandler(this.OpenNewJobMenu);
+            newJobMenuItem.Enabled = false;
+            newJobMenuItem.Name = "newJobMenuItem";
+            newJobMenuItem.Size = new System.Drawing.Size(228, 32);
+            newJobMenuItem.Text = "Create New Job";
+            newJobMenuItem.Click += OpenNewJobMenu;
             // 
             // settingsMenuItem
             // 
-            this.settingsMenuItem.Name = "settingsMenuItem";
-            this.settingsMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.settingsMenuItem.Text = "Settings";
-            this.settingsMenuItem.Click += new System.EventHandler(this.OpenSettingsMenu);
+            settingsMenuItem.Name = "settingsMenuItem";
+            settingsMenuItem.Size = new System.Drawing.Size(228, 32);
+            settingsMenuItem.Text = "Settings";
+            settingsMenuItem.Click += OpenSettingsMenu;
             // 
             // toolStripSeparator
             // 
-            this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(165, 6);
+            toolStripSeparator.Name = "toolStripSeparator";
+            toolStripSeparator.Size = new System.Drawing.Size(225, 6);
             // 
             // exitMenuItem
             // 
-            this.exitMenuItem.Name = "exitMenuItem";
-            this.exitMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.exitMenuItem.Text = "Exit";
-            this.exitMenuItem.Click += new System.EventHandler(this.ExitButtonClick);
+            exitMenuItem.Name = "exitMenuItem";
+            exitMenuItem.Size = new System.Drawing.Size(228, 32);
+            exitMenuItem.Text = "Exit";
+            exitMenuItem.Click += ExitButtonClick;
             // 
             // closeButton
             // 
-            this.closeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.closeButton.Location = new System.Drawing.Point(225, 60);
-            this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(75, 23);
-            this.closeButton.TabIndex = 1;
-            this.closeButton.Text = "Hide";
-            this.closeButton.UseVisualStyleBackColor = true;
-            this.closeButton.Click += new System.EventHandler(this.Hide);
+            closeButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            closeButton.Dock = System.Windows.Forms.DockStyle.Right;
+            closeButton.Location = new System.Drawing.Point(328, 108);
+            closeButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            closeButton.Name = "closeButton";
+            closeButton.Size = new System.Drawing.Size(107, 40);
+            closeButton.TabIndex = 1;
+            closeButton.Text = "Hide";
+            closeButton.UseVisualStyleBackColor = true;
+            closeButton.Click += Hide;
             // 
             // jobProgress
             // 
-            this.jobProgress.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.SetColumnSpan(this.jobProgress, 2);
-            this.jobProgress.Location = new System.Drawing.Point(3, 20);
-            this.jobProgress.Name = "jobProgress";
-            this.jobProgress.Size = new System.Drawing.Size(297, 33);
-            this.jobProgress.TabIndex = 2;
+            tableLayoutPanel1.SetColumnSpan(jobProgress, 2);
+            jobProgress.Dock = System.Windows.Forms.DockStyle.Fill;
+            jobProgress.Location = new System.Drawing.Point(14, 43);
+            jobProgress.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            jobProgress.Name = "jobProgress";
+            jobProgress.Size = new System.Drawing.Size(421, 55);
+            jobProgress.TabIndex = 2;
             // 
             // progressLabel
             // 
-            this.progressLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressLabel.AutoSize = true;
-            this.tableLayoutPanel1.SetColumnSpan(this.progressLabel, 2);
-            this.progressLabel.Location = new System.Drawing.Point(3, 0);
-            this.progressLabel.Name = "progressLabel";
-            this.progressLabel.Size = new System.Drawing.Size(297, 15);
-            this.progressLabel.TabIndex = 3;
-            this.progressLabel.Text = "Ready";
+            progressLabel.AutoSize = true;
+            tableLayoutPanel1.SetColumnSpan(progressLabel, 2);
+            progressLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            progressLabel.Location = new System.Drawing.Point(14, 10);
+            progressLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            progressLabel.Name = "progressLabel";
+            progressLabel.Size = new System.Drawing.Size(421, 25);
+            progressLabel.TabIndex = 3;
+            progressLabel.Text = "Ready";
             // 
             // userNotifyLabel
             // 
-            this.userNotifyLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.userNotifyLabel.AutoSize = true;
-            this.userNotifyLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.userNotifyLabel.Location = new System.Drawing.Point(3, 56);
-            this.userNotifyLabel.Name = "userNotifyLabel";
-            this.userNotifyLabel.Size = new System.Drawing.Size(0, 30);
-            this.userNotifyLabel.TabIndex = 4;
-            this.userNotifyLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            userNotifyLabel.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            userNotifyLabel.AutoSize = true;
+            userNotifyLabel.ForeColor = System.Drawing.SystemColors.ControlText;
+            userNotifyLabel.Location = new System.Drawing.Point(14, 103);
+            userNotifyLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            userNotifyLabel.Name = "userNotifyLabel";
+            userNotifyLabel.Size = new System.Drawing.Size(0, 50);
+            userNotifyLabel.TabIndex = 4;
+            userNotifyLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.AutoSize = true;
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.progressLabel, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.jobProgress, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.closeButton, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.userNotifyLabel, 0, 2);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(9, 9);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 29.85075F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70.14925F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(303, 86);
-            this.tableLayoutPanel1.TabIndex = 5;
+            tableLayoutPanel1.AutoSize = true;
+            tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            tableLayoutPanel1.ColumnCount = 2;
+            tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            tableLayoutPanel1.Controls.Add(progressLabel, 0, 0);
+            tableLayoutPanel1.Controls.Add(jobProgress, 0, 1);
+            tableLayoutPanel1.Controls.Add(closeButton, 1, 2);
+            tableLayoutPanel1.Controls.Add(userNotifyLabel, 0, 2);
+            tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(10);
+            tableLayoutPanel1.RowCount = 3;
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 29.85075F));
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70.14925F));
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            tableLayoutPanel1.Size = new System.Drawing.Size(449, 163);
+            tableLayoutPanel1.TabIndex = 5;
             // 
             // JobProgressForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(321, 104);
-            this.ControlBox = false;
-            this.Controls.Add(this.tableLayoutPanel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "JobProgressForm";
-            this.Opacity = 0D;
-            this.ShowIcon = false;
-            this.ShowInTaskbar = false;
-            this.Text = "Current Job";
-            this.TopMost = true;
-            this.contextMenu.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(449, 163);
+            ControlBox = false;
+            Controls.Add(tableLayoutPanel1);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "JobProgressForm";
+            Opacity = 0D;
+            ShowIcon = false;
+            ShowInTaskbar = false;
+            Text = "Current Job";
+            TopMost = true;
+            contextMenu.ResumeLayout(false);
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 

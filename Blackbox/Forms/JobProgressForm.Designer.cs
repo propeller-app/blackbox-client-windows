@@ -59,12 +59,12 @@ namespace Blackbox
             contextMenu.ImageScalingSize = new System.Drawing.Size(24, 24);
             contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { jobProgressMenuItem, jobQueueMenuItem, jobHistoryMenuItem, newJobMenuItem, settingsMenuItem, toolStripSeparator, exitMenuItem });
             contextMenu.Name = "contextMenuStrip1";
-            contextMenu.Size = new System.Drawing.Size(229, 202);
+            contextMenu.Size = new System.Drawing.Size(169, 142);
             // 
             // jobProgressMenuItem
             // 
             jobProgressMenuItem.Name = "jobProgressMenuItem";
-            jobProgressMenuItem.Size = new System.Drawing.Size(228, 32);
+            jobProgressMenuItem.Size = new System.Drawing.Size(168, 22);
             jobProgressMenuItem.Text = "View Job Progress";
             jobProgressMenuItem.Click += Show;
             // 
@@ -72,7 +72,7 @@ namespace Blackbox
             // 
             jobQueueMenuItem.Enabled = false;
             jobQueueMenuItem.Name = "jobQueueMenuItem";
-            jobQueueMenuItem.Size = new System.Drawing.Size(228, 32);
+            jobQueueMenuItem.Size = new System.Drawing.Size(168, 22);
             jobQueueMenuItem.Text = "View Job Queue";
             jobQueueMenuItem.Click += OpenJobQueueMenu;
             // 
@@ -80,7 +80,7 @@ namespace Blackbox
             // 
             jobHistoryMenuItem.Enabled = false;
             jobHistoryMenuItem.Name = "jobHistoryMenuItem";
-            jobHistoryMenuItem.Size = new System.Drawing.Size(228, 32);
+            jobHistoryMenuItem.Size = new System.Drawing.Size(168, 22);
             jobHistoryMenuItem.Text = "View Job History";
             jobHistoryMenuItem.Click += OpenJobHistoryMenu;
             // 
@@ -88,26 +88,26 @@ namespace Blackbox
             // 
             newJobMenuItem.Enabled = false;
             newJobMenuItem.Name = "newJobMenuItem";
-            newJobMenuItem.Size = new System.Drawing.Size(228, 32);
+            newJobMenuItem.Size = new System.Drawing.Size(168, 22);
             newJobMenuItem.Text = "Create New Job";
             newJobMenuItem.Click += OpenNewJobMenu;
             // 
             // settingsMenuItem
             // 
             settingsMenuItem.Name = "settingsMenuItem";
-            settingsMenuItem.Size = new System.Drawing.Size(228, 32);
+            settingsMenuItem.Size = new System.Drawing.Size(168, 22);
             settingsMenuItem.Text = "Settings";
             settingsMenuItem.Click += OpenSettingsMenu;
             // 
             // toolStripSeparator
             // 
             toolStripSeparator.Name = "toolStripSeparator";
-            toolStripSeparator.Size = new System.Drawing.Size(225, 6);
+            toolStripSeparator.Size = new System.Drawing.Size(165, 6);
             // 
             // exitMenuItem
             // 
             exitMenuItem.Name = "exitMenuItem";
-            exitMenuItem.Size = new System.Drawing.Size(228, 32);
+            exitMenuItem.Size = new System.Drawing.Size(168, 22);
             exitMenuItem.Text = "Exit";
             exitMenuItem.Click += ExitButtonClick;
             // 
@@ -115,10 +115,9 @@ namespace Blackbox
             // 
             closeButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             closeButton.Dock = System.Windows.Forms.DockStyle.Right;
-            closeButton.Location = new System.Drawing.Point(328, 108);
-            closeButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            closeButton.Location = new System.Drawing.Point(227, 78);
             closeButton.Name = "closeButton";
-            closeButton.Size = new System.Drawing.Size(107, 40);
+            closeButton.Size = new System.Drawing.Size(75, 26);
             closeButton.TabIndex = 1;
             closeButton.Text = "Hide";
             closeButton.UseVisualStyleBackColor = true;
@@ -128,10 +127,9 @@ namespace Blackbox
             // 
             tableLayoutPanel1.SetColumnSpan(jobProgress, 2);
             jobProgress.Dock = System.Windows.Forms.DockStyle.Fill;
-            jobProgress.Location = new System.Drawing.Point(14, 43);
-            jobProgress.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            jobProgress.Location = new System.Drawing.Point(10, 29);
             jobProgress.Name = "jobProgress";
-            jobProgress.Size = new System.Drawing.Size(421, 55);
+            jobProgress.Size = new System.Drawing.Size(292, 43);
             jobProgress.TabIndex = 2;
             // 
             // progressLabel
@@ -139,10 +137,9 @@ namespace Blackbox
             progressLabel.AutoSize = true;
             tableLayoutPanel1.SetColumnSpan(progressLabel, 2);
             progressLabel.Dock = System.Windows.Forms.DockStyle.Top;
-            progressLabel.Location = new System.Drawing.Point(14, 10);
-            progressLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            progressLabel.Location = new System.Drawing.Point(10, 6);
             progressLabel.Name = "progressLabel";
-            progressLabel.Size = new System.Drawing.Size(421, 25);
+            progressLabel.Size = new System.Drawing.Size(292, 15);
             progressLabel.TabIndex = 3;
             progressLabel.Text = "Ready";
             // 
@@ -151,10 +148,9 @@ namespace Blackbox
             userNotifyLabel.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             userNotifyLabel.AutoSize = true;
             userNotifyLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-            userNotifyLabel.Location = new System.Drawing.Point(14, 103);
-            userNotifyLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            userNotifyLabel.Location = new System.Drawing.Point(10, 75);
             userNotifyLabel.Name = "userNotifyLabel";
-            userNotifyLabel.Size = new System.Drawing.Size(0, 50);
+            userNotifyLabel.Size = new System.Drawing.Size(0, 32);
             userNotifyLabel.TabIndex = 4;
             userNotifyLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -173,23 +169,22 @@ namespace Blackbox
             tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(10);
+            tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
             tableLayoutPanel1.RowCount = 3;
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 29.85075F));
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70.14925F));
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            tableLayoutPanel1.Size = new System.Drawing.Size(449, 163);
+            tableLayoutPanel1.Size = new System.Drawing.Size(312, 113);
             tableLayoutPanel1.TabIndex = 5;
             // 
             // JobProgressForm
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(449, 163);
+            ClientSize = new System.Drawing.Size(312, 113);
             ControlBox = false;
             Controls.Add(tableLayoutPanel1);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "JobProgressForm";

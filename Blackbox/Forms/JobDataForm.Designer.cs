@@ -53,10 +53,9 @@ namespace Blackbox
             // 
             firstNameLabel.AutoSize = true;
             firstNameLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            firstNameLabel.Location = new System.Drawing.Point(4, 0);
-            firstNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            firstNameLabel.Location = new System.Drawing.Point(3, 0);
             firstNameLabel.Name = "firstNameLabel";
-            firstNameLabel.Size = new System.Drawing.Size(113, 47);
+            firstNameLabel.Size = new System.Drawing.Size(79, 33);
             firstNameLabel.TabIndex = 0;
             firstNameLabel.Text = "First Name:";
             firstNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -64,10 +63,10 @@ namespace Blackbox
             // emailTextBox
             // 
             emailTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            emailTextBox.Location = new System.Drawing.Point(128, 102);
-            emailTextBox.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
+            emailTextBox.Location = new System.Drawing.Point(90, 71);
+            emailTextBox.Margin = new System.Windows.Forms.Padding(5);
             emailTextBox.Name = "emailTextBox";
-            emailTextBox.Size = new System.Drawing.Size(341, 31);
+            emailTextBox.Size = new System.Drawing.Size(238, 23);
             emailTextBox.TabIndex = 3;
             emailTextBox.TextChanged += Validate;
             // 
@@ -75,10 +74,9 @@ namespace Blackbox
             // 
             lastNameLabel.AutoSize = true;
             lastNameLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            lastNameLabel.Location = new System.Drawing.Point(4, 47);
-            lastNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lastNameLabel.Location = new System.Drawing.Point(3, 33);
             lastNameLabel.Name = "lastNameLabel";
-            lastNameLabel.Size = new System.Drawing.Size(113, 47);
+            lastNameLabel.Size = new System.Drawing.Size(79, 33);
             lastNameLabel.TabIndex = 2;
             lastNameLabel.Text = "Last Name:";
             lastNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -86,10 +84,10 @@ namespace Blackbox
             // lastNameTextBox
             // 
             lastNameTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            lastNameTextBox.Location = new System.Drawing.Point(128, 55);
-            lastNameTextBox.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
+            lastNameTextBox.Location = new System.Drawing.Point(90, 38);
+            lastNameTextBox.Margin = new System.Windows.Forms.Padding(5);
             lastNameTextBox.Name = "lastNameTextBox";
-            lastNameTextBox.Size = new System.Drawing.Size(341, 31);
+            lastNameTextBox.Size = new System.Drawing.Size(238, 23);
             lastNameTextBox.TabIndex = 2;
             lastNameTextBox.TextChanged += Validate;
             // 
@@ -97,10 +95,9 @@ namespace Blackbox
             // 
             emailLabel.AutoSize = true;
             emailLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            emailLabel.Location = new System.Drawing.Point(4, 94);
-            emailLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            emailLabel.Location = new System.Drawing.Point(3, 66);
             emailLabel.Name = "emailLabel";
-            emailLabel.Size = new System.Drawing.Size(113, 50);
+            emailLabel.Size = new System.Drawing.Size(79, 36);
             emailLabel.TabIndex = 4;
             emailLabel.Text = "Email:";
             emailLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -108,10 +105,10 @@ namespace Blackbox
             // firstNameTextBox
             // 
             firstNameTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            firstNameTextBox.Location = new System.Drawing.Point(128, 8);
-            firstNameTextBox.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
+            firstNameTextBox.Location = new System.Drawing.Point(90, 5);
+            firstNameTextBox.Margin = new System.Windows.Forms.Padding(5);
             firstNameTextBox.Name = "firstNameTextBox";
-            firstNameTextBox.Size = new System.Drawing.Size(341, 31);
+            firstNameTextBox.Size = new System.Drawing.Size(238, 23);
             firstNameTextBox.TabIndex = 1;
             firstNameTextBox.TextChanged += Validate;
             // 
@@ -119,17 +116,16 @@ namespace Blackbox
             // 
             statusStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { statusLabel, statusProgressBar });
-            statusStrip.Location = new System.Drawing.Point(0, 287);
+            statusStrip.Location = new System.Drawing.Point(0, 187);
             statusStrip.Name = "statusStrip";
-            statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 20, 0);
-            statusStrip.Size = new System.Drawing.Size(519, 31);
+            statusStrip.Size = new System.Drawing.Size(363, 22);
             statusStrip.TabIndex = 6;
             statusStrip.Text = "Text";
             // 
             // statusLabel
             // 
             statusLabel.Name = "statusLabel";
-            statusLabel.Size = new System.Drawing.Size(351, 24);
+            statusLabel.Size = new System.Drawing.Size(246, 17);
             statusLabel.Spring = true;
             statusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -137,16 +133,16 @@ namespace Blackbox
             // 
             statusProgressBar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             statusProgressBar.Name = "statusProgressBar";
-            statusProgressBar.Size = new System.Drawing.Size(143, 23);
+            statusProgressBar.Size = new System.Drawing.Size(100, 16);
             // 
             // uploadButton
             // 
             uploadButton.Dock = System.Windows.Forms.DockStyle.Fill;
             uploadButton.Enabled = false;
-            uploadButton.Location = new System.Drawing.Point(333, 5);
-            uploadButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 13);
+            uploadButton.Location = new System.Drawing.Point(233, 3);
+            uploadButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 8);
             uploadButton.Name = "uploadButton";
-            uploadButton.Size = new System.Drawing.Size(139, 45);
+            uploadButton.Size = new System.Drawing.Size(97, 27);
             uploadButton.TabIndex = 4;
             uploadButton.Text = "Upload";
             uploadButton.UseVisualStyleBackColor = true;
@@ -154,10 +150,10 @@ namespace Blackbox
             // cancelButton
             // 
             cancelButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            cancelButton.Location = new System.Drawing.Point(4, 5);
-            cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 13);
+            cancelButton.Location = new System.Drawing.Point(3, 3);
+            cancelButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 8);
             cancelButton.Name = "cancelButton";
-            cancelButton.Size = new System.Drawing.Size(143, 45);
+            cancelButton.Size = new System.Drawing.Size(100, 27);
             cancelButton.TabIndex = 5;
             cancelButton.Text = "Cancel";
             cancelButton.UseVisualStyleBackColor = true;
@@ -175,8 +171,7 @@ namespace Blackbox
             tableLayoutPanel1.Controls.Add(emailTextBox, 1, 2);
             tableLayoutPanel1.Controls.Add(lastNameTextBox, 1, 1);
             tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            tableLayoutPanel1.Location = new System.Drawing.Point(4, 29);
-            tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            tableLayoutPanel1.Location = new System.Drawing.Point(3, 19);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 3;
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -184,7 +179,7 @@ namespace Blackbox
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            tableLayoutPanel1.Size = new System.Drawing.Size(476, 144);
+            tableLayoutPanel1.Size = new System.Drawing.Size(333, 102);
             tableLayoutPanel1.TabIndex = 7;
             // 
             // groupBox1
@@ -192,11 +187,9 @@ namespace Blackbox
             groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             groupBox1.Controls.Add(tableLayoutPanel2);
             groupBox1.Controls.Add(tableLayoutPanel1);
-            groupBox1.Location = new System.Drawing.Point(17, 20);
-            groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            groupBox1.Location = new System.Drawing.Point(12, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            groupBox1.Size = new System.Drawing.Size(484, 256);
+            groupBox1.Size = new System.Drawing.Size(339, 172);
             groupBox1.TabIndex = 8;
             groupBox1.TabStop = false;
             groupBox1.Text = "Customer Data";
@@ -207,29 +200,27 @@ namespace Blackbox
             tableLayoutPanel2.ColumnCount = 3;
             tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.9821434F));
             tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 54.0178566F));
-            tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 146F));
+            tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 102F));
             tableLayoutPanel2.Controls.Add(cancelButton, 0, 0);
             tableLayoutPanel2.Controls.Add(uploadButton, 2, 0);
             tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            tableLayoutPanel2.Location = new System.Drawing.Point(4, 188);
-            tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            tableLayoutPanel2.Location = new System.Drawing.Point(3, 131);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            tableLayoutPanel2.Size = new System.Drawing.Size(476, 63);
+            tableLayoutPanel2.Size = new System.Drawing.Size(333, 38);
             tableLayoutPanel2.TabIndex = 8;
             // 
             // JobDataForm
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(519, 318);
+            ClientSize = new System.Drawing.Size(363, 209);
             ControlBox = false;
             Controls.Add(groupBox1);
             Controls.Add(statusStrip);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             Name = "JobDataForm";
             ShowIcon = false;
             ShowInTaskbar = false;

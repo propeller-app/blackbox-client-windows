@@ -115,9 +115,9 @@ namespace Blackbox
             // 
             closeButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             closeButton.Dock = System.Windows.Forms.DockStyle.Right;
-            closeButton.Location = new System.Drawing.Point(227, 78);
+            closeButton.Location = new System.Drawing.Point(223, 73);
             closeButton.Name = "closeButton";
-            closeButton.Size = new System.Drawing.Size(75, 26);
+            closeButton.Size = new System.Drawing.Size(75, 27);
             closeButton.TabIndex = 1;
             closeButton.Text = "Hide";
             closeButton.UseVisualStyleBackColor = true;
@@ -127,9 +127,9 @@ namespace Blackbox
             // 
             tableLayoutPanel1.SetColumnSpan(jobProgress, 2);
             jobProgress.Dock = System.Windows.Forms.DockStyle.Fill;
-            jobProgress.Location = new System.Drawing.Point(10, 29);
+            jobProgress.Location = new System.Drawing.Point(10, 28);
             jobProgress.Name = "jobProgress";
-            jobProgress.Size = new System.Drawing.Size(292, 43);
+            jobProgress.Size = new System.Drawing.Size(288, 39);
             jobProgress.TabIndex = 2;
             // 
             // progressLabel
@@ -139,7 +139,7 @@ namespace Blackbox
             progressLabel.Dock = System.Windows.Forms.DockStyle.Top;
             progressLabel.Location = new System.Drawing.Point(10, 6);
             progressLabel.Name = "progressLabel";
-            progressLabel.Size = new System.Drawing.Size(292, 15);
+            progressLabel.Size = new System.Drawing.Size(288, 15);
             progressLabel.TabIndex = 3;
             progressLabel.Text = "Ready";
             // 
@@ -148,9 +148,9 @@ namespace Blackbox
             userNotifyLabel.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             userNotifyLabel.AutoSize = true;
             userNotifyLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-            userNotifyLabel.Location = new System.Drawing.Point(10, 75);
+            userNotifyLabel.Location = new System.Drawing.Point(10, 70);
             userNotifyLabel.Name = "userNotifyLabel";
-            userNotifyLabel.Size = new System.Drawing.Size(0, 32);
+            userNotifyLabel.Size = new System.Drawing.Size(0, 33);
             userNotifyLabel.TabIndex = 4;
             userNotifyLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -174,14 +174,14 @@ namespace Blackbox
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 29.85075F));
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70.14925F));
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            tableLayoutPanel1.Size = new System.Drawing.Size(312, 113);
+            tableLayoutPanel1.Size = new System.Drawing.Size(308, 109);
             tableLayoutPanel1.TabIndex = 5;
             // 
             // JobProgressForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(312, 113);
+            ClientSize = new System.Drawing.Size(308, 109);
             ControlBox = false;
             Controls.Add(tableLayoutPanel1);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
